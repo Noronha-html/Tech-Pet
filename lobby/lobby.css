@@ -1,0 +1,97 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.container
+{
+    width: 50vw;
+    height: 60vh;
+    min-height: 300px;
+    display: grid;
+    grid-template-rows: repeat(2, 50%);
+    padding: 1%;
+    border-radius: 30px;
+    background-color: green;
+}
+
+.divLogo
+{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    border-radius: 20px;
+    padding-inline: 2%;
+    padding-block: 2%;
+}
+
+.divLogo .img
+{
+    width: 60%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: white;
+
+}
+
+.divLogo .logo
+{
+    width: 20%;
+    height: 85%;
+    background-color: white;
+    border-radius: 100%;
+    margin-left: 15%;
+}
+
+.buttons
+{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    padding-block: 2%;
+    padding-inline: 2%;
+}
+
+.buttons .register
+{
+    width: 100%;
+    height: 25%;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.buttons .registre-se
+{
+    width: 100%;
+    height: 25%;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.buttons .register:hover
+{
+    cursor: pointer;
+}
+
+.buttons .registre-se:hover
+{
+    cursor: pointer;
+}
