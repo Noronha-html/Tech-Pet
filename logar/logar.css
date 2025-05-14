@@ -8,3 +8,9 @@
 body {
     background-color: #f5f5f5;
 }
+.box {
+    box-shadow: 15px 5px 30px rgb(73, 73, 73);
+}
+input::placeholder{
+    color: white;
+}
