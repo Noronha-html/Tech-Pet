@@ -11,6 +11,7 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(234, 224, 224);
 }
 
 .container
@@ -19,7 +20,7 @@ body
     height: 70%;
     min-height: 400px;
     border-radius: 30px;
-    background-color: red;
+    background-color: white;
 }
 
 .all
@@ -33,7 +34,7 @@ body
 {
     text-align: center;
     margin-top: 2%;
-    color: white;
+    color: #5beeba;
 }
 
 .divPhoto
@@ -50,23 +51,26 @@ body
     width: 100%;
     height: 65%;
     border-radius: 20px;
-    background-color: aqua;
+    background-image: url(../img/img\ n\ c.png);
+    background-size: 100% 100%;
+    
 }
 
 .files {
-    width: 97%; /* aumenta para os lados */
-    height: 12%; /* aumenta a altura */
+    width: 97%;
+    height: 12%;
     margin-top: 10%;
-    margin-left: 1%; /* centraliza melhor se aumentar o width */
+    margin-left: 1%;
     border-radius: 25px;
     border: none;
     font-size: 1.2rem;
-    background-color: white;
+    background-color: #5beeba;
     text-align: center;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
 }
 
 
@@ -79,7 +83,7 @@ body
     border: none;
     font-size: 1.1rem;
     font-weight: 500;
-    background-color: green;
+    background-color: #5beeba;
     color: white;
 }
 
@@ -109,5 +113,11 @@ body
     border-radius: 20px;
     border: none;
     padding-left: 3%;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    background-color: #5beeba;
 }
+
+input::placeholder {
+    color: white;
+    font-size: 1.1rem;
+  }

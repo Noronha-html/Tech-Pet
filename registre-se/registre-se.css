@@ -11,6 +11,7 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(234, 224, 224);
 }
 
 .container
@@ -18,8 +19,9 @@ body
     width: 60%;
     height: 90%;
     min-height: 500px;
-    border-radius: 30px;
-    background-color: red;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 15px 5px 30px rgb(73,73,73);
     padding-inline: 2%;
     display: flex;
     flex-flow: column wrap;
@@ -31,7 +33,7 @@ body
 {
     text-align: center;
     margin-top: 2%;
-    color: white;
+    color: #5beeba;
 }
 
 .submit
@@ -45,7 +47,7 @@ body
     border: none;
     font-size: 1.1rem;
     font-weight: 500;
-    background-color: green;
+    background-color: #5beeba;
     color: white;
     justify-self: center;
 }
@@ -77,4 +79,15 @@ body
     border: none;
     padding-left: 3%;
     font-size: 0.9rem;
+    background-color: #5beeba;
+}
+
+input::placeholder {
+    color: white;
+    font-size: 1.1rem;
+  }
+
+.submit:hover
+{
+    cursor: pointer;
 }

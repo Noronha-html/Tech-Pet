@@ -11,6 +11,7 @@ body
    display: flex;
    justify-content: center;
    align-items: center;
+   background-color: rgb(234, 224, 224);
 }
 
 .container
@@ -22,7 +23,9 @@ body
     grid-template-rows: repeat(2, 50%);
     padding: 1%;
     border-radius: 30px;
-    background-color: green;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 15px 5px 30px rgb(73,73,73);
 }
 
 .divLogo
@@ -38,20 +41,24 @@ body
 
 .divLogo .img
 {
-    width: 60%;
+    width: 50%;
     height: 100%;
     border-radius: 10px;
-    background-color: white;
+    background-image: url(../img/pngtree-portrait-of-happy-dog-and-cat-that-looking-at-the-camera-png-image_12828737.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 
 }
 
 .divLogo .logo
 {
-    width: 20%;
-    height: 85%;
-    background-color: white;
+    width: 40%;
+    height: 132%;
     border-radius: 100%;
     margin-left: 15%;
+    background-image: url(../img/Image.jfif.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 .buttons
@@ -74,6 +81,8 @@ body
     border: none;
     font-size: 1.1rem;
     font-weight: 400;
+    background-color: #5beeba;
+    color: white;
 }
 
 .buttons .registre-se
@@ -84,6 +93,8 @@ body
     border: none;
     font-size: 1.1rem;
     font-weight: 400;
+    background-color: #5beeba;
+    color: white;
 }
 
 .buttons .register:hover
