@@ -1,4 +1,4 @@
-const checkbox = document.querySelector('.checkbox-container input[type="checkbox"]');
+const checkbox = document.querySelector('#password-checkbox');
 const passwordInput = document.querySelector('input[name="password"]');
 
 checkbox.addEventListener('change', () => {
