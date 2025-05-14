@@ -1,7 +1,7 @@
 const register = document.querySelector(".register");
 
 register.addEventListener("click", () => {
-    window.location.href = "../register/register.html";
+    window.location.href = "../logar/logar.html";
 });
 
 const registre_se = document.querySelector(".registre-se");

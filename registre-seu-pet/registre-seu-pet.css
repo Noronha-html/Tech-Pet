@@ -21,6 +21,7 @@ body
     min-height: 400px;
     border-radius: 30px;
     background-color: white;
+    box-shadow: 15px 5px 30px rgb(73,73,73);
 }
 
 .all
