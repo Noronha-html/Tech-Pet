@@ -1,93 +1,12 @@
-*
-{
-    margin: 0;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+*{
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    font-family: "Open Sans", serif;
 }
-
-body
-{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(234, 224, 224);
+input:focus{
+    outline: none;
 }
-
-.container
-{
-    width: 60%;
-    height: 90%;
-    min-height: 500px;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 15px 5px 30px rgb(73,73,73);
-    padding-inline: 2%;
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.title
-{
-    text-align: center;
-    margin-top: 2%;
-    color: #5beeba;
-}
-
-.submit
-{
-    width: 50%;
-    height: 12%;
-    min-height: 50px;
-    border-radius: 25px;
-    margin-top: 55%;
-    margin-left: -75%;
-    border: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    background-color: #5beeba;
-    color: white;
-    justify-self: center;
-}
-
-.divInputs
-{
-    width: 100%;
-    height: 85%;
-    border-radius: 30px;
-    display: flex;
-    flex-flow: column wrap;
-    padding: 1%;
-
-}
-
-.label
-{
-    color: white;
-    font-size: 1.1rem;
-    margin-bottom: 1%;
-    margin-top: 1%;
-}
-
-.input
-{
-    width: 100%;
-    height: 8%;
-    border-radius: 20px;
-    border: none;
-    padding-left: 3%;
-    font-size: 0.9rem;
-    background-color: #5beeba;
-}
-
-input::placeholder {
-    color: white;
-    font-size: 1.1rem;
-  }
-
-.submit:hover
-{
-    cursor: pointer;
+input::placeholder{
+    font-size: 0.85rem ;
 }

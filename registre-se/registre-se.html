@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit=no">
+    <title>TechPet - Registrar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="../registre-se/registre-se.css">
     <link rel="shortcut icon" href="../img/Image.jfif.png" type="image/x-icon">
-    <title>TechPet</title>
 </head>
-<body>
-    <form action="" class="container">
-        <h1 class="title">registre-se aqui!</h1>
-            <div class="divInputs">
-                <label for="" class="label">Nome:</label>
-                <input type="text" name="" id="name" class="input" placeholder="Digite o seu nome">
-    
-                <label for="" class="label">Cidade:</label>
-                <input type="text" name="" id="age" class="input" placeholder="Digite a sua Cidade">
-    
-                <label for="" class="label">Email:</label>
-                <input type="text" name="" id="weight" class="input" placeholder="Digite o Email">
-    
-                <label for="" class="label">Data de nacimento</label>
-                <input type="text" name="" id="alergies" class="input" placeholder="Digite a sua Data de nascimento">
-
-                <label for="" class="label">whatsapp:</label>
-                <input type="text" name="" id="alergies" class="input" placeholder="Digite o seu whatsapp">
-
-                <button class="submit" type="button">Enviar</button>
-
+<body class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <h1 class="display-4">Registre-se aqui</h1>
+    <form action="" method="post" class="d-flex row h-100 w-50 flex-column align-items-center shadow p-5" style="border-radius: 1rem;">
+        <legend class="col-12" >Informações de Cadastro</legend>
+        <fieldset class="border p-3" style="border-radius: 1rem;">
+            <div class="col-12 justify-content-start align-items-start m-1">
+                <label for="name">Nome:</label>
+                <input type="text" name="name" id="name" class="border-left-0 border-right-0 border-top-0 border ml-2 mr-2  p-1" placeholder="Digite o seu nome">
+                <input type="text" name="surname" id="surname" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Digite o seu sobrenome">
             </div>
-        </div>
+            <div class="col-12 justify-content-start align-items-start m-1">
+                <label for="city">Cidade: </label>
+                <input type="text" name="city" id="city" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Digite a sua Cidade">
+            </div>
+            <div class="col-12 justify-content-start align-items-start m-1">
+                <label for="email">Email: </label>
+                <input type="text" name="email" id="email" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Digite o Email">
+            </div>
+            <div class="col-12 justify-content-start align-items-start m-1">
+                <label for="dtnasc">Data de nascimento: </label>
+                <input type="date" name="dtnasc" id="dtnasc" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Digite a sua Data de nascimento">
+            </div>
+            <div class="col-12 justify-content-start align-items-start m-1">
+                <label for="wpp">Número de Contato:</label>
+                <input type="tel" name="wpp" id="wpp" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Digite o seu whatsapp">
+            </div>
+        </fieldset>
+        <button type="button" class="btn col-12 mt-3" style="background-color: #5beeba; color: white;">Enviar</button>
     </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
     <script src="../registre-se/registre-se.js"></script>
 </body>
