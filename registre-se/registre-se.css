@@ -10,3 +10,10 @@ input:focus{
 input::placeholder{
     font-size: 0.85rem ;
 }
+body{
+    background-color: rgb(234, 224, 224);
+}
+form{
+    background-color: white;
+  
+}
