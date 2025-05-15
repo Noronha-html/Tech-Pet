@@ -13,11 +13,11 @@ function verificarInputs(){
     const password = passwordInput.value;
 
     if(user === ""){
-        alert("Preencha todos os campos!");
+        document.getElementById("label-user").innerHTML = "Usuário <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
         return false;
     }
     if(password === ""){
-        alert("Preencha todos os campos!");
+        document.getElementById("label-password").innerHTML = "Senha <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
         return false;
     }
     return true;
