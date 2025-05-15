@@ -1,35 +1,3 @@
-<?php
-    include("connection.php");
-
-    $msg = '';
-
-    if(isset($_POST['submit']))
-    {
-        $id = 7;
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $city = $_POST['city'];
-        $birthDate = $_POST['birthDate'];
-        $whatsapp = $_POST['whatsapp'];
-
-        $select1 = "SELECT * FROM `pessoas` WHERE Email = '$email'";
-        $selectUser = mysqli_query($conn, $select1);
-
-        if(mysqli_num_rows($selectUser) > 0)
-        {
-            $msg = 'Email ja cadastrado';
-        }
-        else
-        {
-            $insert1 = "INSERT INTO `pessoas`(`PessoaID`, `Nome`, `Cidade`, `Email`, `DataNascimento`, `Whatsapp`, `Senha`, `Excluido`) VALUES ('$id','$name','$city','$email','$birthDate','$whatsapp','[value-7]','[value-8]')";
-            mysqli_query($conn, $insert1);
-            //$msg = 'Cadastro realizado com sucesso';
-            //$insert = "INSERT INTO `pessoas`(`PessoaID`, `Nome`, `Cidade`, `Email`, `DataNascimento`, `Whatsapp`) VALUES (NULL,'$name', '$city', '$email', '$birthDate', '$whatsapp')";
-            //$insertUser = mysqli_query($conn, $insert);
-        }
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +7,7 @@
     <title>TechPet</title>
 </head>
 <body>
-    <form action="" class="container">
+    <form action="./cadastro.php" method="post" class="container">
         <h1 class="title">registre-se aqui!</h1>
         <p class="msg"><? = $msg ?></p>
             <div class="divInputs">
@@ -58,7 +26,7 @@
                 <label for="" class="label">whatsapp:</label>
                 <input type="text" name="whatsapp" id="alergies" class="input" placeholder="Digite o seu whatsapp">
  
-                <button class="submit" type="button" name="submit">Enviar</button>
+                <input class="submit" type="submit" name="submit">Enviar</input>
  
             </div>
         </div>
