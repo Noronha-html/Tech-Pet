@@ -22,3 +22,9 @@ body{
 form{
     background-color: white;
 }
+.icon-input{ 
+    position: relative;
+    bottom: -13px;
+    right: 15px;
+}
+

@@ -1,8 +1,8 @@
-const submit = document.querySelector(".submit");
+//const submit = document.querySelector(".submit");
 
-submit.addEventListener("click", () => {
-    window.location.href = "../registre-seu-pet/registre-seu-pet.html";
-});
+//submit.addEventListener("click", () => {
+  //  window.location.href = "../registre-seu-pet/registre-seu-pet.html";
+//});
 
 //Pegar id dos estados para usar para as cidades depois
 const estados = document.getElementById("estados");
@@ -42,26 +42,35 @@ estados.addEventListener("change", () => {
 });
 
 // Função exibir senha
-const checkboxExibirSenha = document.getElementById("exibirSenha"); 
-function exibirSenha() {
-    const senhaRegistro = document.getElementById("senhaRegistro");
-    const confirmarSenhaRegistro = document.getElementById("confirmarSenhaRegistro");
-    if (checkboxExibirSenha.checked) {
-        senhaRegistro.type = "text";
-        confirmarSenhaRegistro.type = "text";
-    } else {
-        senhaRegistro.type = "password";
-        confirmarSenhaRegistro.type = "password";
-    }
-    checkboxExibirSenha.setAttribute("aria-checked", checkboxExibirSenha.checked);
-    if (checkboxExibirSenha.checked) {
-        checkboxExibirSenha.setAttribute("aria-label", "Desmarcar para ocultar a senha");
-    } else {
-        checkboxExibirSenha.setAttribute("aria-label", "Marcar para exibir a senha");
-    }
-}
+const iconExibirSenha = document.getElementById("icon-input-senha"); 
+const inputSenha = document.getElementById("senhaRegistro");
+let ocultadoSenha = true;
 
-checkboxExibirSenha.addEventListener("click", exibirSenha);
+iconExibirSenha.addEventListener("click", function() {
+    if (ocultadoSenha) {
+        inputSenha.type = "text";
+        iconExibirSenha.classList.add("fa-eye"); // Opcional: troque o ícone visualmente
+    } else {
+        inputSenha.type = "password";
+        iconExibirSenha.classList.remove("fa-eye"); // Opcional: troque o ícone visualmente
+    }
+    ocultadoSenha = !ocultadoSenha;
+});
+
+const iconExibirConfirmarSenha = document.getElementById("icon-input-confirmar-senha");
+const inputConfirmarSenha = document.getElementById("confirmarSenhaRegistro");
+let ocultadoConfirmarSenha = true;
+
+iconExibirConfirmarSenha.addEventListener("click", function() {
+    if (ocultadoConfirmarSenha) {   
+        inputConfirmarSenha.type = "text";
+        iconExibirConfirmarSenha.classList.add("fa-eye");
+    } else {
+        inputConfirmarSenha.type = "password";
+        iconExibirConfirmarSenha.classList.remove("fa-eye");
+    }
+    ocultadoConfirmarSenha = !ocultadoConfirmarSenha;
+});
 
 const telefoneInput = document.getElementById("wpp");
 telefoneInput.addEventListener("input", function() {
@@ -98,3 +107,4 @@ telefoneInput.addEventListener("keydown", function(e) {
         telefoneInput.value = valor;
     }
 });
+
