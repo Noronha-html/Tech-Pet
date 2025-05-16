@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../lobby/lobby.css">
-    <link rel="shortcut icon" href="../img/Image.jfif.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit=no">
     <title>TechPet</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="../lobby/lobby.css">
+    <link rel="shortcut icon" href="../img/dog-cat.png" type="image/x-icon">
 </head>
-<body>
-    <div class="container">
-        <div class="divLogo">
-            <div class="img"></div>
-            <div class="logo"></div>
-            <!--img src="" alt="" srcset="">
-            <img src="" alt="" srcset=""-->
+<body class="container-fluid justify-content-center align-items-center" style="background-color: rgb(234, 224, 224);">
+    <div class="row justify-content-center d-flex shadow bg-white w-100 h-75 p-4" style="border-radius:1rem ;">
+        <div class="col-12 d-flex justify-content-around align-items-center h-25">
+            <img src="../img/logo.png" alt="Logo da empresa" class="w-75">
         </div>
-        <div class="buttons">
-            <button class="register" type="button">Fazer Login</button>
-            <button class="registre-se" type="button">Cadastrar-se</button>
-            <button class="achei" type="button">Achei um pet</button>
+        <div class="col-12 d-flex justify-content-center flex-column align-items-center">
+            <div class="row p-2">
+                <a href="../logar/logar.html" class="col-12 btn mt-3" style="background-color: #5beeba;">
+                    <button type="button" class="border-0 btn" style="text-decoration: underline;">Fazer Login</button>
+                </a>
+                <a href="../registre-se/registre-se.html" class="col-12 btn mt-3" style="background-color: #5beeba;">
+                    <button type="button" class="border-0 btn" style="text-decoration: underline;">Registrar-se</button>
+                </a>
+                <a href="../achei-um-pet/achei-um-pet.html" class="col-12 btn mt-3" style="background-color: #5beeba;">
+                    <button type="button" class="border-0 btn" style="text-decoration: underline;">Achei um Pet</button>
+                </a>
+            </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
     <script src="../lobby/lobby.js"></script>
 </body>
