@@ -9,35 +9,34 @@
     <link rel="shortcut icon" href="../img/Image.jfif.png" type="image/x-icon">
 </head>
 <body class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-    <h1 class="h1">Registre-se aqui</h1>
-    <form action="" method="post" class="d-flex row h-100 w-auto flex-column align-items-center shadow p-5" style="border-radius: 1rem;">
-        <legend class="col-11" >Informações para Cadastro</legend>
-        <fieldset class=" col-xl-11 col-sm-12 w-auto border p-3" style="border-radius: 1rem;">
+    <form action="" method="post" class="d-flex row h-auto w-auto flex-column align-items-center shadow p-4" style="border-radius: 1rem;">
+        <legend class="col-11 h6" >Informações para Cadastro</legend>
+        <fieldset class=" col-11 h-auto w-auto border p-3" style="border-radius: 1rem;">
             <div class="col-12 justify-content-start align-items-start m-1">
-                <label for="name" class="mt-1">Nome:</label>
+                <label for="name" class="mt-2">Nome:</label>
                 <input type="text" name="name" id="name" aria-placeholder="Digite o seu nome completo" class="border-left-0 border-right-0 border-top-0 border ml-2 mr-2  p-1" placeholder="Digite o seu nome completo">
             </div>
             <div class="col-12 justify-content-start align-items-start m-1">
-                <label for="senhaRegistro" class="mt-1">Senha:</label>
+                <label for="senhaRegistro" class="mt-2">Senha: </label>
                 <input type="password" name="senhaRegistro" id="senhaRegistro" aria-placeholder="Crie uma senha" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Crie uma senha">
             </div>
             <div class="col-12 justify-content-start align-items-start m-1">
-                <label for="confirmarSenhaRegistro" class="mt-1">Confirmar Senha:</label>
+                <label for="confirmarSenhaRegistro" class="mt-2">Confirmar Senha: </label>
                 <input type="password" name="confirmarSenhaRegistro" id="confirmarSenhaRegistro" aria-placeholder="Confirme a mesma senha" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Confirme a mesma senha">
                 <input type="checkbox" name="exibirSenha" id="exibirSenha" class="ml-2 mt-2" style="cursor: pointer;" aria-label="Exibir senha">
-                <label for="exibirSenha" class="ml-2 mt-2" style="cursor: pointer;">Exibir senha</label>
+                <label for="exibirSenha" class="mt-2" style="cursor: pointer;">Exibir senha</label>
             </div>
             <div class="col-12 justify-content-start align-items-start m-1">
-                <label for="estados" class="mt-1">Estado: </label>
+                <label for="estados" class="mt-2">Estado: </label>
                 <select name="estados" id="estados" aria-label="Selecione o seu estado" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1"></select>
             </div>
             <div class="col-12 justify-content-start align-items-start m-1">
-                <label for="cidades" class="mt-1">Cidade: </label>
+                <label for="cidades" class="mt-2">Cidade: </label>
                 <select name="cidades" id="cidades" aria-placeholder="Selecione a sua cidade" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1"></select>
             </div>
-
+        
             <div class="col-12 justify-content-start align-items-start m-1">
-                <label for="email" class="mt-1">Email: </label>
+                <label for="email" class="mt-2">Email: </label>
                 <input type="email" name="email" id="email" aria-placeholder="Digite o seu email" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Digite o seu email">
             </div>
             <div class="col-12 justify-content-start align-items-start m-1">
@@ -45,11 +44,11 @@
                 <input type="date" name="dtnasc" id="dtnasc" aria-placeholder="Digite a sua data de nascimento" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Digite a sua Data de nascimento">
             </div>
             <div class="col-12 justify-content-start align-items-start m-1">
-                <label for="wpp" class="mt-1">Número de celular:</label>
+                <label for="wpp" class="mt-2">Número de celular:</label>
                 <input type="tel" name="wpp" id="wpp" aria-placeholder="Digite o seu número" class="border-left-0 border-right-0 border-top-0 border ml-2  p-1" placeholder="Digite o seu número">
             </div>
         </fieldset>
-        <button type="button" class="btn col-xl-11 col-sm-12 mt-3 submit" style="background-color: #5beeba; color: white;">Enviar</button>
+        <button type="button" class="btn col-11 mt-3 submit" style="background-color: #5beeba; color: white;">Enviar</button>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous"></script>
