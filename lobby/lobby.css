@@ -47,6 +47,8 @@ body
     background-image: url(../img/pngtree-portrait-of-happy-dog-and-cat-that-looking-at-the-camera-png-image_12828737.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    filter: saturate(50%);
+    transition: filter 0.3s ease;
 
 }
 
@@ -105,4 +107,8 @@ body
 .buttons .registre-se:hover
 {
     cursor: pointer;
+}
+.img-pets {
+    filter: saturate(40%); /* diminui a saturação (valor entre 0% e 100%) */
+    transition: filter 0.3s ease; /* transição suave se quiser fazer efeitos interativos */
 }
