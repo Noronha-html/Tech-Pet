@@ -7,18 +7,21 @@
 //Pegar id dos estados para usar para as cidades depois
 const estados = document.getElementById("estados");
 estados.innerHTML = "<option value=''>Selecione o estado</option>";
+
 fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados`)
-.then(res => res.json())
-.then(data => {
-    data.forEach(estado => {
-        const option = document.createElement("option");
-        option.value = estado.id;
-        option.ariaLabel = estado.nome;
-        option.textContent = estado.nome;
-        estados.appendChild(option);
-    });
-})
-.catch(err => console.error(err));
+    .then(res => res.json())
+    .then(data => {
+        // Ordena os estados por nome
+        data.sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+        data.forEach(estado => {
+            const option = document.createElement("option");
+            option.value = estado.id;
+            option.ariaLabel = estado.nome;
+            option.textContent = estado.nome;
+            estados.appendChild(option);
+        });
+    })
+    .catch(err => console.error(err));
 
 const cidades = document.getElementById("cidades");
 cidades.innerHTML = "<option value=''>Selecione a cidade</option>";
@@ -27,17 +30,19 @@ estados.addEventListener("change", () => {
     cidades.innerHTML = "<option value=''>Selecione a cidade</option>";
     if (estadoId) {
         fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estadoId}/distritos`)
-        .then(res => res.json())
-        .then(data => {
-            data.forEach(cidade => {
-                const option = document.createElement("option");
-                option.value = cidade.id;
-                option.ariaLabel = cidade.nome;
-                option.textContent = cidade.nome;
-                cidades.appendChild(option);
-            });
-        })
-        .catch(err => console.error(err));
+            .then(res => res.json())
+            .then(data => {
+                // Ordena as cidades por nome
+                data.sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+                data.forEach(cidade => {
+                    const option = document.createElement("option");
+                    option.value = cidade.id;
+                    option.ariaLabel = cidade.nome;
+                    option.textContent = cidade.nome;
+                    cidades.appendChild(option);
+                });
+            })
+            .catch(err => console.error(err));
     }
 });
 
@@ -49,10 +54,10 @@ let ocultadoSenha = true;
 iconExibirSenha.addEventListener("click", function() {
     if (ocultadoSenha) {
         inputSenha.type = "text";
-        iconExibirSenha.classList.add("fa-eye"); // Opcional: troque o ícone visualmente
+        iconExibirSenha.classList.add("fa-eye");
     } else {
         inputSenha.type = "password";
-        iconExibirSenha.classList.remove("fa-eye"); // Opcional: troque o ícone visualmente
+        iconExibirSenha.classList.remove("fa-eye");
     }
     ocultadoSenha = !ocultadoSenha;
 });
