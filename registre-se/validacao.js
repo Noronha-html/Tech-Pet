@@ -5,7 +5,7 @@ function validarNome() {
     }
     return true;
 }
- 
+
 function validarSenha() {
     const senha = document.getElementById("senhaRegistro");
     if (senha.value === "") {
