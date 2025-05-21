@@ -12,7 +12,7 @@ function validarSenha() {
         return false;
     }
     else if(!senha.value.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
-        document.getElementById("label-senha").innerHTML = "Senha <span style='color: red;'>*<span style='font-size: 0.8rem'>(Precisa conter números e letras)</span></span>";
+        document.getElementById("label-senha").innerHTML = "Senha: <span style='color: red;'>*<span style='font-size: 0.8rem'>(Precisa conter números e letras)</span></span>";
         return false;
     }
     return true;
@@ -27,7 +27,7 @@ function confirmarSenha() {
     }
  
     if (senha.value !== senhaConfirmada.value) {
-        document.getElementById("label-confirmarSenha").innerHTML = "Confirmar Senha <span style='color: red;'>*<span style='font-size: 0.8rem'>(As senhas precisam ser iguais)</span></span>";
+        document.getElementById("label-confirmarSenha").innerHTML = "Confirmar Senha: <span style='color: red;'>*<span style='font-size: 0.8rem'>(As senhas precisam ser iguais)</span></span>";
         return false;
     }
     return true;
@@ -38,31 +38,73 @@ function validarEstadoeCidade() {
     const cidade = document.getElementById("cidades");
  
     if (estado.value === "") {
-        document.getElementById("label-estado").innerHTML = "Estado <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+        document.getElementById("label-estado").innerHTML = "Estado: <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
         return false;
     }
     if (cidade.value === "") {
-        document.getElementById("label-cidade").innerHTML = "Cidade <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+        document.getElementById("label-cidade").innerHTML = "Cidade: <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
         return false;
     }
     return true;
 }
- 
+
+function validarEmail() {
+    const email = document.getElementById("email");
+
+    if(email.value === "") {
+        return false;
+    }
+
+    return true;
+}
+
+function validarDataNascimento() {
+    const dtnasc = document.getElementById("dtnasc");
+
+    if(dtnasc.value === "") {
+        return false;
+    }
+
+    return true;
+}
+
+function validarTelefone() {
+    const telefone = document.getElementById("wpp");
+
+    if(telefone.value === "") {
+        return false;
+    }
+
+    return true;
+}
+
 const submit = document.getElementById("enviar");
 submit.addEventListener("click", () => {
     if(!validarNome()) {
-        document.getElementById("label-name").innerHTML = "Nome <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+        document.getElementById("label-name").innerHTML = "Nome: <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
     }
    
     if(!validarSenha()) {
-        document.getElementById("label-senha").innerHTML = "Senha <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+        document.getElementById("label-senha").innerHTML = "Senha: <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
     }
  
     if(!confirmarSenha()) {
-        document.getElementById("label-confirmarSenha").innerHTML = "Confirmar Senha <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+        document.getElementById("label-confirmarSenha").innerHTML = "Confirmar Senha: <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+    }
+
+    if(!validarEmail()) {
+        document.getElementById("label-email").innerHTML = "Email: <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+    }
+
+    if(!validarDataNascimento()) {
+        document.getElementById("label-dtnasc").innerHTML = "Data de nascimento: <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+    }
+
+    if(!validarTelefone()) {
+        document.getElementById("label-wpp").innerHTML = "Número de celular: <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
     }
    
-    if(validarNome() && validarSenha() && confirmarSenha() && validarEstadoeCidade()) {
+    if(validarNome() && validarSenha() && confirmarSenha() && validarEstadoeCidade() && validarEmail() && validarDataNascimento() && validarTelefone()) {
         window.location.href = "../registre-seu-pet/registre-seu-pet.html";
     }
  

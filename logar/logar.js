@@ -27,7 +27,7 @@ btnEntrar.addEventListener('click', () => {
     if(verificarInputs() === false){
         return;
     }else if(verificarInputs() === true){
-        window.location = "../registre-se/registre-se.html"
+        window.location = "../registre-se/registre-se.html";
     }
 });
 
