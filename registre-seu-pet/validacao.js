@@ -21,6 +21,13 @@ function validarDataNascimento() {
 function validarPeso() {
     const peso = document.getElementById("peso");
 
+    let valor = peso.value.replace(/[^0-9]/g, '').slice(0, 3);
+        if (valor.length > 0) {
+            peso.value = valor;
+        } else {
+            peso.value = '';
+        }
+
     if(peso.value === "") {
         return false;
     }
@@ -60,6 +67,16 @@ function validarFoto() {
 
 function validarnumeroSerie() {
     const numeroSerie = document.getElementById("numeroSerie");
+
+    //numeroSerie.addEventListener('input', function() {
+        // Remove tudo que não for número e limita a 3 dígitos
+        let valor = numeroSerie.value.replace(/[^0-9]/g, '').slice(0, 3);
+        if (valor.length > 0) {
+            numeroSerie.value = '#' + valor;
+        } else {
+            numeroSerie.value = '';
+        }
+    //});
 
     if(numeroSerie.value === "") {
         return false;
