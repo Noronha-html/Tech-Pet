@@ -19,3 +19,10 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const submitBtn = document.getElementById('submitBtn');
+
+    submitBtn.addEventListener('click', () => {
+        window.location.href = "../pet/pet.html";
+    });
+});

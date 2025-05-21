@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Open Sans", serif;
+}
+input:focus{
+    outline: none;
+}
+select{
+    font-size: 0.85rem;
+}
+select:focus{
+    outline: none;
+}
+input::placeholder{
+    font-size: 0.85rem ;
+}
+body{
+    background-color: rgb(234, 224, 224);
+}
+form{
+    background-color: white;
+}
