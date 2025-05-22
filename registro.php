@@ -1,1 +1,0 @@
-// captura os dados via POST
