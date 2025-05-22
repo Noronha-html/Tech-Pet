@@ -1,6 +1,6 @@
 const checkbox = document.querySelector('#password-checkbox');
-const passwordInput = document.querySelector('input[name="password"]');
-const userInput = document.querySelector('input[name="username"]');
+const passwordInput = document.getElementById('password');
+const userInput = document.getElementById('username');
 
 checkbox.addEventListener('change', () => {
     passwordInput.type = checkbox.checked ? 'text' : 'password';
@@ -8,26 +8,45 @@ checkbox.addEventListener('change', () => {
     checkbox.setAttribute('aria-checked', checkbox.checked);
 });
 
-function verificarInputs(){
-    const user = userInput.value;
-    const password = passwordInput.value;
+function verificarUsuario(){
+    const user = document.getElementById("username");
 
-    if(user === ""){
-        document.getElementById("label-user").innerHTML = "Usuário <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+    if(user.value === ""){
         return false;
     }
-    if(password === ""){
-        document.getElementById("label-password").innerHTML = "Senha <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
-        return false;
-    }
+    
     return true;
 }
+
+function verificarSenha(){
+    const password = document.getElementById("password");
+
+    if(password.value === ""){
+        return false;
+    }
+
+    /*if(password.length < 8){
+        document.getElementById("label-password").innerHTML = "Senha <span style='color: red;'>*<span style='font-size: 0.8rem'>(Mínimo 8 caracteres)</span></span>";
+        return false;
+    }*/
+    return true;
+}
+
 const btnEntrar = document.getElementById('buttonEntrar');
-btnEntrar.addEventListener('click', () => {
-    if(verificarInputs() === false){
-        return;
-    }else if(verificarInputs() === true){
-        window.location = "../conta-usuario/conta-usuario.html";
+btnEntrar.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if(!verificarUsuario()){
+        document.getElementById("label-user").innerHTML = "Usuário <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+    }
+
+    if(!verificarSenha()){
+        document.getElementById("label-password").innerHTML = "Senha <span style='color: red;'>*<span style='font-size: 0.8rem'>(Obrigatório)</span></span>";
+    }
+    
+    if(verificarUsuario() && verificarSenha()){
+        //console.log("funcionou essa bomba");
+        window.location.href = "../conta-usuario/conta-usuario.html";
     }
 });
 
