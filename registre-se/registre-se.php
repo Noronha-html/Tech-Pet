@@ -1,18 +1,16 @@
 <?php
 // faz a conexao com o banco
-include_once "conexao.php";
+include_once "../conexao.php";
  
 // variaveis
 $msg = '';
- 
 if(isset($_POST)){
     $id = 7;
     $name = $_POST['name'];
     $email = $_POST['email'];
     $state = $_POST['estados'];
     $city = $_POST['cidades'];
-    $birthDate = explode('/',$_POST['dtnasc']);
-    $birthDate = $birthDate[2].'-'.$birthDate[1].'-'.$birthDate[0];
+    $birthDate = $_POST['dtnasc'];
     $password = $_POST['senhaRegistro'];
     $whatsapp = $_POST['wpp'];
  
@@ -24,8 +22,9 @@ if(isset($_POST)){
     }else{
         $insert1 = "INSERT INTO `pessoas`(`Nome`, `Estado`, `Cidade`, `Email`, `DataNascimento`, `Whatsapp`, `Senha`, `Excluido`) VALUES ('$name','$state','$city','$email','$birthDate','$whatsapp','$password',0)";  
         mysqli_query($conn, $insert1);        
+        $id = mysqli_insert_id($conn);
     }
-    header("Location: ../registre-seu-pet/registre-seu-pet.html");
+    header("Location: ../registre-seu-pet/registre-seu-pet.php?registro=".$id);
 }
 ?>
  

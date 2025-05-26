@@ -116,6 +116,7 @@ submit.addEventListener("click", () => {
     }
 
     if(validarNome() && validarDataNascimento() && validarPeso() && validarVacinas() && validarAlergias() && validarFoto() && validarnumeroSerie()) {
-        window.location.href = "../conta-usuario/conta-usuario.html";
+        alert('OI');
+        document.getElementById("formRegistraPet").submit();
     }
 });

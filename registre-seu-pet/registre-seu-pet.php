@@ -9,8 +9,9 @@
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body class="container-fluid d-flex flex-column min-vh-100 justify-content-center align-items-center">
-    <form action="" method="post" class="d-flex row flex-column align-items-center shadow p-4 m-5" style="border-radius: 1rem;">
+    <form id="formRegistraPet" enctype="multipart/form-data" action="./registre-seu-pet_processo.php" method="post" class="d-flex row flex-column align-items-center shadow p-4 m-5" style="border-radius: 1rem;">
         <legend class="col-12">Registre seu Pet</legend>
+        <input type="hidden" name="registro" id="registro" value="<?php echo isset($_GET['registro']) ? $_GET['registro'] : ''; ?>">
         <fieldset class="border p-3" style="border-radius: 1rem;">
             <div class="col-12 justify-content-start align-items-start m-1">
                 <label for="name" id="label-name">Nome: </label>
@@ -41,12 +42,12 @@
                 <img src="../img/img-exemplo.png" id="preview" alt="">
                 <div class="custom-file-upload">
                     <label for="inputImagem" id="label-foto" class="btn label">Escolher imagem:</label>
-                    <input id="inputImagem" type="file" accept="image/png, image/jpeg" style="display: none;">
+                    <input name="inputImagem" id="inputImagem" type="file" accept="image/png, image/jpeg" style="display: none;">
                 </div>
             </div>
         </fieldset>
         
-        <button type="button" id="submit" class="btn col-12 mt-3 submitBtn" style="background-color: #5beeba; color: white;">Enviar</button>
+        <input type="submit" id="submit" value="Enviar" class="btn col-12 mt-3 submitBtn" style="background-color: #5beeba; color: white;"></input>
 
     </form>
     
@@ -54,6 +55,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
     <script src="../registre-seu-pet/registre-seu-pet.js"></script>
-    <script src="../registre-seu-pet/validacao.js"></script>
+    <!--script src="../registre-seu-pet/validacao.js"></script-->
 </body>
 </html>

@@ -130,7 +130,8 @@ submit.addEventListener("click", () => {
     }
    
     if(validarNome() && validarSenha() && confirmarSenha() && validarEstadoeCidade() && validarEmail() && validarDataNascimento() && validarTelefone()) {
-        window.location.href = "../registre-seu-pet/registre-seu-pet.html";
+        //window.location.href = "../registre-seu-pet/registre-seu-pet.html";
+        document.getElementById("formRegistreSe").submit();
     }
  
     return;
