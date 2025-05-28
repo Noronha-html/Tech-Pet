@@ -85,38 +85,69 @@ function validarnumeroSerie() {
     return true;
 }
 
-const submit = document.getElementById("submit");
-submit.addEventListener("click", () => {
+const form = document.getElementById("formRegistraPet");
+form.addEventListener("click", (e) => {
     if(!validarNome()) {
         document.getElementById("label-name").innerHTML = "Nome: <span style='color: red;'>*</span>";
+    }
+
+    if(validarNome()) {
+        document.getElementById("label-name").innerHTML = "Nome:";
     }
 
     if(!validarDataNascimento()) {
         document.getElementById("label-dtnasc").innerHTML = "Data de nascimento: <span style='color: red;'>*</span>";
     }
 
+    if(validarDataNascimento()) {
+        document.getElementById("label-dtnasc").innerHTML = "Data de nascimento:";
+    }
+
     if(!validarPeso()) {
         document.getElementById("label-peso").innerHTML = "Peso: <span style='color: red;'>*</span>";
+    }
+
+    if(validarPeso()) {
+        document.getElementById("label-peso").innerHTML = "Peso:";
     }
 
     if(!validarVacinas()) {
         document.getElementById("label-vacinas").innerHTML = "Vacinas: <span style='color: red;'>*</span>";
     }
 
+    if(validarVacinas()) {
+        document.getElementById("label-vacinas").innerHTML = "Vacinas:";
+    }
+
     if(!validarAlergias()) {
         document.getElementById("label-alergias").innerHTML = "Alergias: <span style='color: red;'>*</span>";
+    }
+
+    if(validarAlergias()) {
+        document.getElementById("label-alergias").innerHTML = "Alergias:";
     }
 
     if(!validarFoto()) {
         document.getElementById("label-foto").innerHTML = "Escolher imagem: <span style='color: red;'>*</span>";
     }
 
+    if(validarFoto()) {
+        document.getElementById("label-foto").innerHTML = "Escolher imagem:";
+    }
+
     if(!validarnumeroSerie()) {
         document.getElementById("label-numeroSerie").innerHTML = "número de série: <span style='color: red;'>*</span>";
     }
 
-    if(validarNome() && validarDataNascimento() && validarPeso() && validarVacinas() && validarAlergias() && validarFoto() && validarnumeroSerie()) {
-        alert('OI');
-        document.getElementById("formRegistraPet").submit();
+    if(validarnumeroSerie()) {
+        document.getElementById("label-numeroSerie").innerHTML = "número de série:";
     }
+
+    if(validarNome() && validarDataNascimento() && validarPeso() && validarVacinas() && validarAlergias() && validarFoto() && validarnumeroSerie()) {
+        e.preventDefault();
+        console.log("Formulário enviado com sucesso!");
+        //document.getElementById("formRegistraPet").submit();
+    }
+
+    return;
 });
