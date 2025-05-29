@@ -85,8 +85,8 @@ function validarnumeroSerie() {
     return true;
 }
 
-const form = document.getElementById("formRegistraPet");
-form.addEventListener("click", (e) => {
+const submit = document.getElementById("submit");
+submit.addEventListener("click", () => {
     if(!validarNome()) {
         document.getElementById("label-name").innerHTML = "Nome: <span style='color: red;'>*</span>";
     }
@@ -144,9 +144,7 @@ form.addEventListener("click", (e) => {
     }
 
     if(validarNome() && validarDataNascimento() && validarPeso() && validarVacinas() && validarAlergias() && validarFoto() && validarnumeroSerie()) {
-        e.preventDefault();
-        console.log("Formulário enviado com sucesso!");
-        //document.getElementById("formRegistraPet").submit();
+        document.getElementById("formRegistraPet").submit();
     }
 
     return;

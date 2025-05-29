@@ -9,7 +9,7 @@ if (headers_sent($file, $line)) {
     exit("Headers já foram enviados em $file na linha $line");
 }
  
-//echo '<pre>'; print_r($_POST);echo '</pre>';
+
 // variaveis
 $msg = '';
 if(/*isset($_POST)*/ $_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -25,9 +25,12 @@ if(/*isset($_POST)*/ $_SERVER['REQUEST_METHOD'] === 'POST'){
  
     $select1 = "SELECT * FROM `pets` WHERE Identificacao = '$serialNumber'";
     $selectUser = mysqli_query($conn, $select1);
+    
     if(mysqli_num_rows($selectUser) > 0){
+        //exit('a'.rand(0, 9999));
         $msg = 'cadastro inválido';
     }else{
+        //exit('bOi'.rand(0, 9999));
         // verifica se o pet já foi cadastrado por outra pessoa
         $sql_consulta_pet_outra_pessoa = "SELECT * 
                                         FROM `pessoapet` AS pp
@@ -43,32 +46,33 @@ if(/*isset($_POST)*/ $_SERVER['REQUEST_METHOD'] === 'POST'){
         $result = mysqli_query($conn, $sql_consulta_pet_outra_pessoa);
         $outraPessoa = mysqli_insert_id($conn);
 
+        
         if(empty($outraPessoa)){
             // faz o uplod da foto
-            //$photo = 'pet_'.$name.$serialNumber.$registro.'.jpg';
-            //$uploadFile = __DIR__ . '/images/' .$photo
-            //move_uploaded_file($image_file["tmp_name"], $uploadFile);
-
-            $photo = 'pet_'.$name.$serialNumber.$registro.'.jpg';
-            $uploadFile = __DIR__ . '/images/' . $photo;
-            //move_uploaded_file($_FILES['inputImagem']['tmp_name'], $uploadFile);
-            // Define a pasta de upload
-            $uploadDir = __DIR__ . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
+            $photo = 'pet_'.base64_encode($name.$serialNumber.$registro.'-'.rand(0,9999)).'.jpg';
+            $uploadDir = __DIR__ . DIRECTORY_SEPARATOR . 'pets' . DIRECTORY_SEPARATOR;
+            $filePath = $uploadDir . $photo;
 
             // Se não existir, cria (com permissão 0755)
             if (!is_dir($uploadDir) && !mkdir($uploadDir, 0755, true)) {
                 exit("Erro: não foi possível criar o diretório de imagens.");
-            }
+            }else{
 
-            // cadastra
-            $insert1 = "INSERT INTO `pets`(`Identificacao`, `Nome`, `Peso`, `DataNascimento`, `Especie`, `Alergias`, `Vacinas`, `Foto`, `Excluido`) VALUES ('$serialNumber','$name','$weight','$birthDate','null','$alergies','$vaccines','$photo', 0)";  
-            //exit($insert1);
-            mysqli_query($conn, $insert1);
-            $id = mysqli_insert_id($conn);
-            /*header("Location: ../conta-usuario/conta-usuario.php?registro=$id");
-            exit("Cadastro realizado com sucesso!");*/
-            header("Location: ../conta-usuario/conta-usuario.php?id=$id");
-            exit;
+                if (move_uploaded_file($_FILES['inputImagem']['tmp_name'], $filePath)) { 
+                    // cadastra
+                    $insert1 = "INSERT INTO `pets`(`Identificacao`, `Nome`, `Peso`, `DataNascimento`, `Especie`, `Alergias`, `Vacinas`, `Foto`, `Excluido`) VALUES ('$serialNumber','$name','$weight','$birthDate','null','$alergies','$vaccines','$photo', 0)";  
+                    //exit($insert1);
+                    mysqli_query($conn, $insert1);
+                    $id = mysqli_insert_id($conn);
+                    /*header("Location: ../conta-usuario/conta-usuario.php?registro=$id");
+                    exit("Cadastro realizado com sucesso!");*/
+                    header("Location: ../conta-usuario/conta-usuario.php?id=$id");
+                    exit;
+                } 
+                else { 
+                    echo "Erro, o arquivo n&atilde;o pode ser enviado."; 
+                }    
+            }
         }else{
             exit("Pet já cadastrado por outra pessoa!");
         }

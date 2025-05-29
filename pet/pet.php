@@ -1,3 +1,6 @@
+<?php
+$atualizador = 't='.base64_encode(date('YmdHis').rand(0, 9999));
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -7,7 +10,7 @@
     <title>TechPet - pet</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="../pet/pet.css">
+    <link rel="stylesheet" href="../pet/pet.css?<?pho echo $atualizador;?>">
     <link rel="shortcut icon" href="../Tech-Pet/img/logo.png" type="image/x-icon">
 </head>
 
@@ -38,7 +41,7 @@
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a0cfbec9a7.js" crossorigin="anonymous"></script>
 
-    <script src="../pet/pet.js"></script>
+    <script src="../pet/pet.js?<?pho echo $atualizador?>"></script>
 </body>
 
 </html>

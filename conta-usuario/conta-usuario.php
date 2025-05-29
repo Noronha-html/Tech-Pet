@@ -54,7 +54,7 @@ $pet = mysqli_fetch_assoc($result);
 <body>
   <h1>Detalhes do Pet</h1>
   <div class="card">
-    <?php if (!empty($pet['Foto']) && file_exists(__DIR__ . '/images/' . $pet['Foto'])): ?>
+    <?php if (!empty($pet['Foto']) && file_exists(__DIR__ . '/pets/' . $pet['Foto'])): ?>
       <img src="images/<?= htmlspecialchars($pet['Foto']) ?>" alt="Foto de <?= htmlspecialchars($pet['Nome']) ?>">
     <?php endif; ?>
 
@@ -100,10 +100,10 @@ $pet = mysqli_fetch_assoc($result);
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body class="container-fluid d-flex justify-content-center align-items-center min-vh-100" style="background-color: rgb(234, 224, 224);">
-    <div class="row justify-content-center d-flex shadow bg-white p-4" style="border-radius:1rem ;">
+    <div class="row justify-content-center d-flex shadow bg-white p-4" style="border-radius:1rem; max-width: 600px; width: 100%;">
         <!-- Substituir h1 por ${user.name} -->
         <h1 class="h2">Usuario</h1>     
-        <div class="col-12 d-flex justify-content-center flex-column align-items-center">
+        <div class="col-12 d-flex justify-content-center flex-column align-items-center ">
             <div class="row">
                 <!-- Inserir informações do usúario dentro dessa div-->
                 <!--a href="../logar/logar.html" class="col-12 btn mt-3" style="background-color: #5beeba;">
@@ -116,12 +116,18 @@ $pet = mysqli_fetch_assoc($result);
                     <button type="button" class="border-0 btn" style="text-decoration: underline;">Pet 3</button>
                 </a-->
                 <div class="petInfo col-12 d-flex justify-content-center flex-column align-items-center bg-danger">
-                    <?php if (!empty($pet['Foto']) && file_exists(__DIR__ . '/images/' . $pet['Foto'])): ?>
-                        <img class="img" src="images/<?= htmlspecialchars($pet['Foto']) ?>" alt="Foto de <?= htmlspecialchars($pet['Nome']) ?>">
+                  <div class="row d-flex align-items-center flex-row">
+                    <?php $imgPath = __DIR__ . '/../registre-seu-pet/pets/' . $pet['Foto'];
+                      if (!empty($pet['Foto']) && file_exists($imgPath)): ?>
+                          <img style="width: 20%; height:'20%'" src="../registre-seu-pet/pets/<?= htmlspecialchars($pet['Foto']) ?>"
+                          alt="Foto de <?= htmlspecialchars($pet['Nome']) ?>">
                     <?php endif; ?>
 
-                    <h2 class="petName"><?= htmlspecialchars($pet['Nome']) ?></h2>
-                    <h3 class="petId display-7"><?= htmlspecialchars($pet['Identificacao']) ?></h3>
+                    <div class="col-8">
+                      <h2 class="petName"><?= htmlspecialchars($pet['Nome']) ?></h2>
+                      <h3 class="petId display-7"><?= htmlspecialchars($pet['Identificacao']) ?></h3>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>

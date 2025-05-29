@@ -1,3 +1,6 @@
+<?php
+$atualizador = 't='.base64_encode(date('YmdHis').rand(0, 9999));
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>TechPet - Registrar Pet</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="../registre-seu-pet/registre-seu-pet.css">
+    <link rel="stylesheet" href="../registre-seu-pet/registre-seu-pet.css?<?pho echo $atualizador?>">
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body class="container-fluid d-flex flex-column min-vh-100 justify-content-center align-items-center">
@@ -47,14 +50,14 @@
             </div>
         </fieldset>
         
-        <input type="submit" id="submit" value="Enviar" class="btn col-12 mt-3 submitBtn" style="background-color: #5beeba; color: white;"></input>
+        <input type="submit" id="submit" value="Enviar" class="btn col-12 mt-3 submitBtn" style="background-color: #5beeba; color: white;">
 
     </form>
     
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
-    <script src="../registre-seu-pet/registre-seu-pet.js"></script>
-    <script src="../registre-seu-pet/validacao.js"></script>
+    <script src="../registre-seu-pet/registre-seu-pet.js?<?pho echo $atualizador?>"></script>
+    <script src="../registre-seu-pet/validacao.js?<?pho echo $atualizador?>"></script>
 </body>
 </html>
