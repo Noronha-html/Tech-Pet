@@ -1,10 +1,10 @@
-function validarNome() {
+/*function validarNome() {
     const name = document.getElementById("name");
     if (name.value === "") {
         return false;
     }
     return true;
-}
+}*/
 
 function validarSenha() {
     const senha = document.getElementById("senhaRegistro");
@@ -81,13 +81,13 @@ function validarTelefone() {
 
 const submit = document.getElementById("enviar");
 submit.addEventListener("click", () => {
-    if(!validarNome()) {
+    /*if(!validarNome()) {
         document.getElementById("label-name").innerHTML = "Nome: <span style='color: red;'>*</span>";
     }
     
     if(validarNome()) {
         document.getElementById("label-name").innerHTML = "Nome:";
-    }
+    }*/
    
     if(!validarSenha()) {
         document.getElementById("label-senha").innerHTML = "Senha: <span style='color: red;'>*</span>";
@@ -129,7 +129,7 @@ submit.addEventListener("click", () => {
         document.getElementById("label-wpp").innerHTML = "Número de celular:";
     }
    
-    if(validarNome() && validarSenha() && confirmarSenha() && validarEstadoeCidade() && validarEmail() && validarDataNascimento() && validarTelefone()) {
+    if(/*validarNome() &&*/ validarSenha() && confirmarSenha() && validarEstadoeCidade() && validarEmail() && validarDataNascimento() && validarTelefone()) {
         //window.location.href = "../registre-seu-pet/registre-seu-pet.html";
         document.getElementById("formRegistreSe").submit();
     }

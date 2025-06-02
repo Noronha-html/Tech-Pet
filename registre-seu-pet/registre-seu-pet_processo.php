@@ -12,7 +12,7 @@ if (headers_sent($file, $line)) {
 
 // variaveis
 $msg = '';
-if(/*isset($_POST)*/ $_SERVER['REQUEST_METHOD'] === 'POST'){
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
     $registro = $_POST['registro'];
     $name = $_POST['name'];
@@ -77,8 +77,5 @@ if(/*isset($_POST)*/ $_SERVER['REQUEST_METHOD'] === 'POST'){
             exit("Pet já cadastrado por outra pessoa!");
         }
     }
-    //header("Location: ../conta-usuario/conta-usuario.html");
-    //?registro="$id"
-    //WHERE Email = '$email' AND Senha = '$password'
 }
 ?>

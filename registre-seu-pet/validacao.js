@@ -85,6 +85,20 @@ function validarnumeroSerie() {
     return true;
 }
 
+function validarSenha() {
+    const senha = document.getElementById("senha");
+
+    if(senha.value === "") {
+        return false;
+    }
+
+    if(senha.value.length < 8) {
+        return false;
+    }
+
+    return true;
+}
+
 const submit = document.getElementById("submit");
 submit.addEventListener("click", () => {
     if(!validarNome()) {
@@ -135,6 +149,14 @@ submit.addEventListener("click", () => {
         document.getElementById("label-foto").innerHTML = "Escolher imagem:";
     }
 
+    if(!validarSenha()) {
+        document.getElementById("label-senha").innerHTML = "Senha: <span style='color: red;'>*</span>";
+    }
+
+    if(validarSenha()) {
+        document.getElementById("label-senha").innerHTML = "Senha:";
+    }
+
     if(!validarnumeroSerie()) {
         document.getElementById("label-numeroSerie").innerHTML = "número de série: <span style='color: red;'>*</span>";
     }
@@ -143,7 +165,7 @@ submit.addEventListener("click", () => {
         document.getElementById("label-numeroSerie").innerHTML = "número de série:";
     }
 
-    if(validarNome() && validarDataNascimento() && validarPeso() && validarVacinas() && validarAlergias() && validarFoto() && validarnumeroSerie()) {
+    if(validarNome() && validarDataNascimento() && validarPeso() && validarVacinas() && validarAlergias() && validarFoto() && validarnumeroSerie() && validarSenha()) {
         document.getElementById("formRegistraPet").submit();
     }
 
