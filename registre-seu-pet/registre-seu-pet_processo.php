@@ -1,184 +1,159 @@
 <?php
-// faz a conexao com o banco
+session_start();
 include_once "../conexao.php";
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if (headers_sent($file, $line)) {
-    exit("Headers já foram enviados em $file na linha $line");
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: ../registre-se/registre-se.php");
+    exit;
 }
- 
+$usuarioId = $_SESSION['usuario_id'];
 
-// variaveis
-$msg = '';
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    
-    $registro = $_POST['registro'];
-    $name = $_POST['name'];
-    $birthDate = $_POST['dtnasc'];
-    $weight = $_POST['peso'];
-    $vaccines = $_POST['vacinas'];
-    $alergies = $_POST['alergias'];
-    $serialNumber = $_POST['numeroSerie'];
-    $filePhoto = $_FILES['inputImagem']['name'];
- 
-    $select1 = "SELECT * FROM `pets` WHERE Identificacao = '$serialNumber'";
-    $selectUser = mysqli_query($conn, $select1);
-    
-    if(mysqli_num_rows($selectUser) > 0){
-        //exit('a'.rand(0, 9999));
-        $msg = 'cadastro inválido';
-    }else{
-        //exit('bOi'.rand(0, 9999));
-        // verifica se o pet já foi cadastrado por outra pessoa
-        $sql_consulta_pet_outra_pessoa = "SELECT * 
-                                        FROM `pessoapet` AS pp
-                                        INNER JOIN pessoas AS p
-                                        ON pp.PessoaID = p.PessoaID
-                                        INNER JOIN pets AS pt
-                                        ON pp.PetID = pt.PetID
-                                        WHERE pt.Identificacao = '$serialNumber'
-                                        AND pp.PessoaID <> '$registro'
-                                        AND pp.Excluido = 0
-                                        AND pt.Excluido = 0
-                                        AND p.Excluido = 0";
-        $result = mysqli_query($conn, $sql_consulta_pet_outra_pessoa);
-        $outraPessoa = mysqli_insert_id($conn);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: registre-seu-pet.php");
+    exit;
+}
 
-        
-        if(empty($outraPessoa)){
-            if(!validarNome()) {
-                exit("Nome inválido. Por favor, use apenas letras e espaços.");
+// 1) Recupera e valida campos
+$name        = trim($_POST['name'] ?? '');
+$birthDate   = trim($_POST['dataNascimento'] ?? '');
+$weight      = trim($_POST['peso'] ?? '');
+$serialNumber= trim($_POST['numeroSerie'] ?? '');
+$sex         = trim($_POST['sexo'] ?? '');
+$species     = trim($_POST['especie'] ?? '');
+$alergies    = trim($_POST['alergias'] ?? '');
+$vaccines    = trim($_POST['vacinas'] ?? '');
+
+$errors = [];
+
+// 2) Validações básicas
+if ($name === '') {
+    $errors[] = "O nome do pet é obrigatório.";
+} elseif (!preg_match('/^[\p{L}\s]+$/u', $name)) {
+    // aceita letras com acento e espaços (regex com 'u' para unicode)
+    $errors[] = "O nome só pode conter letras e espaços.";
+}
+
+if ($birthDate === '') {
+    $errors[] = "A data de nascimento é obrigatória.";
+} elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $birthDate) || !strtotime($birthDate)) {
+    $errors[] = "Formato de data inválido. Use AAAA-MM-DD.";
+}
+
+if ($weight === '' || !is_numeric($weight) || $weight <= 0) {
+    $errors[] = "Informe um peso válido.";
+}
+
+if ($serialNumber === '') {
+    $errors[] = "Número de série é obrigatório.";
+} elseif (!preg_match('/^[a-zA-Z0-9]{1,3}$/', $serialNumber)) {
+    $errors[] = "Número de série deve ter até 3 caracteres alfanuméricos.";
+}
+
+// 3) Valida foto, se existir
+$photoName = null;
+if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_ERR_NO_FILE) {
+    if ($_FILES['inputImagem']['error'] !== UPLOAD_ERR_OK) {
+        $errors[] = "Erro ao enviar a foto.";
+    } else {
+        $fileTmp  = $_FILES['inputImagem']['tmp_name'];
+        $fileSize = $_FILES['inputImagem']['size'];
+        $fileType = mime_content_type($fileTmp);
+
+        // Tamanho máximo: 2 MB
+        if ($fileSize > 2 * 1024 * 1024) {
+            $errors[] = "A imagem deve ter no máximo 2 MB.";
+        }
+        // Permitir jpeg ou png
+        if ($fileType !== 'image/jpeg' && $fileType !== 'image/png') {
+            $errors[] = "Tipo de arquivo inválido. Só JPEG ou PNG.";
+        }
+
+        // Se todo ok, gera nome único
+        if (empty($errors)) {
+            $ext = ($fileType === 'image/png') ? 'png' : 'jpg';
+            $photoName = md5($name . $serialNumber . uniqid()) . '.' . $ext;
+            $uploadDir = __DIR__ . DIRECTORY_SEPARATOR . 'pets' . DIRECTORY_SEPARATOR;
+            if (!is_dir($uploadDir) && !mkdir($uploadDir, 0755, true)) {
+                $errors[] = "Não foi possível criar pasta de imagens.";
+            } else {
+                $destino = $uploadDir . $photoName;
+                if (!move_uploaded_file($fileTmp, $destino)) {
+                    $errors[] = "Falha ao mover arquivo.";
+                }
             }
-
-            if(!validarDataNascimento()) {
-                exit("Data de nascimento inválida. Por favor, insira uma data válida.");
-            }
-
-            if(!validarPeso()) {
-                exit("Peso inválido. Por favor, insira um peso válido.");
-            }
-
-            if(!validarVacinas()) {
-                exit("Vacinas inválidas. Por favor, insira as vacinas do seu pet.");
-            }
-
-            if(!validarAlergias()) {
-                exit("Alergias inválidas. Por favor, insira as alergias do seu pet.");
-            }
-
-            if(!validarNumeroSerie()) {
-                exit("Número de série inválido. Por favor, insira um número de série válido.");
-            }
-
-            if(!validarFoto()) {
-                exit("Foto inválida. Por favor, envie uma imagem no formato JPEG ou PNG.");
-            }
-
-            if(validarNome() && validarDataNascimento() && validarPeso() && validarVacinas() && validarAlergias() && validarNumeroSerie() && validarFoto()) {
-                // faz o uplod da foto
-                $photo = 'pet_'.base64_encode($name.$serialNumber.$registro.'-'.rand(0,9999)).'.jpg';
-                $uploadDir = __DIR__ . DIRECTORY_SEPARATOR . 'pets' . DIRECTORY_SEPARATOR;
-                $filePath = $uploadDir . $photo;
-
-                // Se não existir, cria (com permissão 0755)
-                if (!is_dir($uploadDir) && !mkdir($uploadDir, 0755, true)) {
-                    exit("Erro: não foi possível criar o diretório de imagens.");
-                } else {
-
-                    if(move_uploaded_file($_FILES['inputImagem']['tmp_name'], $filePath)) { 
-                        // cadastra
-                        $insert1 = "INSERT INTO `pets`(`Identificacao`, `Nome`, `Peso`, `DataNascimento`, `Especie`, `Alergias`, `Vacinas`, `Foto`, `Excluido`) VALUES ('$serialNumber','$name','$weight','$birthDate','null','$alergies','$vaccines','$photo', 0)";  
-                        //exit($insert1);
-                        mysqli_query($conn, $insert1);
-                        $id = mysqli_insert_id($conn);
-                        /*header("Location: ../conta-usuario/conta-usuario.php?registro=$id");
-                        exit("Cadastro realizado com sucesso!");*/
-                        header("Location: ../conta-usuario/conta-usuario.php?id=$id");
-                        exit;
-                    } 
-                    else { 
-                        echo "Erro, o arquivo n&atilde;o pode ser enviado."; 
-                    }
-                }    
-            }
-        }else{
-            exit("Pet já cadastrado por outra pessoa!");
         }
     }
 }
 
-function validarNome() {
-    if (isset($_POST['name']) && !empty($_POST['name'])) {
-        $name = $_POST['name'];
-        if (preg_match('/^[a-zA-Z\s]+$/', $name)) {
-            return true;
-        }
+// 4) Se houver erros, retorna ao form com lista de erros (ou exibe a lista aqui)
+if (!empty($errors)) {
+    // Aqui você pode salvar $errors em $_SESSION e fazer um header("Location: registre-seu-pet.php");
+    // Ou exibir o próprio formulário abaixo desta lógica. Vou exemplificar exibindo os erros nesta mesma página:
+    echo "<h3>Foram detectados os seguintes erros:</h3>";
+    echo "<ul>";
+    foreach ($errors as $e) {
+        echo "<li>" . htmlspecialchars($e) . "</li>";
     }
-    return false;
+    echo "</ul>";
+    echo '<p><a href="registre-seu-pet.php">Voltar ao formulário</a></p>';
+    exit;
 }
 
-function validarDataNascimento() {
-    if (isset($_POST['dtnasc']) && !empty($_POST['dtnasc'])) {
-        $birthDate = $_POST['dtnasc'];
-        $date = DateTime::createFromFormat('Y-m-d', $birthDate);
-        if ($date && $date->format('Y-m-d') === $birthDate) {
-            return true;
-        }
-    }
-    return false;
+// 5) Verifica se já existe pet com mesmo número de série (sem usar $_GET para PessoaID!)
+$sqlVer = "SELECT 1
+             FROM pets p
+             JOIN pessoapet pp ON p.PetID = pp.PetID
+            WHERE p.Identificacao = ?
+              AND pp.PessoaID = ?
+              AND p.Excluido = 0
+              AND pp.Excluido = 0";
+$stmtVer = $conn->prepare($sqlVer);
+$stmtVer->bind_param("si", $serialNumber, $usuarioId);
+$stmtVer->execute();
+$resVer = $stmtVer->get_result();
+if ($resVer->num_rows > 0) {
+    exit("Você já cadastrou um pet com esse número de série.");
 }
+$stmtVer->close();
 
-function validarPeso() {
-    if (isset($_POST['peso']) && !empty($_POST['peso'])) {
-        $weight = $_POST['peso'];
-        if (preg_match('/^\d+(\.\d{1,2})?$/', $weight)) {
-            return true;
-        }
-    }
-    return false;
+// 6) Insere na tabela pets
+$sqlInsPet = " INSERT INTO pets
+      (Identificacao, Nome, Especie, Genero, Peso, DataNascimento, Foto, Alergias, Vacinas, Excluido)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)
+";
+$stmtIns = $conn->prepare($sqlInsPet);
+$stmtIns->bind_param(
+    "ssssdssss",
+    $serialNumber,
+    $name,
+    $species,
+    $sex,
+    $weight,
+    $birthDate,
+    $photoName,
+    $alergies,
+    $vaccines
+);
+if (!$stmtIns->execute()) {
+    exit("Erro ao cadastrar pet. Detalhe: " . htmlspecialchars($stmtIns->error));
 }
+$novoPetId = $stmtIns->insert_id;
+$stmtIns->close();
 
-function validarVacinas() {
-    if (isset($_POST['vacinas']) && !empty($_POST['vacinas'])) {
-        $vaccines = $_POST['vacinas'];
-        return true;
-    }
-    return false;
-}
+// 7) Cria a associação Pessoa↔Pet
+$sqlInsRel = " INSERT INTO pessoapet
+        (PessoaID, PetID, DataCadastro, Excluido)
+    VALUES (?, ?, NOW(), 0)
+";
+$stmtRel = $conn->prepare($sqlInsRel);
+$stmtRel->bind_param("ii", $usuarioId, $novoPetId);
+$stmtRel->execute();
+$stmtRel->close();
 
-function validarAlergias() {
-    if (isset($_POST['alergias']) && !empty($_POST['alergias'])) {
-        $alergies = $_POST['alergias'];
-        return true;
-    }
-    return false;
-}
+// 8) Redireciona para a página que lista todos os pets
+header("Location: ../conta-usuario/conta-usuario.php");
+exit;
 
-function validarNumeroSerie() {
-    if (isset($_POST['numeroSerie']) && !empty($_POST['numeroSerie'])) {
-        $serialNumber = $_POST['numeroSerie'];
-        if (preg_match('/^[a-zA-Z0-9]+$/', $serialNumber)) {
-            if (strlen($serialNumber) > 4) {
-                exit("Número de série deve ter no máximo 3 caracteres.");
-                return false;
-            }
-            return true;
-        }
-    }
-    return false;
-}
-
-function validarFoto() {
-    if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] === UPLOAD_ERR_OK) {
-        $fileType = mime_content_type($_FILES['inputImagem']['tmp_name']);
-        if ($fileType === 'image/jpeg' || $fileType === 'image/png') {
-            return true;
-        } else {
-            exit("Formato de imagem inválido. Apenas JPEG e PNG são permitidos.");
-        }
-    }
-    return false;
-}
 ?>
