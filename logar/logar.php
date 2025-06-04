@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>TechPet - Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="./logar/logar.css?<?php echo $atualizador; ?>">
+    <link rel="stylesheet" href="../logar/logar.css">
 </head>
 <body class="d-flex flex-column justify-content-center align-items-center vh-100" style="background-color: rgb(234, 224, 224);">
 
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form action="" method="post" id="formLogin" class="row d-flex justify-content-center align-items-center bg-white shadow-sm p-4 box" style="border-radius: 1rem; max-width: 300px;">
         <div class="d-flex justify-content-end col-12 p-0">
-            <a aria-label="Fechar" href="./lobby/index.html" class="border-0" style="color: black;">
+            <a aria-label="Fechar" href="../lobby/index.html" class="border-0" style="color: black;">
                 <i class="fa-solid fa-xmark fa-xl"></i>
             </a>
         </div>
@@ -125,6 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a0cfbec9a7.js" crossorigin="anonymous"></script>
 
-    <script src="../logar/logar.js?<?php echo $atualizador; ?>"></script>
+    <script src="../logar/logar.js"></script>
 </body>
 </html>

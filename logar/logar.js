@@ -1,10 +1,21 @@
-const checkbox = document.querySelector('#password-checkbox');
+const checkbox = document.getElementById('password-checkbox');
 const passwordInput = document.getElementById('password');
 const userInput = document.getElementById('username');
 
-checkbox.addEventListener('change', () => {
+/*checkbox.addEventListener('change', () => {
     passwordInput.type = checkbox.checked ? 'text' : 'password';
     checkbox.ariaChecked = true ? 'true' : 'false';
+    checkbox.setAttribute('aria-checked', checkbox.checked);
+});*/
+
+
+checkbox.addEventListener('change', () => {
+    // alterna tipo do input entre "text" e "password"
+    passwordInput.type = checkbox.checked ? 'text' : 'password';
+    console.log(checkbox.checked);
+
+    // atribui o valor correto ao aria-checked
+    checkbox.ariaChecked = checkbox.checked ? 'true' : 'false';
     checkbox.setAttribute('aria-checked', checkbox.checked);
 });
 

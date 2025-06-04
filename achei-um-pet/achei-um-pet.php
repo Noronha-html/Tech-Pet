@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
 
     <?php if ($erro !== ""): ?>
-      <div class="alert alert-danger w-75 text-center">
+      <div class="alert alert-danger w-25 text-center" style="font-weight: 600;">
         <?= htmlspecialchars($erro) ?>
       </div>
     <?php endif; ?>
