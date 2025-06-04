@@ -1,5 +1,4 @@
 <?php
-
     $host = "mysql.techpet.app.br";
     $user = "techpet";
     $password = "aN3L8TE88dyJ";

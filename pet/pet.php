@@ -50,8 +50,8 @@ $pet = $res->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit=no">
     <title>TechPet – Detalhes do Pet</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="../pet/pet.css">
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="../pet/pet.css?<?pho echo $atualizador;?>">
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
