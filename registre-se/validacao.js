@@ -34,7 +34,7 @@ function confirmarSenha() {
     return true;
 }
  
-function validarEstadoeCidade() {
+/*function validarEstadoeCidade() {
     const estado = document.getElementById("estados");
     const cidade = document.getElementById("cidades");
  
@@ -47,7 +47,28 @@ function validarEstadoeCidade() {
         return false;
     }
     return true;
+}*/
+
+function validarEstado() {
+    const estado = document.getElementById("estados");
+
+    if(estado.value === "") {
+        return false;
+    }
+
+    return true;
 }
+
+function validarCidade() {
+    const cidade = document.getElementById("cidades");
+
+    if(cidade.value === "") {
+        return false;
+    }
+
+    return true;
+}
+
 
 function validarEmail() {
     const email = document.getElementById("email");
@@ -105,6 +126,22 @@ submit.addEventListener("click", () => {
         document.getElementById("label-confirmarSenha").innerHTML = "Confirmar senha:";
     }
 
+    if(!validarEstado()) {
+        document.getElementById("label-estado").innerHTML = "Estado: <span style='color: red;'>*</span>";
+    }
+    
+    if(validarEstado()) {
+        document.getElementById("label-estado").innerHTML = "Estado:";
+    }
+
+    if(!validarCidade()) {
+        document.getElementById("label-cidade").innerHTML = "Cidade: <span style='color: red;'>*</span>";
+    }
+    
+    if(validarCidade()) {
+        document.getElementById("label-cidade").innerHTML = "Cidade:";
+    }
+
     if(!validarEmail()) {
         document.getElementById("label-email").innerHTML = "Email: <span style='color: red;'>*</span>";
     }
@@ -129,7 +166,7 @@ submit.addEventListener("click", () => {
         document.getElementById("label-wpp").innerHTML = "Número de celular:";
     }
    
-    if(validarNome() && validarSenha() && confirmarSenha() && validarEstadoeCidade() && validarEmail() && validarDataNascimento() && validarTelefone()) {
+    if(validarNome() && validarSenha() && confirmarSenha() && validarEmail() && validarEstado() && validarCidade() && validarDataNascimento() && validarTelefone()) {
         //window.location.href = "../registre-seu-pet/registre-seu-pet.html";
         document.getElementById("formRegistreSe").submit();
     }

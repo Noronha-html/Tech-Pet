@@ -6,7 +6,7 @@ $atualizador = 't='.base64_encode(date('YmdHis').rand(0, 9999));
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit=no">
-    <link rel="shortcut icon" href="../img/Image.jfif.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
     <title>TechPet - Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="../logar/logar.css?<?pho echo $atualizador;?>">
@@ -43,7 +43,7 @@ $atualizador = 't='.base64_encode(date('YmdHis').rand(0, 9999));
         
         <div class="d-flex flex-column align-items-center col-12 mt-3">
             <p aria-label="Não possui uma conta?">Não possui uma conta?</p>
-            <a href="../registre-se/registre-se.html" aria-describedby="Criar Nova Conta">Criar Nova Conta</a>
+            <a href="../registre-se/registre-se.php" aria-describedby="Criar Nova Conta">Criar Nova Conta</a>
         </div>
     </form>
 

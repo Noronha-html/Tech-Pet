@@ -87,6 +87,7 @@ function validarnumeroSerie() {
 
 const submit = document.getElementById("submit");
 submit.addEventListener("click", () => {
+
     if(!validarNome()) {
         document.getElementById("label-name").innerHTML = "Nome: <span style='color: red;'>*</span>";
     }

@@ -1,7 +1,7 @@
 //const submit = document.querySelector(".submit");
 
 //submit.addEventListener("click", () => {
-  //  window.location.href = "../registre-seu-pet/registre-seu-pet.html";
+//  window.location.href = "../registre-seu-pet/registre-seu-pet.html";
 //});
 
 //Pegar id dos estados para usar para as cidades depois
@@ -47,11 +47,11 @@ estados.addEventListener("change", () => {
 });
 
 // Função exibir senha
-const iconExibirSenha = document.getElementById("icon-input-senha"); 
+const iconExibirSenha = document.getElementById("icon-input-senha");
 const inputSenha = document.getElementById("senhaRegistro");
 let ocultadoSenha = true;
 
-iconExibirSenha.addEventListener("click", function() {
+iconExibirSenha.addEventListener("click", function () {
     if (ocultadoSenha) {
         inputSenha.type = "text";
         iconExibirSenha.classList.add("fa-eye");
@@ -66,8 +66,8 @@ const iconExibirConfirmarSenha = document.getElementById("icon-input-confirmar-s
 const inputConfirmarSenha = document.getElementById("confirmarSenhaRegistro");
 let ocultadoConfirmarSenha = true;
 
-iconExibirConfirmarSenha.addEventListener("click", function() {
-    if (ocultadoConfirmarSenha) {   
+iconExibirConfirmarSenha.addEventListener("click", function () {
+    if (ocultadoConfirmarSenha) {
         inputConfirmarSenha.type = "text";
         iconExibirConfirmarSenha.classList.add("fa-eye");
     } else {
@@ -78,7 +78,7 @@ iconExibirConfirmarSenha.addEventListener("click", function() {
 });
 
 const telefoneInput = document.getElementById("wpp");
-telefoneInput.addEventListener("input", function() {
+telefoneInput.addEventListener("input", function () {
     let valor = telefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
     if (valor.length > 11) {
         valor = valor.slice(0, 11); // Limita a 11 dígitos
@@ -97,7 +97,7 @@ telefoneInput.addEventListener("input", function() {
 });
 
 // Apaga o último dígito ao pressionar Backspace
-telefoneInput.addEventListener("keydown", function(e) {
+telefoneInput.addEventListener("keydown", function (e) {
     if (e.key === "Backspace") {
         e.preventDefault();
         let valor = telefoneInput.value.replace(/\D/g, '');

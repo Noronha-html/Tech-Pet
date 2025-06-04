@@ -6,7 +6,7 @@
     <title>TechPet - Registrar</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="../registre-se/registre-se.css">
-    <link rel="shortcut icon" href="../img/Image.jfif.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <form id="formRegistreSe" action="registre-se_processo.php" method="post" class="d-flex row h-auto w-auto flex-column align-items-center shadow p-4 m-5" style="border-radius: 1rem;">
