@@ -5,10 +5,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // 1) Se o usuário já estiver logado, redirecione direto para a conta de pets
-if (isset($_SESSION['usuario_id'])) {
+/*if (isset($_SESSION['usuario_id'])) {
     header("Location: ../conta-usuario/conta-usuario.php");
     exit;
-}
+}*/
 
 // 2) Só aceita requisição via POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

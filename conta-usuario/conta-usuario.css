@@ -22,3 +22,9 @@
 .petInfo .petId {
     font-size: 1.5rem;
 }
+
+.novoCadastro {
+    width: 40%;
+    height: 10%;
+    position: relative;
+}
