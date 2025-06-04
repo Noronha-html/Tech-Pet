@@ -17,11 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // 1) Recupera e valida campos
 $name        = trim($_POST['name'] ?? '');
-$birthDate   = trim($_POST['dataNascimento'] ?? '');
+$birthDate   = trim($_POST['dtnasc'] ?? '');
 $weight      = trim($_POST['peso'] ?? '');
 $serialNumber= trim($_POST['numeroSerie'] ?? '');
-$sex         = trim($_POST['sexo'] ?? '');
-$species     = trim($_POST['especie'] ?? '');
+$species     = "null";
 $alergies    = trim($_POST['alergias'] ?? '');
 $vaccines    = trim($_POST['vacinas'] ?? '');
 
@@ -47,7 +46,7 @@ if ($weight === '' || !is_numeric($weight) || $weight <= 0) {
 
 if ($serialNumber === '') {
     $errors[] = "Número de série é obrigatório.";
-} elseif (!preg_match('/^[a-zA-Z0-9]{1,3}$/', $serialNumber)) {
+} elseif (!preg_match('/^#?[a-zA-Z0-9]{1,3}$/', $serialNumber)) {
     $errors[] = "Número de série deve ter até 3 caracteres alfanuméricos.";
 }
 
@@ -120,16 +119,15 @@ $stmtVer->close();
 
 // 6) Insere na tabela pets
 $sqlInsPet = " INSERT INTO pets
-      (Identificacao, Nome, Especie, Genero, Peso, DataNascimento, Foto, Alergias, Vacinas, Excluido)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)
+      (Identificacao, Nome, Especie, Peso, DataNascimento, Foto, Alergias, Vacinas, Excluido)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)
 ";
 $stmtIns = $conn->prepare($sqlInsPet);
 $stmtIns->bind_param(
-    "ssssdssss",
+    "sssdssss",
     $serialNumber,
     $name,
     $species,
-    $sex,
     $weight,
     $birthDate,
     $photoName,
@@ -144,8 +142,8 @@ $stmtIns->close();
 
 // 7) Cria a associação Pessoa↔Pet
 $sqlInsRel = " INSERT INTO pessoapet
-        (PessoaID, PetID, DataCadastro, Excluido)
-    VALUES (?, ?, NOW(), 0)
+        (PessoaID, PetID, Excluido)
+    VALUES (?, ?, 0)
 ";
 $stmtRel = $conn->prepare($sqlInsRel);
 $stmtRel->bind_param("ii", $usuarioId, $novoPetId);

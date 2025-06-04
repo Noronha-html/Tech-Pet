@@ -1,139 +1,102 @@
 <?php
 session_start();
-// faz a conexao com o banco
-include_once "../conexao.php";
+include_once "../conexao.php";    // ajuste este caminho se necessário
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// variaveis
-$msg = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = 7;
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $state = $_POST['estados'];
-    $city = $_POST['cidades'];
-    $birthDate = $_POST['dtnasc'];
-    $password = $_POST['senhaRegistro'];
-    $whatsapp = $_POST['wpp'];
-
-    $select1 = "SELECT * FROM `pessoas` WHERE Email = '$email' AND Senha = '$password'";
-    $selectUser = mysqli_query($conn, $select1);
-
-    if (mysqli_num_rows($selectUser) > 0) {
-        $msg = 'E-mail já cadastrado';
-        echo $msg;
-        exit;
-    } else {
-        if (!validarNome()) {
-            exit("Nome inválido. Por favor, use apenas letras e espaços.");
-        }
-
-        if (!validarSenha()) {
-            exit("Senha inválida. Por favor, use apenas letras e espaços.");
-        }
-
-        if(!confirmarSenha()) {
-            exit("As senhas não coincidem. Por favor, tente novamente.");
-        }
-
-        if(!validarEstadoCidade()) {
-            exit("Por favor, selecione um estado e uma cidade.");
-        }
-
-        if(!validarEmail()) {
-            exit("E-mail inválido. Por favor, insira um e-mail válido.");
-        }
-
-        if(!validarDataNascimento()) {
-            exit("Data de nascimento inválida. Por favor, insira uma data válida.");
-        }
-
-        if(!validarTelefone()) {
-            exit("Número de telefone inválido. Por favor, insira um número válido.");
-        }
-
-        if(validarNome() && validarSenha() && confirmarSenha() && validarEstadoCidade() && validarEmail() && validarDataNascimento() && validarTelefone()) {
-            // Insere os dados no banco de dados
-            $insert1 = "INSERT INTO `pessoas`(`Nome`, `Estado`, `Cidade`, `Email`, `DataNascimento`, `Whatsapp`, `Senha`, `Excluido`) VALUES ('$name','$state','$city','$email','$birthDate','$whatsapp','$password',0)";  
-            $result = mysqli_query($conn, $insert1);
-
-            if ($result) {
-                $id = mysqli_insert_id($conn);
-                header("Location: ../registre-seu-pet/registre-seu-pet.php?registro=" . $id);
-                exit;
-            } else {
-                echo "Erro ao inserir: " . mysqli_error($conn);
-                exit;
-            }
-        }
-    }
+// 1) Se o usuário já estiver logado, redirecione direto para a conta de pets
+if (isset($_SESSION['usuario_id'])) {
+    header("Location: ../conta-usuario/conta-usuario.php");
+    exit;
 }
 
-function validarNome() {
-    if (isset($_POST['name']) && !empty($_POST['name'])) {
-        $name = $_POST['name'];
-        if (preg_match('/^[a-zA-Z\s]+$/', $name)) {
-            return true;
-        }
-    }
-    return false;
+// 2) Só aceita requisição via POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: ./registre-se.php");
+    exit;
 }
 
-function validarSenha() {
-    if (isset($_POST['senhaRegistro']) && !empty($_POST['senhaRegistro'])) {
-        $password = $_POST['senhaRegistro'];
-        return true;
-    }
-    return false;
+// 3) Recebe os campos do formulário (nome, e-mail, senha e confirmação)
+$nome            = trim($_POST['name'] ?? '');
+$email           = trim($_POST['email'] ?? '');
+$senha           = $_POST['senhaRegistro'] ?? '';
+$confirmarSenha  = $_POST['confirmarSenhaRegistro'] ?? '';
+
+$errors = [];
+
+// 4) Validações básicas
+
+// 4.1) Nome
+if ($nome === '') {
+    $errors[] = "O campo Nome é obrigatório.";
+} elseif (mb_strlen($nome) < 3) {
+    $errors[] = "O Nome deve ter ao menos 3 caracteres.";
 }
 
-function confirmarSenha() {
-    if (isset($_POST['confirmarSenhaRegistro']) && !empty($_POST['confirmarSenhaRegistro'])) {
-        $confirmPassword = $_POST['confirmarSenhaRegistro'];
-        if(isset($_POST['senhaRegistro']) && $_POST['senhaRegistro'] === $confirmPassword) {
-            return true;
-        }
+// 4.2) E-mail
+if ($email === '') {
+    $errors[] = "O campo E-mail é obrigatório.";
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = "Digite um e-mail válido.";
+} else {
+    // checa se já existe alguém cadastrado com esse e-mail
+    $sqlVerEmail = "SELECT 1 FROM pessoas WHERE Email = ? AND Excluido = 0";
+    $stmtVerEm = $conn->prepare($sqlVerEmail);
+    $stmtVerEm->bind_param("s", $email);
+    $stmtVerEm->execute();
+    $resEm = $stmtVerEm->get_result();
+    if ($resEm->num_rows > 0) {
+        $errors[] = "Já existe uma conta com este e-mail.";
     }
-    return false;
+    $stmtVerEm->close();
 }
 
-function validarEstadoCidade() {
-    if (isset($_POST['estados']) && !empty($_POST['estados']) && isset($_POST['cidades']) && !empty($_POST['cidades'])) {
-        $state = $_POST['estados'];
-        $city = $_POST['cidades'];
-        return true;
-    }
-    return false;
+// 4.3) Senha e confirmação
+if ($senha === '') {
+    $errors[] = "O campo Senha é obrigatório.";
+} elseif (mb_strlen($senha) < 6) {
+    $errors[] = "A Senha deve ter ao menos 6 caracteres.";
 }
 
-function validarEmail() {
-    if (isset($_POST['email']) && !empty($_POST['email'])) {
-        $email = $_POST['email'];
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return true;
-        }
-    }
-    return false;
+if ($confirmarSenha === '') {
+    $errors[] = "Por favor, confirme a senha.";
+} elseif ($senha !== $confirmarSenha) {
+    $errors[] = "As senhas não coincidem.";
 }
 
-function validarDataNascimento() {
-    if (isset($_POST['dtnasc']) && !empty($_POST['dtnasc'])) {
-        $birthDate = $_POST['dtnasc'];
-        $date = DateTime::createFromFormat('Y-m-d', $birthDate);
-        if ($date && $date->format('Y-m-d') === $birthDate) {
-            return true;
-        }
-    }
-    return false;
+// 5) Se houver erros, salva em sessão e redireciona para registro novamente
+if (!empty($errors)) {
+    // guarda mensagens de erro
+    $_SESSION['registro_erros'] = $errors;
+    // guarda valores antigos para “sticky form” (opcional)
+    $_SESSION['registro_old'] = [
+        'nome'  => $nome,
+        'email' => $email
+    ];
+    header("Location: ./registre-se.php");
+    exit;
 }
 
-function validarTelefone() {
-    if (isset($_POST['wpp']) && !empty($_POST['wpp'])) {
-        $whatsapp = $_POST['wpp'];
-        // Verifica se o número de telefone contém apenas dígitos e tem entre 10 e 11 dígitos
-        //if (preg_match('/^\d{10,11}$/', $whatsapp)) {
-            return true;
-        //}
-    }
-    return false;
+// 6) Se tudo ok, insere o novo usuário no banco
+$hashSenha = password_hash($senha, PASSWORD_DEFAULT);
+$sqlIns = "INSERT INTO pessoas (Nome, Email, Senha, Excluido) VALUES (?, ?, ?, 0)";
+$stmtIns = $conn->prepare($sqlIns);
+$stmtIns->bind_param("sss", $nome, $email, $hashSenha);
+
+if (!$stmtIns->execute()) {
+    // se deu erro no INSERT, registra no log e redireciona com mensagem genérica
+    error_log("Falha ao cadastrar usuário: " . $stmtIns->error);
+    $_SESSION['registro_erros'] = ["Ocorreu um erro ao processar seu cadastro. Tente novamente mais tarde."];
+    header("Location: ./registre-se.php");
+    exit;
 }
-?>
+
+$novoUsuarioId = $stmtIns->insert_id;
+$stmtIns->close();
+
+// 7) Define a sessão como logada
+$_SESSION['usuario_id'] = $novoUsuarioId;
+
+// 8) Redireciona para a área do usuário (listagem de pets)
+header("Location: ../registre-seu-pet/registre-seu-pet.php");
+exit;
