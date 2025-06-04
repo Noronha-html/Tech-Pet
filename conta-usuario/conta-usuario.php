@@ -67,11 +67,11 @@ $stmt->close();
       <div class="row">
         <?php foreach ($listaPets as $pet): ?>
           <div class="col-md-4">
-            <div class="card pet-card shadow-sm">
-              <?php if (!empty($pet['Foto']) && file_exists(__DIR__ . '/pets/' . $pet['Foto'])): ?>
-                <img src="pets/<?= htmlspecialchars($pet['Foto']) ?>" 
-                     class="card-img-top" 
-                     alt="Foto de <?= htmlspecialchars($pet['Nome']) ?>" />
+            <div class="card pet-card shadow-sm d-flex flex-row">
+              <?php $imgPath = __DIR__ . '/../registre-seu-pet/pets/' . $pet['Foto'];
+                    if (!empty($pet['Foto']) && file_exists($imgPath)): ?>
+                        <img style="width: 40%; max-height:'20%'" src="../registre-seu-pet/pets/<?= htmlspecialchars($pet['Foto']) ?>"
+                        alt="Foto de <?= htmlspecialchars($pet['Nome']) ?>">
               <?php else: ?>
                 <img src="https://via.placeholder.com/350x200?text=Sem+Foto" 
                      class="card-img-top" 
@@ -82,22 +82,9 @@ $stmt->close();
                 <p class="card-text">
                   <strong>Identificação:</strong> <?= htmlspecialchars($pet['Identificacao']) ?><br>
                   <strong>Espécie:</strong> <?= htmlspecialchars($pet['Especie']) ?><br>
-                  <strong>Gênero:</strong> <?= htmlspecialchars($pet['Genero']) ?><br>
                   <strong>Peso:</strong> <?= htmlspecialchars($pet['Peso']) ?> kg<br>
                   <strong>Nascimento:</strong> <?= date("d/m/Y", strtotime($pet['DataNascimento'])) ?>
                 </p>
-                <a href="ver-pet.php?pet_id=<?= $pet['PetID'] ?>" class="btn btn-primary btn-sm">
-                  Ver detalhes
-                </a>
-                <a href="editar-pet.php?pet_id=<?= $pet['PetID'] ?>" class="btn btn-secondary btn-sm">
-                  Editar
-                </a>
-                <!-- Exemplo de botão para excluir -->
-                <a href="excluir-pet.php?pet_id=<?= $pet['PetID'] ?>" 
-                   class="btn btn-danger btn-sm"
-                   onclick="return confirm('Confirma exclusão deste pet?');">
-                  Excluir
-                </a>
               </div>
             </div>
           </div>
