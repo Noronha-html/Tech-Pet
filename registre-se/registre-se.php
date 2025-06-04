@@ -2,10 +2,10 @@
 session_start();
 
 // Se o usuário já estiver logado, redireciona para a área de pets
-if (isset($_SESSION['usuario_id'])) {
+/*if (isset($_SESSION['usuario_id'])) {
     header("Location: ../conta-usuario/conta-usuario.php");
     exit;
-}
+}*/
 
 // Recupera mensagens de erro e valores antigos (sticky form), se existirem
 $errors = $_SESSION['registro_erros'] ?? [];
