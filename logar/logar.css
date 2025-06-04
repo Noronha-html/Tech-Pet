@@ -12,7 +12,10 @@ body div div a button:hover{
     outline: none;
 }
 input:focus{
-    outline: none;
+    outline: none !important;
+}
+.border-0:focus{
+    outline: none !important;
 }
 input::placeholder{
     font-size: small;

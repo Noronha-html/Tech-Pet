@@ -45,8 +45,8 @@ btnEntrar.addEventListener('click', (e) => {
     }
     
     if(verificarUsuario() && verificarSenha()){
-        //console.log("funcionou essa bomba");
-        window.location.href = "../conta-usuario/conta-usuario.php";
+        //window.location.href = "../conta-usuario/conta-usuario.php";
+        document.getElementById("formLogin").submit();
     }
 });
 
