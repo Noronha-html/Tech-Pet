@@ -19,7 +19,6 @@ $sql = " SELECT
         p.Peso,
         p.DataNascimento,
         p.Especie,
-        p.Genero,
         p.Foto,
         p.Alergias,
         p.Vacinas
