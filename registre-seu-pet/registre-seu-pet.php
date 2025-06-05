@@ -1,5 +1,14 @@
 <?php
 $atualizador = 't='.base64_encode(date('YmdHis').rand(0, 9999));
+
+session_start();
+
+// 1) Recupera erros e valores antigos, se existirem
+$petErrors = $_SESSION['pet_errors'] ?? [];
+$petOld    = $_SESSION['pet_old']    ?? [];
+
+// 2) Limpa para não reaparecer após refresh
+unset($_SESSION['pet_errors'], $_SESSION['pet_old']);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -12,6 +21,15 @@ $atualizador = 't='.base64_encode(date('YmdHis').rand(0, 9999));
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
 </head>
 <body class="container-fluid d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <?php if (!empty($petErrors)): ?>
+    <div class="alert alert-danger w-25">
+        <ul class="mb-0">
+        <?php foreach ($petErrors as $err): ?>
+            <li><?= htmlspecialchars($err) ?></li>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php endif; ?>
     <form id="formRegistraPet" enctype="multipart/form-data" action="./registre-seu-pet_processo.php" method="post" class="d-flex row flex-column align-items-center shadow p-4 m-5" style="border-radius: 1rem;">
         <legend class="col-12">Registre seu Pet</legend>
         <input type="hidden" name="registro" id="registro" value="<?php echo isset($_GET['registro']) ? $_GET['registro'] : ''; ?>">

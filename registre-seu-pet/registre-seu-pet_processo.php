@@ -87,7 +87,7 @@ if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_
 }
 
 // 4) Se houver erros, retorna ao form com lista de erros (ou exibe a lista aqui)
-if (!empty($errors)) {
+/*if (!empty($errors)) {
     // Aqui você pode salvar $errors em $_SESSION e fazer um header("Location: registre-seu-pet.php");
     // Ou exibir o próprio formulário abaixo desta lógica. Vou exemplificar exibindo os erros nesta mesma página:
     echo "<h3>Foram detectados os seguintes erros:</h3>";
@@ -97,6 +97,23 @@ if (!empty($errors)) {
     }
     echo "</ul>";
     echo '<p><a href="registre-seu-pet.php">Voltar ao formulário</a></p>';
+    exit;
+}*/
+
+if (!empty($errors)) {
+    // Salva erros na sessão
+    $_SESSION['pet_errors'] = $errors;
+    // Salva valores antigos (sticky form), para reaproveitar no form
+    $_SESSION['pet_old'] = [
+        'name'        => $name,
+        'dtnasc'      => $birthDate,
+        'peso'        => $weight,
+        'vacinas'     => $vaccines,
+        'alergias'    => $alergies,
+        'numeroSerie' => $serialNumber
+        // Não incluímos a foto aqui, pois não há forma fácil de "reaproveitar" arquivo
+    ];
+    header("Location: registre-seu-pet.php");
     exit;
 }
 
