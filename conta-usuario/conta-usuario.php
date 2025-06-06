@@ -81,7 +81,6 @@ $stmt->close();
                 <h5 class="card-title" style="color: #5beeba; font-size: 1.5rem"><?= htmlspecialchars($pet['Nome']) ?></h5>
                 <p class="card-text">
                   <strong>Identificação:</strong> <?= htmlspecialchars($pet['Identificacao']) ?><br>
-                  <strong>Espécie:</strong> <?= htmlspecialchars($pet['Especie']) ?><br>
                   <strong>Peso:</strong> <?= htmlspecialchars($pet['Peso']) ?> kg<br>
                   <strong>Nascimento:</strong> <?= date("d/m/Y", strtotime($pet['DataNascimento'])) ?>
                 </p>
@@ -91,7 +90,7 @@ $stmt->close();
         <?php endforeach; ?>
       </div>
     <?php endif; ?>
-    <button type="button" class="novoCadastro" style="width: 30%; height: 50px; position: relative; left: 35%;
+    <button type="button" class="novoCadastro" style="width: 30%; min-width: 100px; height: 80px; min-height: 80px; position: relative; left: 35%;
     border: none; background-color: #5beeba; color: white; font-size: 1.3rem;">Cadastrar outro pet</button>
   </div>
 
