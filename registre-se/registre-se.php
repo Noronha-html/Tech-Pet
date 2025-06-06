@@ -129,7 +129,7 @@ unset($_SESSION['registro_erros'], $_SESSION['registro_old']);
                   type="email"
                   name="email"
                   id="email"
-                  class="border-0"
+                  class="border-left-0 border-right-0 border-top-0 border-bottom"
                   placeholder="Digite o seu e-mail"
                   value="<?= htmlspecialchars($old['email']  ?? '') ?>"
                   required
@@ -142,7 +142,7 @@ unset($_SESSION['registro_erros'], $_SESSION['registro_old']);
                   type="date"
                   name="dtnasc"
                   id="dtnasc"
-                  class="border-0"
+                  class="border-left-0 border-right-0 border-top-0 border-bottom"
                   placeholder="Digite a sua data de nascimento"
                   value="<?= htmlspecialchars($old['dtnasc']  ?? '') ?>"
                   required
@@ -155,7 +155,7 @@ unset($_SESSION['registro_erros'], $_SESSION['registro_old']);
                   type="tel"
                   name="wpp"
                   id="wpp"
-                  class="border-0"
+                  class="border-left-0 border-right-0 border-top-0 border-bottom"
                   placeholder="Digite o seu número"
                   value="<?= htmlspecialchars($old['wpp']    ?? '') ?>"
                   required

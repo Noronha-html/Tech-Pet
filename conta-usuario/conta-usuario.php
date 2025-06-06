@@ -67,7 +67,7 @@ $stmt->close();
       <div class="row">
         <?php foreach ($listaPets as $pet): ?>
           <div class="col-md-4">
-            <div class="card pet-card shadow d-flex flex-row" style="min-height: 280px; border-radius: 1rem;">
+            <div class="card pet-card shadow d-flex flex-row" style="min-height: 280px; max-height:400px border-radius: 1rem;">
               <?php $imgPath = __DIR__ . '/../registre-seu-pet/pets/' . $pet['Foto'];
                     if (!empty($pet['Foto']) && file_exists($imgPath)): ?>
                         <img style="width: 40%; border-radius: 1rem;" src="../registre-seu-pet/pets/<?= htmlspecialchars($pet['Foto']) ?>"
@@ -90,7 +90,7 @@ $stmt->close();
         <?php endforeach; ?>
       </div>
     <?php endif; ?>
-    <button type="button" class="novoCadastro" style="width: 30%; min-width: 100px; height: 80px; min-height: 80px; position: relative; left: 35%;
+    <button type="button" class="novoCadastro" style="width: 30%; min-width: 80px; height: 70px; min-height: 70px; position: relative; left: 35%;
     border: none; background-color: #5beeba; color: white; font-size: 1.3rem;">Cadastrar outro pet</button>
   </div>
 

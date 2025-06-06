@@ -56,19 +56,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <legend class="col-11 h6">Digite o <strong>número</strong><br> abaixo do QR code</legend>
         <fieldset class="col-11 border p-3 mt-2" style="border-radius: 1rem;">
             <div class="col-12 justify-content-start align-items-start">
-                <label for="numeroSerie" class="mt-2 border-top-0 border-left-0 border-right-0 border-bottom">Número de Série:</label>
+                <label for="numeroSerie" class="mt-2 border-0">Número de Série:</label>
                 <input
                   type="text"
                   id="numeroSerie"
                   name="numeroSerie"
-                  class="border-0"
+                  class="border-top-0 border-left-0 border-right-0 border-bottom"
                   placeholder="#123"
                   required
                   value="<?= isset($_POST['numeroSerie']) ? htmlspecialchars($_POST['numeroSerie']) : '' ?>"
                 >
             </div>
         </fieldset>
-        <button type="submit" class="btn btn-success col-6 mt-3" style="background-color: #5beeba;">Buscar Pet</button>
+        <button type="submit" class="btn btn-success col-6 mt-3" style="background-color: #5beeba; border: none;">Buscar Pet</button>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
