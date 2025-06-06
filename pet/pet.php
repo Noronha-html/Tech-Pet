@@ -73,7 +73,6 @@ $pet = $res->fetch_assoc();
             <div class="col-md-8">
                 <p><strong>Identificação:</strong> <?= htmlspecialchars($pet['Identificacao']) ?></p>
                 <p><strong>Nome:</strong> <?= htmlspecialchars($pet['petNome']) ?></p>
-                <p><strong>Espécie:</strong> <?= htmlspecialchars($pet['Especie']) ?></p>
                 <p><strong>Peso:</strong> <?= htmlspecialchars($pet['Peso']) ?> kg</p>
                 <p><strong>Data de Nascimento:</strong> <?= date("d/m/Y", strtotime($pet['DataNascimento'])) ?></p>
                 <p><strong>Alergias:</strong> <?= nl2br(htmlspecialchars($pet['Alergias'])) ?></p>
