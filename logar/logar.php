@@ -86,8 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               id="username"
               name="username"
               required
-              aria-placeholder="Digite seu usuário"
-              placeholder="Digite seu usuário"
+              aria-placeholder="Digite seu Email"
+              placeholder="Digite seu Email"
               class="p-2 rounded border-top-0 border-left-0 border-right-0 border-bottom"
               value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>"
             >
