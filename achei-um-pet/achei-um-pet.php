@@ -12,8 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = "Por favor, digite o número de série.";
     } else {
         // Verifica se existe algum pet com esse Identificacao (número de série)
-        $stmt = $conn->prepare("
-            SELECT PetID
+        $stmt = $conn->prepare(" SELECT PetID
               FROM pets
              WHERE Identificacao = ?
                AND Excluido = 0
