@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2 style="color:#5beeba;" aria-describedby="Login">Login</h2>
         </div>
         <div class="d-flex col-12 flex-column justify-content-start mt-2">
-            <label for="username" class="mt1-1" aria-label="Usuário" id="label-user">Usuário</label>
+            <label for="username" class="mt1-1" aria-label="Usuário" id="label-user">Email</label>
             <input
               type="text"
               id="username"
