@@ -60,8 +60,8 @@ if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_
         $fileSize = $_FILES['inputImagem']['size'];
         $fileType = mime_content_type($fileTmp);
 
-        // Tamanho máximo: 2 MB
-        if ($fileSize > 2 * 1024 * 1024) {
+        // Tamanho máximo: 10 MB
+        if ($fileSize > 10 * 1024 * 1024) {
             $errors[] = "A imagem deve ter no máximo 2 MB.";
         }
         // Permitir jpeg ou png
