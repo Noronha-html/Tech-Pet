@@ -62,7 +62,7 @@ if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_
 
         // Tamanho máximo: 10 MB
         if ($fileSize > 10 * 1024 * 1024) {
-            $errors[] = "A imagem deve ter no máximo 2 MB.";
+            $errors[] = "A imagem deve ter no máximo 10 MB.";
         }
         // Permitir jpeg ou png
         if ($fileType !== 'image/jpeg' && $fileType !== 'image/png') {
