@@ -50,9 +50,13 @@ if ($serialNumber === '') {
     $errors[] = "Número de série deve ter até 3 caracteres alfanuméricos.";
 }
 
+if (!isset($_FILES['inputImagem']) || $_FILES['inputImagem']['error'] === UPLOAD_ERR_NO_FILE) {
+    $errors[] = "A foto do pet é obrigatória.";
+}
+
 // 3) Valida foto, se existir
 $photoName = null;
-if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_ERR_NO_FILE) {
+if (empty($errors) && isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_ERR_NO_FILE) {
     if ($_FILES['inputImagem']['error'] !== UPLOAD_ERR_OK) {
         $errors[] = "Erro ao enviar a foto.";
     } else {
@@ -87,19 +91,6 @@ if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_
 }
 
 // 4) Se houver erros, retorna ao form com lista de erros (ou exibe a lista aqui)
-/*if (!empty($errors)) {
-    // Aqui você pode salvar $errors em $_SESSION e fazer um header("Location: registre-seu-pet.php");
-    // Ou exibir o próprio formulário abaixo desta lógica. Vou exemplificar exibindo os erros nesta mesma página:
-    echo "<h3>Foram detectados os seguintes erros:</h3>";
-    echo "<ul>";
-    foreach ($errors as $e) {
-        echo "<li>" . htmlspecialchars($e) . "</li>";
-    }
-    echo "</ul>";
-    echo '<p><a href="registre-seu-pet.php">Voltar ao formulário</a></p>';
-    exit;
-}*/
-
 if (!empty($errors)) {
     // Salva erros na sessão
     $_SESSION['pet_errors'] = $errors;
@@ -117,22 +108,32 @@ if (!empty($errors)) {
     exit;
 }
 
-// 5) Verifica se já existe pet com mesmo número de série (sem usar $_GET para PessoaID!)
+// 5) Verifica se já existe pet com mesmo número de série
 $sqlVer = "SELECT 1
-             FROM pets p
-             JOIN pessoapet pp ON p.PetID = pp.PetID
-            WHERE p.Identificacao = ?
-              AND pp.PessoaID = ?
-              AND p.Excluido = 0
-              AND pp.Excluido = 0";
+             FROM pets
+            WHERE Identificacao = ?
+              AND Excluido = 0
+            LIMIT 1";
 $stmtVer = $conn->prepare($sqlVer);
-$stmtVer->bind_param("si", $serialNumber, $usuarioId);
+$stmtVer->bind_param("s", $serialNumber);
 $stmtVer->execute();
 $resVer = $stmtVer->get_result();
-if ($resVer->num_rows > 0) {
-    exit("Você já cadastrou um pet com esse número de série.");
-}
 $stmtVer->close();
+
+if ($resVer->num_rows > 0) {
+    // grava o erro na sessão e retorna ao form
+    $_SESSION['pet_errors'] = ["Este número de série já está cadastrado para outro pet."];
+    $_SESSION['pet_old'] = [
+        'name'        => $name,
+        'dtnasc'      => $birthDate,
+        'peso'        => $weight,
+        'vacinas'     => $vaccines,
+        'alergias'    => $alergies,
+        'numeroSerie' => $serialNumber
+    ];
+    header("Location: registre-seu-pet.php");
+    exit;
+}
 
 // 6) Insere na tabela pets
 $sqlInsPet = " INSERT INTO pets

@@ -35,7 +35,7 @@ function validarPeso() {
     return true;
 }
 
-function validarVacinas() {
+/*function validarVacinas() {
     const vacinas = document.getElementById("vacinas");
 
     if(vacinas.value === "") {
@@ -53,7 +53,7 @@ function validarAlergias() {
     }
 
     return true;
-}
+}*/
 
 function validarFoto() {
     const foto = document.getElementById("inputImagem");
@@ -112,7 +112,7 @@ submit.addEventListener("click", () => {
         document.getElementById("label-peso").innerHTML = "Peso:";
     }
 
-    if(!validarVacinas()) {
+    /*if(!validarVacinas()) {
         document.getElementById("label-vacinas").innerHTML = "Vacinas: <span style='color: red;'>*</span>";
     }
 
@@ -126,7 +126,7 @@ submit.addEventListener("click", () => {
 
     if(validarAlergias()) {
         document.getElementById("label-alergias").innerHTML = "Alergias:";
-    }
+    }*/
 
     if(!validarFoto()) {
         document.getElementById("label-foto").innerHTML = "Escolher imagem: <span style='color: red;'>*</span>";
@@ -144,7 +144,7 @@ submit.addEventListener("click", () => {
         document.getElementById("label-numeroSerie").innerHTML = "número de série:";
     }
 
-    if(validarNome() && validarDataNascimento() && validarPeso() && validarVacinas() && validarAlergias() && validarFoto() && validarnumeroSerie()) {
+    if(validarNome() && validarDataNascimento() && validarPeso() /*&& validarVacinas() && validarAlergias()*/ && validarFoto() && validarnumeroSerie()) {
         document.getElementById("formRegistraPet").submit();
     }
 
