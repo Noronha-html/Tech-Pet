@@ -67,7 +67,7 @@ $stmt->close();
       <div class="row">
         <?php foreach ($listaPets as $pet): ?>
           <div class="col-md-4">
-            <div class="card pet-card shadow d-flex flex-row" style=" min-width: 350px; min-height: 280px; max-height:400px border-radius: 1rem;">
+            <div class="card pet-card shadow d-flex flex-row" style=" min-width: 350px; min-height: 400px; max-height:400px; border-radius: 1rem;">
               <?php $imgPath = __DIR__ . '/../registre-seu-pet/pets/' . $pet['Foto'];
                     if (!empty($pet['Foto']) && file_exists($imgPath)): ?>
                         <img style="width: 40%; border-radius: 1rem;" src="../registre-seu-pet/pets/<?= htmlspecialchars($pet['Foto']) ?>"
@@ -86,6 +86,9 @@ $stmt->close();
                   <strong>Alergias:</strong> <?= htmlspecialchars($pet['Alergias']) ?><br>
                   <strong>Vacinas:</strong> <?= htmlspecialchars($pet['Vacinas']) ?><br>
                 </p>
+                <a href="../editar-seu-pet/editar-seu-pet.php?id=<?= urlencode($pet['PetID']) ?>" class="btn btn-sm mt-2" style="background-color: #5beeba; color: white; font-size: 1.2rem; border-radius: 1rem;">
+                  Editar
+                </a>
               </div>
             </div>
           </div>
