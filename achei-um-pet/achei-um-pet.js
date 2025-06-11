@@ -8,7 +8,7 @@
     } else {
         inputNumero.value = '';
     }
-});*/
+});
 const numeroSerie = document.getElementById("numeroSerie");
 
 function validarnumeroSerie() {
@@ -41,4 +41,68 @@ inputNumero.addEventListener('keydown', function(e) {
             e.preventDefault();
         }
     }
-});
+});*/
+
+window.addEventListener('DOMContentLoaded', () => {
+    const numeroSerie = document.getElementById("numeroSerie");
+    const preview     = document.getElementById("preview");
+    const inputImg    = document.getElementById("inputImagem");
+  
+    // --- prefixa o '#' automaticamente no blur ---
+    numeroSerie.addEventListener('blur', () => {
+      let v = numeroSerie.value.replace(/[^0-9]/g, '').slice(0, 3);
+      if (v.length > 0) {
+        // adiciona '#' na frente se não existir
+        if (!numeroSerie.value.startsWith('#')) {
+          numeroSerie.value = '#' + v;
+        } else {
+          numeroSerie.value = '#' + v;
+        }
+      } else {
+        numeroSerie.value = '';
+      }
+    });
+  
+    // --- valida e formata enquanto digita ---
+    numeroSerie.addEventListener('input', () => {
+      let v = numeroSerie.value.replace(/[^0-9]/g, '').slice(0, 3);
+      if (v.length > 0) {
+        numeroSerie.value = '#' + v;
+      } else {
+        numeroSerie.value = '';
+      }
+    });
+  
+    // --- impede remoção indevida do '#' ---
+    numeroSerie.addEventListener('keydown', function(e) {
+      if (!numeroSerie.value.startsWith('#')) return;
+      // não deixa apagar o '#'
+      if ((e.key === 'Backspace' || e.key === 'Delete') && this.selectionStart === 1) {
+        e.preventDefault();
+      }
+    });
+  
+    // --- preview da imagem (mantém seu código) ---
+    inputImg.addEventListener('change', () => {
+      const file = inputImg.files[0];
+      if (!file) {
+        preview.src = '../img/img-exemplo.png';
+        return;
+      }
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          preview.src = reader.result;
+        };
+        reader.onerror = () => {
+          alert('Erro ao carregar a imagem. Por favor, tente novamente.');
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Selecione um arquivo de imagem válido.');
+        inputImg.value = '';
+        preview.src    = '../img/img-exemplo.png';
+      }
+    });
+  });
+  

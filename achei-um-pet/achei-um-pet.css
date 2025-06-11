@@ -1,8 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-*{
-    padding: 0;
-    margin: 0;
-    font-family: "Open Sans", serif;
+/* reset básico sem afetar ícones */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* aplique Open Sans só ao texto */
+body, h1, h2, h3, p, a, button, input, label {
+  font-family: "Open Sans", serif;
+}
+
+/* garanta que o FontAwesome carregue corretamente */
+.fa, .fas, .far, .fal, .fab {
+  font-family: "Font Awesome 6 Free";
+}
+.fa-solid {
+  font-weight: 900;
 }
 input:focus{
     outline: none;
