@@ -79,6 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a0cfbec9a7.js" crossorigin="anonymous"></script>
 
-    <script src="../pet/pet.js?<?php echo 't=' . base64_encode(date('YmdHis')); ?>"></script>
+    <script src="./achei-um-pet.js?<?php echo 't=' . base64_encode(date('YmdHis')); ?>"></script>
 </body>
 </html>
