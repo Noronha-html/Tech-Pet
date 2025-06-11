@@ -96,8 +96,8 @@ if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_
         $fileSize = $_FILES['inputImagem']['size'];
         $fileType = mime_content_type($fileTmp);
 
-        if ($fileSize > 2 * 1024 * 1024) {
-            $errors[] = "A imagem deve ter no máximo 2 MB.";
+        if ($fileSize > 10 * 1024 * 1024) {
+            $errors[] = "A imagem deve ter no máximo 10 MB.";
         }
         if ($fileType !== 'image/jpeg' && $fileType !== 'image/png') {
             $errors[] = "Tipo de arquivo inválido. Só JPEG ou PNG.";
@@ -107,7 +107,7 @@ if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_
             // gera nome e move
             $ext = ($fileType === 'image/png') ? 'png' : 'jpg';
             $photoName = md5($name . $serialNumber . uniqid()) . '.' . $ext;
-            $uploadDir = __DIR__ . DIRECTORY_SEPARATOR . 'pets' . DIRECTORY_SEPARATOR;
+            $uploadDir = __DIR__ . DIRECTORY_SEPARATOR . '../registre-seu-pet/pets' . DIRECTORY_SEPARATOR;
             if (!is_dir($uploadDir) && !mkdir($uploadDir, 0755, true)) {
                 $errors[] = "Não foi possível criar pasta de imagens.";
             } else {
