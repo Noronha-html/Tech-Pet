@@ -56,9 +56,26 @@ $stmt->close();
     </style>
 </head>
 <body style="background-color: rgb(234, 224, 224);">
-  <div class="container mt-4" style="padding-bottom: 2rem;">
-    <h1 class="mb-4">Seus Pets Cadastrados</h1>
 
+  <div class="container mt-4" style="padding-bottom: 2rem;">
+    
+    <h1 class="mb-4">Seus Pets Cadastrados</h1>
+<a aria-label="Fechar"
+   href="../lobby/index.html"
+   class="text-white"
+   style="
+     position: absolute;
+     top: 2rem;            /* ajuste vertical */
+     right: 1%;           /* ajuste horizontal */
+     font-size: 1.5rem;    /* tamanho do ícone */
+     background-color: #5beeba; /* cor de fundo válida */
+      border-radius: 10%;
+      min-width: 40px;
+      text-align: center;
+      
+   ">
+  <i class="fa-solid fa-xmark"></i>
+</a>
     <?php if (count($listaPets) === 0): ?>
       <div class="alert alert-info">
         Você ainda não cadastrou nenhum pet. <a href="registre-seu-pet.php" class="alert-link">Cadastre agora</a>.
@@ -107,5 +124,13 @@ $stmt->close();
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" 
           integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" 
           crossorigin="anonymous"></script>
+
+          <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a0cfbec9a7.js" crossorigin="anonymous"></script>
 </body>
 </html>
