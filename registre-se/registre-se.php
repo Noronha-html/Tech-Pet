@@ -43,6 +43,11 @@ unset($_SESSION['registro_erros'], $_SESSION['registro_old']);
     <form id="formRegistreSe" action="./registre-se_processo.php" method="post" 
           class="d-flex flex-column justify-content-center align-items-center shadow p-4 m-5" 
           style="border-radius: 1rem; width: 90%; max-width: 480px;">
+          <div class="d-flex justify-content-end col-12 p-0">
+      <a aria-label="Fechar" href="../lobby/index.html" class="border-0 text-dark">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </a>
+    </div>
         <legend class="col-11 h6">Informações para Cadastro</legend>
         <fieldset class="col-11 h-auto w-auto border p-3" style="border-radius: 1rem;">
             <div class="col-12 justify-content-start align-items-start m-1">

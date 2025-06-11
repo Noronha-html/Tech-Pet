@@ -57,6 +57,11 @@ $pet = $res->fetch_assoc();
 <body class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
 
     <div class="card shadow-sm p-4 m-4" style="border-radius: 1rem; width: 90%; max-width: 600px;">
+               <div class="d-flex justify-content-end col-12 p-0">
+      <a aria-label="Fechar" href="../lobby/index.html" class="border-0 text-dark">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </a>
+    </div>
         <h2 class="mb-3">Informações do Pet</h2>
         <div class="row">
             <div class="col-md-4">

@@ -31,6 +31,11 @@ unset($_SESSION['pet_errors'], $_SESSION['pet_old']);
     </div>
     <?php endif; ?>
     <form id="formRegistraPet" enctype="multipart/form-data" action="./registre-seu-pet_processo.php" method="post" class="d-flex row flex-column align-items-center shadow p-4 m-5" style="border-radius: 1rem;">
+                  <div class="d-flex justify-content-end col-12 p-0">
+      <a aria-label="Fechar" href="../lobby/index.html" class="border-0 text-dark">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </a>
+    </div>
         <legend class="col-12">Registre seu Pet</legend>
         <input type="hidden" name="registro" id="registro" value="<?php echo isset($_GET['registro']) ? $_GET['registro'] : ''; ?>">
         <fieldset class="border p-3" style="border-radius: 1rem;">
@@ -74,6 +79,13 @@ unset($_SESSION['pet_errors'], $_SESSION['pet_old']);
     
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a0cfbec9a7.js" crossorigin="anonymous"></script>
 
     <script src="../registre-seu-pet/registre-seu-pet.js"></script>
     <script src="../registre-seu-pet/validacao.js"></script>
