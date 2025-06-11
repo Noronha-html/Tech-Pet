@@ -53,6 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <form action="" method="post" class="d-flex row w-auto flex-column justify-content-center align-items-center shadow p-4 m-4" style="border-radius: 1rem;">
+        <div class="d-flex justify-content-end col-12 p-0">
+                <a aria-label="Fechar" href="../lobby/index.html" class="border-0" style="color: black;">
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                </a>
+            </div>
         <legend class="col-11 h6">Digite o <strong>número</strong><br> abaixo do QR code</legend>
         <fieldset class="col-11 border p-3 mt-2" style="border-radius: 1rem;">
             <div class="col-12 justify-content-start align-items-start">
