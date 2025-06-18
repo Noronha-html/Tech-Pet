@@ -1,15 +1,12 @@
-/* reset básico sem afetar ícones */
 * {
   padding: 0;
   margin: 0;
 }
 
-/* aplique Open Sans só ao texto */
 body, h1, h2, h3, p, a, button, input, label {
   font-family: "Open Sans", serif;
 }
 
-/* garanta que o FontAwesome carregue corretamente */
 .fa, .fas, .far, .fal, .fab {
   font-family: "Font Awesome 6 Free";
 }
