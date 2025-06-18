@@ -1,3 +1,4 @@
+//Validações dos campos do formulário de registro
 function validarNome() {
     const name = document.getElementById("name");
     if (name.value === "") {
@@ -33,21 +34,6 @@ function confirmarSenha() {
     }
     return true;
 }
- 
-/*function validarEstadoeCidade() {
-    const estado = document.getElementById("estados");
-    const cidade = document.getElementById("cidades");
- 
-    if (estado.value === "") {
-        document.getElementById("label-estado").innerHTML = "Estado: <span style='color: red;'>*</span>";
-        return false;
-    }
-    if (cidade.value === "") {
-        document.getElementById("label-cidade").innerHTML = "Cidade: <span style='color: red;'>*</span>";
-        return false;
-    }
-    return true;
-}*/
 
 function validarEstado() {
     const estado = document.getElementById("estados");
@@ -102,6 +88,7 @@ function validarTelefone() {
 
 const submit = document.getElementById("enviar");
 submit.addEventListener("click", () => {
+    //Se algum campo não for preenchido, será exibida uma mensagem de erro
     if(!validarNome()) {
         document.getElementById("label-name").innerHTML = "Nome: <span style='color: red;'>*</span>";
     }
@@ -166,8 +153,8 @@ submit.addEventListener("click", () => {
         document.getElementById("label-wpp").innerHTML = "Número de celular:";
     }
    
+    //Se todos os campos forem preenchidos corretamente, o formulário será enviado
     if(validarNome() && validarSenha() && confirmarSenha() && validarEmail() && validarEstado() && validarCidade() && validarDataNascimento() && validarTelefone()) {
-        //window.location.href = "../registre-seu-pet/registre-seu-pet.html";
         document.getElementById("formRegistreSe").submit();
     }
 

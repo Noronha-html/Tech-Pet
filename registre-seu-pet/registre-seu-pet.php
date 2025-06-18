@@ -3,13 +3,14 @@ $atualizador = 't='.base64_encode(date('YmdHis').rand(0, 9999));
 
 session_start();
 
-// 1) Recupera erros e valores antigos, se existirem
+//Recupera erros e valores antigos, se existirem
 $petErrors = $_SESSION['pet_errors'] ?? [];
 $petOld    = $_SESSION['pet_old']    ?? [];
 
-// 2) Limpa para não reaparecer após refresh
+//Limpa para não reaparecer após refresh
 unset($_SESSION['pet_errors'], $_SESSION['pet_old']);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

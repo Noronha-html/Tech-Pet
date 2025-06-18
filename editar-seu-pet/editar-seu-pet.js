@@ -4,8 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
   
     input.addEventListener('change', () => {
       const file = input.files[0];
+      //Se o usuário cancelar, volta para a imagem placeholder
       if (!file) {
-        // Se o usuário cancelar, volta para a imagem placeholder
         preview.src = '../img/img-exemplo.png';
         return;
       }
@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const reader = new FileReader();
         reader.onload = () => {
           preview.src = reader.result;
-          preview.style.display = 'block'; // Garante visibilidade
+          preview.style.display = 'block'; //Garante visibilidade
         };
         reader.onerror = () => {
           alert('Erro ao carregar a imagem. Por favor, tente novamente.');
@@ -22,8 +22,8 @@ window.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(file);
       } else {
         alert('Por favor, selecione um arquivo de imagem válido.');
-        input.value = ''; // Reseta o campo de input
-        preview.src = '../img/img-exemplo.png'; // Reseta para o placeholder
+        input.value = ''; //Reseta o campo de input
+        preview.src = '../img/img-exemplo.png'; //Reseta para o placeholder
       }
     });
   });

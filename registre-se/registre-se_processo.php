@@ -1,16 +1,17 @@
 <?php
+//Conexão com o banco
 session_start();
-include_once "../conexao.php";    // ajuste este caminho se necessário
+include_once "../conexao.php";
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// 1) Só aceita requisição via POST
+//Só aceita requisição via POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: ./registre-se.php");
     exit;
 }
 
-// 2) Recebe os campos do formulário (nome, e-mail, senha, confirmação, estado, cidade, wpp)
+//Recebe os campos do formulário
 $nome            = trim($_POST['name']                  ?? '');
 $email           = trim($_POST['email']                 ?? '');
 $senha           = $_POST['senhaRegistro']              ?? '';
@@ -22,16 +23,16 @@ $wpp             = trim($_POST['wpp']                   ?? '');
 
 $errors = [];
 
-// 3) Validações básicas (Nome, Email, Senha — já existentes no seu código)
+//Validações básicas
 
-// 3.1) Nome
+//Validação Nome
 if ($nome === '') {
     $errors[] = "O campo Nome é obrigatório.";
 } elseif (mb_strlen($nome) < 3) {
     $errors[] = "O Nome deve ter ao menos 3 caracteres.";
 }
 
-// 3.2) E-mail
+//Validação E-mail
 if ($email === '') {
     $errors[] = "O campo E-mail é obrigatório.";
 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -48,7 +49,7 @@ if ($email === '') {
     $stmtVerEm->close();
 }
 
-// 3.3) Senha e confirmação
+//Validação Senha e confirmação
 if ($senha === '') {
     $errors[] = "O campo Senha é obrigatório.";
 } elseif (mb_strlen($senha) < 6) {
@@ -60,12 +61,12 @@ if ($confirmarSenha === '') {
     $errors[] = "As senhas não coincidem.";
 }
 
-// 3.4) Estado (novo)
+//Validação Estado
 if ($estadoSelecionado === '') {
     $errors[] = "Selecione um Estado.";
 }
 
-// 3.5) Cidade (novo)
+//Validação Cidade
 if ($cidadeSelecionada === '') {
     $errors[] = "Selecione uma Cidade.";
 }
@@ -73,18 +74,18 @@ if ($cidadeSelecionada === '') {
 if($data_nascimento === '') {
     $errors[] = "O campo Data de Nascimento é obrigatório.";
 } else {
-    $dataNascimento = $data_nascimento; // Se for obrigatório, use a data validada abaixo
+    $dataNascimento = $data_nascimento;
 
 }
 
-// 3.6) Número de celular (wpp) (novo)
+//Número de celular
 if ($wpp === '') {
     $errors[] = "O campo Número de celular é obrigatório.";
 } elseif (!preg_match('/^\d{10,11}$/', preg_replace('/\D/', '', $wpp))) {
     $errors[] = "Digite um número de celular válido (apenas dígitos).";
 }
 
-// 4) Se houver erros, salva em sessão e redireciona para registro novamente
+//Se houver erros, salva em sessão e redireciona para registro novamente
 if (!empty($errors)) {
     $_SESSION['registro_erros'] = $errors;
     $_SESSION['registro_old'] = [
@@ -99,13 +100,9 @@ if (!empty($errors)) {
     exit;
 }
 
-// 5) Se tudo ok, insere o novo usuário no banco, incluindo Estado, Cidade e Celular/Whatsapp
+//Se tudo ok, insere o novo usuário no banco
 
 $hashSenha = password_hash($senha, PASSWORD_DEFAULT);
-
-// • Verifique o nome exato das colunas na sua tabela `pessoas`: 
-//   vou assumir aqui que elas se chamam `Estado`, `Cidade` e `Whatsapp`.
-//   Se no seu BD o campo de celular se chamar `Celular`, troque `Whatsapp` por `Celular`.
 
 $sqlIns = " INSERT INTO pessoas 
         (Nome, Email, Senha, Estado, Cidade, DataNascimento, Whatsapp, Excluido) 
@@ -124,7 +121,7 @@ $stmtIns->bind_param(
 );
 
 if (!$stmtIns->execute()) {
-    // Se der erro no INSERT, registra no log e volta com mensagem genérica
+    // Se der erro no INSERT, registra no log
     error_log("Falha ao cadastrar usuário: " . $stmtIns->error);
     $_SESSION['registro_erros'] = [
         "Ocorreu um erro ao processar seu cadastro. Tente novamente mais tarde."
@@ -136,10 +133,10 @@ if (!$stmtIns->execute()) {
 $novoUsuarioId = $stmtIns->insert_id;
 $stmtIns->close();
 
-// 6) Define a sessão como logada
+//Define a sessão como logada
 $_SESSION['usuario_id'] = $novoUsuarioId;
 
-// 7) Redireciona para a próxima etapa (cadastro de pet)
+//Redireciona para o cadastro do pet
 header("Location: ../registre-seu-pet/registre-seu-pet.php");
 exit;
 ?>

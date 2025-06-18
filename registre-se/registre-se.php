@@ -1,17 +1,11 @@
 <?php
 session_start();
 
-// Se o usuário já estiver logado, redireciona para a área de pets
-/*if (isset($_SESSION['usuario_id'])) {
-    header("Location: ../conta-usuario/conta-usuario.php");
-    exit;
-}*/
-
-// Recupera mensagens de erro e valores antigos (sticky form), se existirem
+//Recupera mensagens de erro e valores antigos, se existirem
 $errors = $_SESSION['registro_erros'] ?? [];
 $old    = $_SESSION['registro_old']   ?? [];
 
-// Limpa variáveis na sessão para não reaparecer em refresh
+//Limpa variáveis na sessão para não reaparecer em refresh
 unset($_SESSION['registro_erros'], $_SESSION['registro_old']);
 ?>
 

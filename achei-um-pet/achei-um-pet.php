@@ -1,17 +1,17 @@
 <?php
+//Conexão com o banco
 session_start();
-include_once "../conexao.php"; // Ajuste este caminho se a sua conexão estiver em local diferente
+include_once "../conexao.php";
 
 $erro = "";
 
-// 1) Processa o POST quando o formulário é enviado
+//Processa o POST quando o formulário é enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Captura o número de série enviado pelo usuário
     $serial = trim($_POST['numeroSerie'] ?? '');
     if ($serial === '') {
         $erro = "Por favor, digite o número de série.";
     } else {
-        // Verifica se existe algum pet com esse Identificacao (número de série)
+        //Verifica se existe algum pet com essa identificacao (número de série)
         $stmt = $conn->prepare(" SELECT PetID
               FROM pets
              WHERE Identificacao = ?
@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

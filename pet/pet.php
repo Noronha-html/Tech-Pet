@@ -1,14 +1,15 @@
 <?php
+//Conexão com o banco
 session_start();
-include_once "../conexao.php"; // Ajuste o caminho se a sua conexão estiver em local diferente
+include_once "../conexao.php";
 
-// 1) Captura o serial pela query string
+//Captura o serial pela query string
 $serial = trim($_GET['serial'] ?? '');
 if ($serial === '') {
     die("Número de série não informado.");
 }
 
-// 2) Consulta no banco o pet e os dados do dono (nome + whatsapp)
+//Consulta no banco o pet e os dados do dono
 $sql = " SELECT 
         p.PetID,
         p.Identificacao,

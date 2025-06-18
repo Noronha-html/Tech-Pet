@@ -1,9 +1,3 @@
-//const submit = document.querySelector(".submit");
-
-//submit.addEventListener("click", () => {
-//  window.location.href = "../registre-seu-pet/registre-seu-pet.html";
-//});
-
 //Pegar id dos estados para usar para as cidades depois
 const estados = document.getElementById("estados");
 estados.innerHTML = "<option value=''>Selecione o estado</option>";
@@ -11,7 +5,7 @@ estados.innerHTML = "<option value=''>Selecione o estado</option>";
 fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados`)
     .then(res => res.json())
     .then(data => {
-        // Ordena os estados por nome
+        //Ordena os estados por nome
         data.sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
         data.forEach(estado => {
             const option = document.createElement("option");
@@ -32,7 +26,7 @@ estados.addEventListener("change", () => {
         fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estadoId}/distritos`)
             .then(res => res.json())
             .then(data => {
-                // Ordena as cidades por nome
+                //Ordena as cidades por nome
                 data.sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
                 data.forEach(cidade => {
                     const option = document.createElement("option");
@@ -46,7 +40,7 @@ estados.addEventListener("change", () => {
     }
 });
 
-// Função exibir senha
+//Exibir senha
 const iconExibirSenha = document.getElementById("icon-input-senha");
 const inputSenha = document.getElementById("senhaRegistro");
 let ocultadoSenha = true;
@@ -62,6 +56,7 @@ iconExibirSenha.addEventListener("click", function () {
     ocultadoSenha = !ocultadoSenha;
 });
 
+//Confirmar senha
 const iconExibirConfirmarSenha = document.getElementById("icon-input-confirmar-senha");
 const inputConfirmarSenha = document.getElementById("confirmarSenhaRegistro");
 let ocultadoConfirmarSenha = true;
@@ -79,9 +74,9 @@ iconExibirConfirmarSenha.addEventListener("click", function () {
 
 const telefoneInput = document.getElementById("wpp");
 telefoneInput.addEventListener("input", function () {
-    let valor = telefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    let valor = telefoneInput.value.replace(/\D/g, ''); //Remove caracteres não numéricos
     if (valor.length > 11) {
-        valor = valor.slice(0, 11); // Limita a 11 dígitos
+        valor = valor.slice(0, 11); //Limita a 11 dígitos
     }
     if (valor.length > 0) {
         if (valor.length <= 10) {
@@ -96,12 +91,12 @@ telefoneInput.addEventListener("input", function () {
     telefoneInput.setAttribute("aria-label", "Número de telefone com DDD");
 });
 
-// Apaga o último dígito ao pressionar Backspace
+//Apaga o último dígito ao pressionar Backspace
 telefoneInput.addEventListener("keydown", function (e) {
     if (e.key === "Backspace") {
         e.preventDefault();
         let valor = telefoneInput.value.replace(/\D/g, '');
-        valor = valor.slice(0, -1); // Remove o último dígito
+        valor = valor.slice(0, -1); //Remove o último dígito
         if (valor.length > 0) {
             if (valor.length <= 10) {
                 valor = `(${valor.slice(0, 2)}) ${valor.slice(2, 6)}${valor.length > 6 ? '-' + valor.slice(6) : ''}`;

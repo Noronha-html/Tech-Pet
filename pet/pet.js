@@ -2,12 +2,12 @@ function criarCardPet(usuario, pet) {
   const container = document.querySelector('.col-12.justify-content-start.align-items-start');
   container.innerHTML = ''; // Limpa conteúdo anterior
 
-  // Cria o card
+  //Cria o card
   const card = document.createElement('div');
   card.className = 'card p-3 mb-3';
   card.style.maxWidth = '350px';
 
-  // Usuário
+  //Usuário
   const nomeUsuario = document.createElement('p');
   nomeUsuario.textContent = `Usuário: ${usuario.nome || ''}`;
   card.appendChild(nomeUsuario);
@@ -16,7 +16,7 @@ function criarCardPet(usuario, pet) {
   emailUsuario.textContent = `Email: ${usuario.email || ''}`;
   card.appendChild(emailUsuario);
 
-  // Pet
+  //Pet
   const nomePet = document.createElement('p');
   nomePet.textContent = `Nome do Pet: ${pet.nome || ''}`;
   card.appendChild(nomePet);
@@ -37,7 +37,7 @@ function criarCardPet(usuario, pet) {
   alergiasPet.textContent = `Alergias: ${pet.alergias || ''}`;
   card.appendChild(alergiasPet);
 
-  // Imagem do Pet
+  //Imagem do Pet
   const imgPet = document.createElement('img');
   imgPet.src = pet.imagem || '';
   imgPet.alt = 'Imagem do Pet';
@@ -49,7 +49,7 @@ function criarCardPet(usuario, pet) {
   container.appendChild(card);
 }
 
-// Exemplo de uso após o fetch:
+//Exemplo de uso após o fetch:
 fetch('get_pet.php')
   .then(response => response.json())
   .then(data => {

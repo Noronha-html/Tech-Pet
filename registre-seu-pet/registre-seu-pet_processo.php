@@ -1,4 +1,5 @@
 <?php
+//Conexão com o banco
 session_start();
 include_once "../conexao.php";
 error_reporting(E_ALL);
@@ -15,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// 1) Recupera e valida campos
+//Recupera campos
 $name        = trim($_POST['name'] ?? '');
 $birthDate   = trim($_POST['dtnasc'] ?? '');
 $weight      = trim($_POST['peso'] ?? '');
@@ -26,11 +27,11 @@ $vaccines    = trim($_POST['vacinas'] ?? '');
 
 $errors = [];
 
-// 2) Validações básicas
+//Validações básicas
 if ($name === '') {
     $errors[] = "O nome do pet é obrigatório.";
 } elseif (!preg_match('/^[\p{L}\s]+$/u', $name)) {
-    // aceita letras com acento e espaços (regex com 'u' para unicode)
+    //Aceita letras com acento e espaços
     $errors[] = "O nome só pode conter letras e espaços.";
 }
 
@@ -54,7 +55,7 @@ if (!isset($_FILES['inputImagem']) || $_FILES['inputImagem']['error'] === UPLOAD
     $errors[] = "A foto do pet é obrigatória.";
 }
 
-// 3) Valida foto, se existir
+//Valida foto, se existir
 $photoName = null;
 if (empty($errors) && isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_ERR_NO_FILE) {
     if ($_FILES['inputImagem']['error'] !== UPLOAD_ERR_OK) {
@@ -64,16 +65,16 @@ if (empty($errors) && isset($_FILES['inputImagem']) && $_FILES['inputImagem']['e
         $fileSize = $_FILES['inputImagem']['size'];
         $fileType = mime_content_type($fileTmp);
 
-        // Tamanho máximo: 10 MB
+        //Tamanho máximo: 10 MB
         if ($fileSize > 10 * 1024 * 1024) {
             $errors[] = "A imagem deve ter no máximo 10 MB.";
         }
-        // Permitir jpeg ou png
+        //Permitir jpeg ou png
         if ($fileType !== 'image/jpeg' && $fileType !== 'image/png') {
             $errors[] = "Tipo de arquivo inválido. Só JPEG ou PNG.";
         }
 
-        // Se todo ok, gera nome único
+        //Se tudo ok, gera nome único
         if (empty($errors)) {
             $ext = ($fileType === 'image/png') ? 'png' : 'jpg';
             $photoName = md5($name . $serialNumber . uniqid()) . '.' . $ext;
@@ -90,11 +91,11 @@ if (empty($errors) && isset($_FILES['inputImagem']) && $_FILES['inputImagem']['e
     }
 }
 
-// 4) Se houver erros, retorna ao form com lista de erros (ou exibe a lista aqui)
+//Se houver erros, retorna ao form com lista de erros
 if (!empty($errors)) {
-    // Salva erros na sessão
+    //Salva erros na sessão
     $_SESSION['pet_errors'] = $errors;
-    // Salva valores antigos (sticky form), para reaproveitar no form
+    //Salva valores antigos para reaproveitar no form
     $_SESSION['pet_old'] = [
         'name'        => $name,
         'dtnasc'      => $birthDate,
@@ -102,13 +103,12 @@ if (!empty($errors)) {
         'vacinas'     => $vaccines,
         'alergias'    => $alergies,
         'numeroSerie' => $serialNumber
-        // Não incluímos a foto aqui, pois não há forma fácil de "reaproveitar" arquivo
     ];
     header("Location: registre-seu-pet.php");
     exit;
 }
 
-// 5) Verifica se já existe pet com mesmo número de série
+//Verifica se já existe pet com mesmo número de série
 $sqlVer = "SELECT 1
              FROM pets
             WHERE Identificacao = ?
@@ -121,7 +121,7 @@ $resVer = $stmtVer->get_result();
 $stmtVer->close();
 
 if ($resVer->num_rows > 0) {
-    // grava o erro na sessão e retorna ao form
+    //Grava o erro na sessão e retorna ao form
     $_SESSION['pet_errors'] = ["Este número de série já está cadastrado para outro pet."];
     $_SESSION['pet_old'] = [
         'name'        => $name,
@@ -135,7 +135,7 @@ if ($resVer->num_rows > 0) {
     exit;
 }
 
-// 6) Insere na tabela pets
+//Insere na tabela pets
 $sqlInsPet = " INSERT INTO pets
       (Identificacao, Nome, Especie, Peso, DataNascimento, Foto, Alergias, Vacinas, Excluido)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0)
@@ -158,7 +158,7 @@ if (!$stmtIns->execute()) {
 $novoPetId = $stmtIns->insert_id;
 $stmtIns->close();
 
-// 7) Cria a associação Pessoa↔Pet
+//Cria a associação Pessoa-Pet
 $sqlInsRel = " INSERT INTO pessoapet
         (PessoaID, PetID, Excluido)
     VALUES (?, ?, 0)
@@ -168,8 +168,7 @@ $stmtRel->bind_param("ii", $usuarioId, $novoPetId);
 $stmtRel->execute();
 $stmtRel->close();
 
-// 8) Redireciona para a página que lista todos os pets
+//Redireciona para a conta do usuário
 header("Location: ../conta-usuario/conta-usuario.php");
 exit;
-
 ?>

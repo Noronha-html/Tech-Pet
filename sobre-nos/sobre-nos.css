@@ -2,11 +2,9 @@
   padding: 0;
   margin: 0;
 }
-
 body, h1, h2, h3, p, a, button, input, label {
   font-family: "Open Sans", serif;
 }
-
 .fa, .fas, .far, .fal, .fab {
   font-family: "Font Awesome 6 Free";
 }

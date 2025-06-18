@@ -1,4 +1,5 @@
 <?php
+//Conexão com o banco
 session_start();
 include_once "../conexao.php";
 
@@ -14,7 +15,7 @@ if ($petId <= 0) {
     exit("Pet inválido.");
 }
 
-// Verifica se o pet realmente pertence ao usuário
+//Verifica se o pet realmente pertence ao usuário
 $sql = "SELECT * FROM pets p
         JOIN pessoapet pp ON p.PetID = pp.PetID
         WHERE p.PetID = ? AND pp.PessoaID = ? AND p.Excluido = 0 AND pp.Excluido = 0";

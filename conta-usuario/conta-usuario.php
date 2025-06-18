@@ -1,17 +1,17 @@
 <?php
+//Conexão com o banco
 session_start();
 include_once "../conexao.php";
 
-// 1) Verifica se o usuário está logado
+//Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id']) || !filter_var($_SESSION['usuario_id'], FILTER_VALIDATE_INT)) {
-    // redireciona para login ou dá erro 401
     header("Location: ../login.php");
     exit;
 }
 
 $usuarioId = $_SESSION['usuario_id'];
 
-// 2) Prepara e executa query que traz todos os pets deste usuário
+//Pega todos os pets do usuário
 $sql = " SELECT 
         p.PetID,
         p.Identificacao,

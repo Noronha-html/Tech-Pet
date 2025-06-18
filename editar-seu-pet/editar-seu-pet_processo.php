@@ -1,23 +1,23 @@
 <?php
+//Verificar usuário e conexãpo com o banco
 session_start();
 include_once "../conexao.php";
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// 1) Usuário logado
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: ../login.php");
     exit;
 }
 $usuarioId = $_SESSION['usuario_id'];
 
-// 2) Só POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: editar-seu-pet.php?id=" . intval($_POST['pet_id'] ?? 0));
     exit;
 }
 
-// 3) Recebe campos
+//Campos do formulário
 $petId        = intval($_POST['pet_id'] ?? 0);
 $name         = trim($_POST['name'] ?? '');
 $birthDate    = trim($_POST['dtnasc'] ?? '');
@@ -26,10 +26,9 @@ $serialNumber = trim($_POST['numeroSerie'] ?? '');
 $alergies     = trim($_POST['alergias'] ?? '');
 $vaccines     = trim($_POST['vacinas'] ?? '');
 
-// 4) Validações
+//Validações
 $errors = [];
 
-// 4.1) Verifica se pet pertence ao usuário
 $sqlCheck = "SELECT Foto FROM pets p
                JOIN pessoapet pp ON p.PetID=pp.PetID
               WHERE p.PetID=? AND pp.PessoaID=? AND p.Excluido=0 AND pp.Excluido=0";
@@ -44,26 +43,26 @@ $row = $res->fetch_assoc();
 $oldPhoto = $row['Foto'];
 $stmt->close();
 
-// 4.2) Nome
+//Validação Nome
 if ($name === '') {
     $errors[] = "O nome do pet é obrigatório.";
 } elseif (!preg_match('/^[\p{L}\s]+$/u', $name)) {
     $errors[] = "O nome só pode conter letras e espaços.";
 }
 
-// 4.3) Data
+//Validação Data
 if ($birthDate === '') {
     $errors[] = "A data de nascimento é obrigatória.";
 } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $birthDate) || !strtotime($birthDate)) {
     $errors[] = "Formato de data inválido. Use AAAA-MM-DD.";
 }
 
-// 4.4) Peso
+//Validação Peso
 if ($weight === '' || !is_numeric($weight) || $weight <= 0) {
     $errors[] = "Informe um peso válido.";
 }
 
-// 4.5) Número de série único (excluindo este pet)
+//Validação Número de série
 if ($serialNumber === '') {
     $errors[] = "Número de série é obrigatório.";
 } elseif (!preg_match('/^#?[a-zA-Z0-9]{1,3}$/', $serialNumber)) {
@@ -80,13 +79,12 @@ if ($serialNumber === '') {
     $st2->close();
 }
 
-// 4.6) Foto obrigatória (já existente ou nova)
-// Se não há foto antiga E não foi enviado novo arquivo => erro
+//Validação Foto
 if (empty($oldPhoto) && (!isset($_FILES['inputImagem']) || $_FILES['inputImagem']['error'] === UPLOAD_ERR_NO_FILE)) {
     $errors[] = "A foto do pet é obrigatória.";
 }
 
-// 4.7) Valida novo upload, se houver
+//Valida novo upload, se houver
 $photoName = $oldPhoto;
 if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_ERR_NO_FILE) {
     if ($_FILES['inputImagem']['error'] !== UPLOAD_ERR_OK) {
@@ -125,7 +123,7 @@ if (isset($_FILES['inputImagem']) && $_FILES['inputImagem']['error'] !== UPLOAD_
     }
 }
 
-// 5) Se erros, volta ao form
+//Checa Erros
 if (!empty($errors)) {
     $_SESSION['pet_errors'] = $errors;
     $_SESSION['pet_old'] = [
@@ -140,7 +138,7 @@ if (!empty($errors)) {
     exit;
 }
 
-// 6) Atualiza no banco
+//Atualiza no banco
 $sqlUp = "UPDATE pets
              SET Identificacao=?, Nome=?, Especie='null', Peso=?, DataNascimento=?, Foto=?, Alergias=?, Vacinas=?
            WHERE PetID=?";
@@ -161,6 +159,6 @@ if (!$stmtUp->execute()) {
 }
 $stmtUp->close();
 
-// 7) Redireciona de volta à lista
+//Redireciona à conta do usuário
 header("Location: ../conta-usuario/conta-usuario.php");
 exit;

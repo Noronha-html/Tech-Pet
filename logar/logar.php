@@ -1,21 +1,22 @@
 <?php
+//Conexão com o banco
 session_start();
-include_once "../conexao.php"; // Ajuste o caminho conforme sua estrutura
+include_once "../conexao.php";
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 $loginErro = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 1. Captura os dados enviados pelo formulário
+    //Captura os dados enviados pelo formulário
     $email   = trim($_POST['username'] ?? '');
     $senha   = $_POST['password'] ?? '';
 
-    // 2. Validações básicas de preenchimento
+    //Validações básicas de preenchimento
     if ($email === "" || $senha === "") {
         $loginErro = "Por favor, informe usuário (e-mail) e senha.";
     } else {
-        // 3. Procura o usuário no banco pelo e-mail (username)
+        //Procura o usuário no banco pelo e-mail
         $sql = "SELECT PessoaID, Senha FROM pessoas WHERE Email = ? AND Excluido = 0 LIMIT 1";
         $stmt = $conn->prepare($sql);
         if ($stmt === false) {
@@ -26,16 +27,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $res = $stmt->get_result();
 
             if ($res->num_rows === 0) {
-                // Não encontrou nenhum usuário com esse e-mail
+                //Não encontrou nenhum usuário com esse e-mail
                 $loginErro = "Usuário ou senha incorretos.";
             } else {
                 $row = $res->fetch_assoc();
                 $hashNoBanco = $row['Senha'];
                 $usuarioId   = $row['PessoaID'];
 
-                // 4. Verifica a senha usando password_verify
+                //Verifica a senha
                 if (password_verify($senha, $hashNoBanco)) {
-                    // Login bem-sucedido: define a sessão e redireciona
+                    //Login bem-sucedido: define a sessão e redireciona
                     $_SESSION['usuario_id'] = $usuarioId;
                     header("Location: ../conta-usuario/conta-usuario.php");
                     exit;
