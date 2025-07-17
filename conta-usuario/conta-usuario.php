@@ -60,6 +60,11 @@ $stmt->close();
   <div class="container mt-4" style="padding-bottom: 2rem;">
     
     <h1 class="mb-4">Seus Pets Cadastrados</h1>
+    <div class="mb-4 text-right">
+  <a href="../editar-usuario/editar-usuario.php" class="btn btn-primary">
+    Editar Perfil
+  </a>
+</div>
 <a aria-label="Fechar"
    href="../lobby/index.html"
    class="text-white"
