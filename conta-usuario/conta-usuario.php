@@ -61,10 +61,10 @@ $stmt->close();
     
     <h1 class="mb-4">Seus Pets Cadastrados</h1>
     <div class="mb-4 text-right">
-  <a href="../editar-usuario/editar-usuario.php" class="btn btn-primary">
-    Editar Perfil
-  </a>
-</div>
+      <a href="../editar-usuario/editar-usuario.php" style="position: absolute; top: 2rem; right: 5%; color: white; font-size: 1.2rem; text-decoration: none; border-radius: 1rem; padding: 0.5rem 1rem; background-color: #5beeba; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        Editar Perfil
+      </a>
+    </div>
 <a aria-label="Fechar"
    href="../lobby/index.html"
    class="text-white"

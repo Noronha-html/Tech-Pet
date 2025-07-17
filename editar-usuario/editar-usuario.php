@@ -93,7 +93,7 @@ $atualizador = 't=' . base64_encode(date('YmdHis') . rand());
              value="<?= htmlspecialchars($user['Whatsapp']) ?>" required>
     </div>
 
-    <button type="submit" class="btn btn-success btn-block">Salvar Alterações</button>
+    <button type="submit" class="btn btn-block" style="background-color: #5beeba; color: white;">Salvar Alterações</button>
   </form>
 
   <script src="editar-usuario.js?<?= $atualizador ?>"></script>
