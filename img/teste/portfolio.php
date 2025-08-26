@@ -81,6 +81,49 @@
           </div>
         </section>
 
+        <section id="services" aria-labelledby="services-title">
+          <h2 class="section-title" id="services-title">Serviços</h2>
+
+          <p style="color:var(--muted);max-width:900px">
+            Oferecemos soluções web pensadas para pequenas empresas: sites institucionais, lojas online simples,
+            manutenção e otimização. Entregamos projetos rápidos, com boa usabilidade e foco em conversão.
+          </p>
+
+          <div class="services-grid" role="list">
+            <article class="service-card" role="listitem">
+              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/></svg>
+              <h3>Sites Institucionais</h3>
+              <p>Landing pages e sites institucionais otimizados para apresentar sua empresa e captar clientes.</p>
+              <small>Entrega rápida • Design responsivo</small>
+            </article>
+
+            <article class="service-card" role="listitem">
+              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zM5 10h14v9H5z"/></svg>
+              <h3>E-commerce Básico</h3>
+              <p>Loja online com catálogo, carrinho e checkout integrado — ideal para pequenos comércios.</p>
+              <small>Integração com meios de pagamento • Treinamento básico</small>
+            </article>
+
+            <article class="service-card" role="listitem">
+              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 7h7l-6 5 2 7-6-4-6 4 2-7-6-5h7z"/></svg>
+              <h3>Design UI/UX & Prototipagem</h3>
+              <p>Prototipagem e interface pensada para o usuário — testamos fluxos simples que aumentam conversões.</p>
+              <small>Wireframes • Protótipos clicáveis</small>
+            </article>
+
+            <article class="service-card" role="listitem">
+              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v2H4zM4 8h10v2H4z"/></svg>
+              <h3>Manutenção & SEO Local</h3>
+              <p>Atualizações, segurança e otimizações básicas para buscadores locais — ideal para clientes da sua região.</p>
+              <small>Backups • Performance • SEO on-page</small>
+            </article>
+          </div>
+
+          <div style="margin-top:18px;">
+            <a class="btn-cta" href="#contact" title="Solicitar orçamento">Solicitar Orçamento</a>
+          </div>
+        </section>
+
         <section id="tech">
           <h2 class="section-title">Tecnologias</h2>
           <div class="tech-grid">
@@ -95,7 +138,7 @@
               <img src="https://cdn-icons-png.flaticon.com/512/5968/5968242.png" alt="" srcset="">
                 <rect x="3" y="3" width="18" height="18" rx="3" ry="3" />
               </svg>
-              <p>CSS</p>
+              <p>CSS3</p>
               <small>Design e responsividade</small>
             </div>
             <div class="tech-card">
@@ -140,6 +183,55 @@
               <p>SQL</p>
               <small>Banco de dados e consultas</small>
             </div>
+          </div>
+        </section>
+
+        <section id="projects" aria-labelledby="projects-title">
+          <h2 class="section-title" id="projects-title">Projetos</h2>
+
+          <p style="color:var(--muted);max-width:900px">
+            Alguns trabalhos (exemplos/estudos) que demonstram nossas capacidades: landing pages, sites institucionais
+            e lojas simples. Podemos apresentar o código ou mockups para cada projeto mediante contato.
+          </p>
+
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="project-thumb" aria-hidden="true">
+                <!-- placeholder SVG mockup -->
+                <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="100" rx="8" fill="#0f1720"/></svg>
+              </div>
+              <div class="project-body">
+                <h3>Padaria Bom Pão — Landing</h3>
+                <p class="muted">Landing para captação de encomendas, com formulário e mapa de contato.</p>
+                <small>HTML • CSS • JS • Hospedagem Netlify</small>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-thumb" aria-hidden="true">
+                <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="100" rx="8" fill="#0f1720"/></svg>
+              </div>
+              <div class="project-body">
+                <h3>Loja da Maria — E-commerce</h3>
+                <p class="muted">Catálogo de produtos com carrinho simples e integração de pagamento em sandbox.</p>
+                <small>React • Stripe (sandbox) • Deploy</small>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-thumb" aria-hidden="true">
+                <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="100" rx="8" fill="#0f1720"/></svg>
+              </div>
+              <div class="project-body">
+                <h3>Clínica Alfa — Institucional</h3>
+                <p class="muted">Site institucional com agendamento por formulário e integração de mapa.</p>
+                <small>HTML • CSS • Form handling</small>
+              </div>
+            </article>
+          </div>
+
+          <div style="margin-top:18px;">
+            <a class="btn-cta" href="#contact" title="Ver portfólio completo">Ver Portfólio / Contato</a>
           </div>
         </section>
 
