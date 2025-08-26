@@ -92,8 +92,8 @@
           <div class="services-grid" role="list">
             <article class="service-card" role="listitem">
               <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/></svg>
-              <h3>Sites Institucionais</h3>
-              <p>Landing pages e sites institucionais otimizados para apresentar sua empresa e captar clientes.</p>
+              <h3>Sites empresariais</h3>
+              <p>Landing pages e sites empresariais otimizados para apresentar sua empresa e captar clientes.</p>
               <small>Entrega rápida • Design responsivo</small>
             </article>
 
@@ -107,8 +107,8 @@
             <article class="service-card" role="listitem">
               <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 7h7l-6 5 2 7-6-4-6 4 2-7-6-5h7z"/></svg>
               <h3>Design UI/UX & Prototipagem</h3>
-              <p>Prototipagem e interface pensada para o usuário — testamos fluxos simples que aumentam conversões.</p>
-              <small>Wireframes • Protótipos clicáveis</small>
+              <p>Prototipagem e interface pensada em fluidez para o usuário — testamos fluxos simples que aumentam a acessibilidade do site.</p>
+              <small>Wireframes • Protótipos interativos</small>
             </article>
 
             <article class="service-card" role="listitem">
@@ -198,10 +198,10 @@
             <article class="project-card">
               <div class="project-thumb" aria-hidden="true">
                 <!-- placeholder SVG mockup -->
-                <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="100" rx="8" fill="#0f1720"/></svg>
+                <img src="../logo.png" alt="">
               </div>
               <div class="project-body">
-                <h3>Padaria Bom Pão — Landing</h3>
+                <h3>Tech-Pet</h3>
                 <p class="muted">Landing para captação de encomendas, com formulário e mapa de contato.</p>
                 <small>HTML • CSS • JS • Hospedagem Netlify</small>
               </div>
