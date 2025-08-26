@@ -202,19 +202,19 @@
               </div>
               <div class="project-body">
                 <h3>Tech-Pet</h3>
-                <p class="muted">Landing para captação de encomendas, com formulário e mapa de contato.</p>
-                <small>HTML • CSS • JS • Hospedagem Netlify</small>
+                <p class="muted">segurança e confiabilidade provida pela Tech-Pet para uma relação de confiança entre dono e o seu pet.</p>
+                <small>HTML • CSS • JS • PHP</small>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-thumb" aria-hidden="true">
-                <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="100" rx="8" fill="#0f1720"/></svg>
+                <img src="../teste/img-t/t5.png" alt="">
               </div>
               <div class="project-body">
-                <h3>Loja da Maria — E-commerce</h3>
+                <h3>The Cult</h3>
                 <p class="muted">Catálogo de produtos com carrinho simples e integração de pagamento em sandbox.</p>
-                <small>React • Stripe (sandbox) • Deploy</small>
+                <small>Dungeon Crawler • Action RPG</small>
               </div>
             </article>
 

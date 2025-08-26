@@ -681,5 +681,6 @@ a {
 
 .project-thumb img{
   width: 180px;
-  height: 150px;
+  height: 160px;
+  margin-top: -20px;
 }
