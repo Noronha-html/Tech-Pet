@@ -337,62 +337,118 @@ h2.section-title {
   line-height: 1.35;
 }
 
+/* ===== CONTACT / FORM (COMPACT VERSION) =====
+   Compact styles: reduced padding, smaller inputs and button
+============================================================== */
+
 .contact {
   background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.02),
-      rgba(255, 255, 255, 0.01));
-  padding: 20px;
-  border-radius: 12px;
+    rgba(255,255,255,0.016),
+    rgba(255,255,255,0.008));
+  padding: 20px;                  /* compact */
+  border-radius: 10px;
   position: relative;
   z-index: 3;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.008);
+  overflow: hidden;
 }
 
+/* wrapper to control inner spacing */
+.contact .form-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* top row: 3 inputs (compact gap) */
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
+/* inputs and textarea compact visual */
 input,
 textarea {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  padding: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.008), rgba(255,255,255,0.004));
+  border: 1px solid rgba(255,255,255,0.025);
+  padding: 10px 12px;
   border-radius: 10px;
   color: var(--primary);
   outline: none;
+  font-size: 14px;
+  transition: box-shadow .14s ease, transform .10s ease, border-color .10s ease;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.45);
 }
 
+/* placeholders */
 input::placeholder,
 textarea::placeholder {
   color: var(--muted);
+  font-style: italic;
 }
 
+/* textarea compact height */
 textarea {
-  grid-column: span 3;
-  min-height: 120px;
+  grid-column: 1 / -1;
+  min-height: 110px;
+  resize: vertical;
+  padding: 12px 14px;
 }
 
+/* focus state (subtle) */
+input:focus,
+textarea:focus {
+  border-color: rgba(0,209,255,0.75);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0,209,255,0.045), 0 4px 12px rgba(0,0,0,0.36);
+}
+
+/* button area: alignment and reduced spacing */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* compact button */
 .send {
-  margin-top: 12px;
   display: inline-block;
-  background: linear-gradient(90deg,
-      var(--gradient-start),
-      var(--gradient-end));
-  padding: 10px 16px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  padding: 10px 18px;
   border-radius: 12px;
-  color: white;
+  color: #fff;
   font-weight: 700;
-  text-decoration: none;
   border: none;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .14s ease, opacity .10s;
+  box-shadow: 0 8px 26px rgba(111,61,255,0.12);
+  font-size: 14px;
 }
 
+/* hover subtle */
+.send:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(111,61,255,0.14);
+}
+
+/* disabled look */
+.send:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+/* whatsapp floating button kept but slightly adjusted so it doesn't overlap form actions on narrow screens */
 .whatsapp {
   position: fixed;
   right: 18px;
   bottom: 18px;
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: linear-gradient(90deg,
       var(--gradient-start),
@@ -400,7 +456,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   z-index: 80;
 }
 
@@ -410,145 +466,7 @@ textarea {
   fill: #fff;
 }
 
-footer {
-  padding: 40px 0;
-  color: var(--muted);
-  font-size: 14px;
-  text-align: center;
-}
-
-@media (max-width: 1100px) {
-  .hero {
-    grid-template-columns: 1fr 220px;
-  }
-
-  .team-badge-wrap {
-    width: 200px;
-    height: 200px;
-  }
-
-  .team-badge {
-    width: 180px;
-    height: 180px;
-  }
-
-  #tech {
-    padding-top: 64px;
-  }
-}
-
-@media (max-width: 880px) {
-  header {
-    align-items: center;
-  }
-
-  nav {
-    display: none;
-  }
-
-  .nav-toggle {
-    display: inline-block;
-  }
-
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .hero-right {
-    order: 2;
-    justify-content: flex-start;
-  }
-
-  .hero-inner {
-    order: 1;
-  }
-
-  .team-badge-wrap {
-    width: 160px;
-    height: 160px;
-  }
-
-  .team-badge {
-    width: 140px;
-    height: 140px;
-  }
-
-  .stats {
-    gap: 18px;
-  }
-
-  .team-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  textarea {
-    grid-column: span 1;
-  }
-
-  #tech {
-    padding-top: 56px;
-  }
-}
-
-@media (max-width: 520px) {
-  body {
-    padding: 18px 12px;
-  }
-
-  .brand {
-    font-size: 18px;
-  }
-
-  .team-row {
-    grid-template-columns: 1fr;
-  }
-
-  .tech-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .team-badge-wrap {
-    display: none;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  body.nav-open .nav-mobile {
-    display: block;
-  }
-
-  body.nav-open {
-    overflow: hidden;
-  }
-
-  .whatsapp {
-    right: 12px;
-    bottom: 12px;
-    width: 48px;
-    height: 48px;
-  }
-
-  #tech {
-    padding-top: 48px;
-  }
-}
-
-a {
-  cursor: pointer;
-}
-
-/* ===== estilos para Serviços e Projetos (adicionar no final do CSS) ===== */
+/* Projects and Services remain unchanged from original definitions below */
 
 /* Services */
 .services-grid {
@@ -683,4 +601,136 @@ a {
   width: 180px;
   height: 160px;
   margin-top: -20px;
+}
+
+/* responsive tweaks for hero/tech rows & forms */
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: 1fr 220px;
+  }
+
+  .team-badge-wrap {
+    width: 200px;
+    height: 200px;
+  }
+
+  .team-badge {
+    width: 180px;
+    height: 180px;
+  }
+
+  #tech {
+    padding-top: 64px;
+  }
+}
+
+@media (max-width: 880px) {
+  header {
+    align-items: center;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-right {
+    order: 2;
+    justify-content: flex-start;
+  }
+
+  .hero-inner {
+    order: 1;
+  }
+
+  .team-badge-wrap {
+    width: 160px;
+    height: 160px;
+  }
+
+  .team-badge {
+    width: 140px;
+    height: 140px;
+  }
+
+  .stats {
+    gap: 18px;
+  }
+
+  .team-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  textarea {
+    grid-column: span 1;
+  }
+
+  #tech {
+    padding-top: 56px;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 18px 12px;
+  }
+
+  .brand {
+    font-size: 18px;
+  }
+
+  .team-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-badge-wrap {
+    display: none;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  body.nav-open .nav-mobile {
+    display: block;
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  .whatsapp {
+    right: 12px;
+    bottom: 12px;
+    width: 48px;
+    height: 48px;
+  }
+
+  #tech {
+    padding-top: 48px;
+  }
+}
+
+a {
+  cursor: pointer;
 }

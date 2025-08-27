@@ -213,19 +213,19 @@
               </div>
               <div class="project-body">
                 <h3>The Cult</h3>
-                <p class="muted">Catálogo de produtos com carrinho simples e integração de pagamento em sandbox.</p>
+                <p class="muted">Viva a aventura de um guerreiro em masmorras cheias de inimigos e itens para coletar. A cada batalha, torne-se mais poderoso.</p>
                 <small>Dungeon Crawler • Action RPG</small>
               </div>
             </article>
 
             <article class="project-card">
               <div class="project-thumb" aria-hidden="true">
-                <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="100" rx="8" fill="#0f1720"/></svg>
+                <img src="../teste/img-t/c12.png" alt="">
               </div>
               <div class="project-body">
-                <h3>Clínica Alfa — Institucional</h3>
-                <p class="muted">Site institucional com agendamento por formulário e integração de mapa.</p>
-                <small>HTML • CSS • Form handling</small>
+                <h3>E-commerce</h3>
+                <p class="muted">Realize compras de forma prática e agende serviços de maneira rápida e intuitiva.</p>
+                <small>Agendamento • Experiência • Design</small>
               </div>
             </article>
           </div>
@@ -292,32 +292,27 @@
           </div>
         </section>
 
-        <section id="contact">
-          <h2 class="section-title">Enviar</h2>
-          <div class="contact">
-            <form
-              onsubmit="event.preventDefault();alert('Obrigado! Entraremos em contato.');"
-              aria-label="Formulário de contato"
-            >
-              <div class="form-row">
-                <input type="text" name="name" placeholder="Nome" required />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="E-mail"
-                  required
-                />
-                <input type="text" name="subject" placeholder="Assunto" />
-              </div>
-              <textarea
-                name="message"
-                placeholder="Mensagem"
-                required
-              ></textarea>
-              <button class="send" type="submit">Enviar Mensagem</button>
-            </form>
-          </div>
-        </section>
+        <section id="contact" class="contact">
+  <div class="wrap form-wrap">
+    <h2 class="section-title">Enviar</h2>
+
+    <!-- exemplo: substitua action/method pelos seus -->
+    <form action="/seu-handler.php" method="post" novalidate>
+      <div class="form-row">
+        <input type="text" name="nome" placeholder="Nome" required />
+        <input type="email" name="email" placeholder="E-mail" required />
+        <input type="text" name="assunto" placeholder="Assunto" />
+      </div>
+
+      <textarea name="mensagem" placeholder="Mensagem" required></textarea>
+
+      <div class="form-actions">
+        <button class="send" type="submit">Enviar Mensagem</button>
+      </div>
+    </form>
+  </div>
+</section>
+
       </main>
 
       <footer>
