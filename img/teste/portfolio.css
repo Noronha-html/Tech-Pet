@@ -734,3 +734,6 @@ textarea:focus {
 a {
   cursor: pointer;
 }
+footer{
+  font-size: 0.8rem; 
+}

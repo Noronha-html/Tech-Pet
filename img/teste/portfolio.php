@@ -21,7 +21,6 @@
           <div class="brand">Dev16</div>
         </div>
         <nav aria-label="menu" id="mainNav">
-          <a href="#">Início</a>
           <a href="#services">Serviços</a>
           <a href="#tech">Tecnologias</a>
           <a href="#projects">Projetos</a>
@@ -31,7 +30,6 @@
       </header>
 
       <div class="nav-mobile" id="mobileNav" aria-hidden="true">
-        <a href="#" onclick="toggleNav()">Início</a>
         <a href="#services" onclick="toggleNav()">Serviços</a>
         <a href="#tech" onclick="toggleNav()">Tecnologias</a>
         <a href="#projects" onclick="toggleNav()">Projetos</a>
@@ -297,10 +295,10 @@
     <h2 class="section-title">Enviar</h2>
 
     <!-- exemplo: substitua action/method pelos seus -->
-    <form action="/seu-handler.php" method="post" novalidate>
+    <form action="./enviar_email.php" method="post" novalidate>
       <div class="form-row">
         <input type="text" name="nome" placeholder="Nome" required />
-        <input type="email" name="email" placeholder="E-mail" required />
+        
         <input type="text" name="assunto" placeholder="Assunto" />
       </div>
 
