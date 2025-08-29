@@ -298,11 +298,11 @@
         </section>
 
         <section id="contact" class="contact">
-  <div class="wrap form-wrap">
-    <h2 class="section-title">Enviar</h2>
+  <!--div class="wrap form-wrap">
+    <h2 class="section-title">Enviar</h2-->
 
     <!-- exemplo: substitua action/method pelos seus -->
-    <form class="send-email" action="./enviar_email.php" method="post" novalidate>
+    <!--form class="send-email" action="./enviar_email.php" method="post" novalidate>
       <div class="form-row">
         <input type="text" name="nome" placeholder="Nome" required />
         
@@ -314,10 +314,10 @@
       <div class="form-actions">
         <button class="send" type="submit">Enviar Mensagem</button>
       </div>
-    </form>
+    </form-->
 
 
-<script>
+<!--script>
 (function(){
   // pega o form que envia para enviar_email.php (ou o primeiro form se não achar)
   const form = document.querySelector('form[action*="enviar_email.php"]') || document.querySelector('form');
@@ -392,7 +392,7 @@
     // NÃO chama originalSubmit para evitar navegação
   };
 })();
-</script>
+</script-->
 
 
   </div>

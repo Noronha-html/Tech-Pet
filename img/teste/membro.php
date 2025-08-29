@@ -113,7 +113,7 @@ $photoPath = file_exists(__DIR__ . '/' . $photoCandidate) ? $photoCandidate : 'p
             </div>
 
             <div class="actions">
-              <a id="email-cta" class="btn" href="portfolio.php#contact">Enviar e-mail</a>
+              <!--a id="email-cta" class="btn" href="portfolio.php#contact">Enviar e-mail</a-->
             </div>
           </div>
         </div>

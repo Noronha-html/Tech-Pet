@@ -1,4 +1,4 @@
-<?php
+<?php/*
 // C:\xampp\htdocs\Tech-Pet\img\teste\enviar_email.php
 // Handler pronto — PHPMailer via SMTP (Gmail) — já ajustado para ficar em img/teste/
 // OBS: este arquivo contém a App Password que você forneceu; em produção use variáveis de ambiente.
@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 /* -------------------------
    Funções utilitárias
-   ------------------------- */
+   ------------------------- *//*
 function clean_input(string $s, int $max = 2000): string {
     $s = trim($s);
     $s = substr($s, 0, $max);
@@ -21,7 +21,7 @@ function has_header_injection(string $s): bool {
 
 /* -------------------------
    Configurações
-   ------------------------- */
+   ------------------------- *//*
 const SENDER_FIXED   = 'peyer.f31@gmail.com';                 // remetente fixo
 const RECEIVER_FIXED = 'arthur.p.fernandes.31@gmail.com';     // destinatário fixo
 
@@ -34,7 +34,7 @@ $SMTP_SECURE  = 'tls';                // 'tls' (587) ou 'ssl' (465)
 
 /* -------------------------
    Início do processamento
-   ------------------------- */
+   ------------------------- *//*
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo "Método não permitido.";
@@ -77,7 +77,7 @@ if (!empty($errors)) {
     exit;
 }
 
-/* Monta corpo do e-mail */
+/* Monta corpo do e-mail *//*
 $site = $_SERVER['HTTP_HOST'] ?? 'site';
 $subject_email = "[" . $site . "] " . $assunto;
 
@@ -94,7 +94,7 @@ $smtp_error = '';
 
 /* -------------------------
    Tenta enviar via PHPMailer/SMTP
-   ------------------------- */
+   ------------------------- *//*
 if ($SMTP_ENABLED) {
     // ajuste de caminho: este arquivo está em img/teste/ -> subir 2 níveis até a raiz do projeto
     $autoload = __DIR__ . '/../../vendor/autoload.php';
@@ -137,7 +137,7 @@ if ($SMTP_ENABLED) {
 
 /* -------------------------
    Fallback: mail() do PHP
-   ------------------------- */
+   ------------------------- *//*
 if (!$sent) {
     $headers  = 'From: ' . $site . ' <' . SENDER_FIXED . ">\r\n";
     if ($email_valido) {
@@ -161,7 +161,7 @@ if (!$sent) {
 
 /* -------------------------
    Resposta ao usuário
-   ------------------------- */
+   ------------------------- *//*
 if ($sent) {
     echo "<!doctype html><html><head><meta charset='utf-8'><title>Mensagem enviada</title></head><body>";
     echo "<h2>Mensagem enviada com sucesso ✅</h2>";
@@ -183,4 +183,4 @@ if ($sent) {
     echo "<p><a href='javascript:history.back()'>Voltar</a></p>";
     echo "</body></html>";
     exit;
-}
+*/}
