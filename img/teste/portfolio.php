@@ -295,7 +295,7 @@
     <h2 class="section-title">Enviar</h2>
 
     <!-- exemplo: substitua action/method pelos seus -->
-    <form action="./enviar_email.php" method="post" novalidate>
+    <form class="send-email" action="./enviar_email.php" method="post" novalidate>
       <div class="form-row">
         <input type="text" name="nome" placeholder="Nome" required />
         
@@ -308,6 +308,86 @@
         <button class="send" type="submit">Enviar Mensagem</button>
       </div>
     </form>
+
+
+<script>
+(function(){
+  // pega o form que envia para enviar_email.php (ou o primeiro form se não achar)
+  const form = document.querySelector('form[action*="enviar_email.php"]') || document.querySelector('form');
+  if (!form) return;
+
+  async function sendAjax(event) {
+    event.preventDefault();
+    // feedback
+    const btn = form.querySelector('button[type="submit"], input[type="submit"]');
+    const orig = btn ? btn.innerHTML : null;
+    if (btn) { btn.disabled = true; btn.innerText = 'Enviando...'; }
+
+    try {
+      const fd = new FormData(form);
+      const res = await fetch(form.action || 'enviar_email.php', {
+        method: 'POST',
+        body: fd,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Accept': 'text/html'
+        }
+      });
+      const text = await res.text();
+
+      // mostra resultado em um elemento #form-status (cria se não existir)
+      let status = document.getElementById('form-status');
+      if (!status) {
+        status = document.createElement('div');
+        status.id = 'form-status';
+        status.style.marginTop = '12px';
+        form.parentNode.insertBefore(status, form.nextSibling);
+      }
+
+      if (res.ok && text.includes('Mensagem enviada com sucesso')) {
+        status.innerHTML = '<div style="padding:10px;border-radius:6px;background:#e6ffed;color:#0a7a3a;border:1px solid #9fe5b7;">Mensagem enviada com sucesso ✅</div>';
+        form.reset();
+      } else {
+        // tenta extrair erro do HTML retornado
+        let msg = 'Erro ao enviar a mensagem.';
+        const h2 = text.match(/<h2[^>]*>([^<]+)<\/h2>/i);
+        const li = text.match(/<li>(.*?)<\/li>/i);
+        if (h2) msg = h2[1];
+        else if (li) msg = li[1].replace(/<[^>]+>/g,'');
+        else if (!res.ok) msg = 'Erro HTTP: ' + res.status;
+        status.innerHTML = '<div style="padding:10px;border-radius:6px;background:#ffecec;color:#9b2b2b;border:1px solid #f1a3a3;">' + msg + '</div>';
+      }
+    } catch (err) {
+      let status = document.getElementById('form-status');
+      if (!status) {
+        status = document.createElement('div');
+        status.id = 'form-status';
+        status.style.marginTop = '12px';
+        form.parentNode.insertBefore(status, form.nextSibling);
+      }
+      status.innerHTML = '<div style="padding:10px;border-radius:6px;background:#ffecec;color:#9b2b2b;border:1px solid #f1a3a3;">Erro de rede: ' + (err.message || err) + '</div>';
+    } finally {
+      if (btn) { btn.disabled = false; btn.innerHTML = orig; }
+    }
+  }
+
+  // intercepta envio normal
+  form.addEventListener('submit', sendAjax, {capture:true});
+
+  // evita navegação se algum outro script chamar form.submit()
+  const originalSubmit = HTMLFormElement.prototype.submit;
+  HTMLFormElement.prototype.submit = function() {
+    const evt = new Event('submit', {cancelable:true});
+    if (this.dispatchEvent(evt)) {
+      // se não cancelado, usa nossa função AJAX
+      sendAjax.call(this, evt);
+    }
+    // NÃO chama originalSubmit para evitar navegação
+  };
+})();
+</script>
+
+
   </div>
 </section>
 
@@ -330,5 +410,76 @@
         />
       </svg>
     </a>
+
+
+<script>
+(function(){
+  const form = document.querySelector('form[action*="enviar_email.php"]') || document.querySelector('form');
+  if (!form) return;
+
+  // cria container do alerta se não existir
+  let alertBox = document.createElement('div');
+  alertBox.id = "alert-box";
+  alertBox.style.position = "fixed";
+  alertBox.style.top = "20px";
+  alertBox.style.right = "20px";
+  alertBox.style.padding = "16px 24px";
+  alertBox.style.borderRadius = "8px";
+  alertBox.style.color = "#fff";
+  alertBox.style.fontFamily = "Arial, sans-serif";
+  alertBox.style.fontSize = "16px";
+  alertBox.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+  alertBox.style.opacity = "0";
+  alertBox.style.pointerEvents = "none";
+  alertBox.style.transition = "all 0.4s ease";
+  document.body.appendChild(alertBox);
+
+  function showAlert(message, type="success") {
+    alertBox.innerHTML = message;
+    alertBox.style.background = type === "success" ? "#28a745" : "#dc3545"; // verde / vermelho
+    alertBox.style.opacity = "1";
+    alertBox.style.pointerEvents = "auto";
+    alertBox.style.transform = "translateY(0)";
+    setTimeout(() => {
+      alertBox.style.opacity = "0";
+      alertBox.style.pointerEvents = "none";
+    }, 4000); // some depois de 4s
+  }
+
+  async function sendAjax(event) {
+    event.preventDefault();
+
+    const btn = form.querySelector('button[type="submit"], input[type="submit"]');
+    const orig = btn ? btn.innerHTML : null;
+    if (btn) { btn.disabled = true; btn.innerHTML = "Enviando..."; }
+
+    try {
+      const fd = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: fd,
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      });
+      const text = await res.text();
+
+      if (res.ok && text.includes("Mensagem enviada com sucesso")) {
+        showAlert("✅ Mensagem enviada com sucesso!", "success");
+        form.reset();
+      } else {
+        showAlert("❌ Erro ao enviar a mensagem!", "error");
+      }
+    } catch (err) {
+      showAlert("⚠️ Erro de rede: " + err.message, "error");
+    } finally {
+      if (btn) { btn.disabled = false; btn.innerHTML = orig; }
+    }
+  }
+
+  form.addEventListener("submit", sendAjax, {capture:true});
+})();
+</script>
+
+
+
   </body>
 </html>
