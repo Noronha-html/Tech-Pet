@@ -244,7 +244,7 @@
 
           <div class="team-row" aria-label="Equipe Dev16">
 
-            <a href="" class="a_dev">
+            <a href="./membro.php" class="a_dev">
               <div class="member">
                 <div class="avatar" aria-hidden="true">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -261,7 +261,7 @@
               </div>
             </a>
 
-            <a href="" class="a_dev">
+            <a href="./membro.php" class="a_dev">
               <div class="member">
                 <div class="avatar" aria-hidden="true">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -278,7 +278,7 @@
               </div>
             </a>
 
-            <a href="" class="a_dev" >
+            <a href="./membro.php" class="a_dev" >
               <div class="member">
                 <div class="avatar" aria-hidden="true">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

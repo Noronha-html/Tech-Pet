@@ -1,0 +1,159 @@
+<?php
+// member.php
+// Página reutilizável com array de membros + HTML/CSS/JS polidos.
+// Uso: member.php?member=frontend  (ou backend, designer)
+
+function e($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
+
+$members = [
+    'frontend' => [
+        'name' => 'Lucas Silva',
+        'title' => 'Desenvolvedor Front-end',
+        'bio' => 'Especialista em interfaces interativas, componentes reutilizáveis e otimização de performance. Gosta de transformar designs em experiências fluidas.',
+        // skills podem ser strings ou arrays ['name'=>..., 'level'=>NN]
+        'skills' => ['HTML', 'CSS', 'JavaScript', 'React', 'Acessibilidade'],
+        'email' => 'lucas@exemplo.com'
+    ],
+    'backend' => [
+        'name' => 'Mariana Costa',
+        'title' => 'Desenvolvedora Back-end',
+        'bio' => 'Foca em arquiteturas escaláveis, APIs robustas e integrações seguras. Ama bancos de dados e solucionar problemas complexos no servidor.',
+        'skills' => ['PHP', 'Node.js', 'SQL', 'APIs REST', 'Docker'],
+        'email' => 'mariana@exemplo.com'
+    ],
+    'designer' => [
+        'name' => 'Rafael Oliveira',
+        'title' => 'Designer',
+        'bio' => 'Cria identidades visuais e interfaces pensadas no usuário. Trabalha com prototipação rápida e design system.',
+        'skills' => ['Figma', 'UX', 'UI', 'Prototipagem', 'Design System'],
+        'email' => 'rafael@exemplo.com'
+    ]
+];
+
+$requested = isset($_GET['member']) ? strtolower(trim($_GET['member'])) : 'frontend';
+if (!array_key_exists($requested, $members)) {
+    $requested = 'frontend';
+}
+$m = $members[$requested];
+
+// mapeamento de nível padrão para skills (caso user não informe level)
+$default_levels = [
+    'html' => 95, 'css' => 92, 'javascript' => 88, 'react' => 82, 'acessibilidade' => 75,
+    'php' => 85, 'node.js' => 82, 'sql' => 80, 'apis rest' => 86, 'docker' => 78,
+    'figma' => 90, 'ux' => 88, 'ui' => 86, 'prototipagem' => 80, 'design system' => 78
+];
+
+// determina caminho da foto: procura por [frontend|backend|designer].jpg ou usa photo.jpg
+$photoCandidate = $requested . '.jpg';
+$photoPath = file_exists(__DIR__ . '/' . $photoCandidate) ? $photoCandidate : 'photo.jpg';
+?>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><?php echo e($m['name'] . ' — ' . $m['title']); ?></title>
+  <link rel="stylesheet" href="membro.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <div class="brand">Nossa Equipe</div>
+      <nav><a href="portfolio.php">Página principal</a></nav>
+    </header>
+
+    <main class="main">
+      <article class="profile" data-email="<?php echo e($m['email']); ?>">
+        <div class="profile-card">
+          <div class="photo-block">
+            <img src="<?php echo e($photoPath); ?>" alt="Foto de <?php echo e($m['name']); ?>" class="photo"
+                 onerror="this.style.display='none'; document.querySelector('.photo-fallback').style.display='flex'">
+            <div class="photo-fallback" aria-hidden="true" style="display:none">
+              <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
+                <defs>
+                  <linearGradient id="g" x1="0" x2="1">
+                    <stop offset="0" stop-color="#6f3dff"/>
+                    <stop offset="1" stop-color="#00d1ff"/>
+                  </linearGradient>
+                </defs>
+                <rect width="120" height="120" rx="18" fill="url(#g)"/>
+                <circle cx="60" cy="44" r="26" fill="#fff" opacity="0.95"/>
+                <rect x="20" y="78" width="80" height="18" rx="9" fill="#fff"/>
+              </svg>
+            </div>
+            <button class="photo-edit" title="Coloque uma foto chamada <?php echo e($requested); ?>.jpg ou photo.jpg na mesma pasta">Editar</button>
+          </div>
+
+          <div class="profile-info">
+            <h1 class="name"><?php echo e($m['name']); ?></h1>
+            <p class="role"><?php echo e($m['title']); ?></p>
+            <p class="bio"><?php echo e($m['bio']); ?></p>
+
+            <div class="meta">
+              <div class="meta-item">
+                <strong id="skill-count"><?php echo count($m['skills']); ?></strong>
+                <span>Habilidades</span>
+              </div>
+              <div class="meta-item">
+                <strong>Contato</strong>
+                <span><a class="mailto" href="mailto:<?php echo e($m['email']); ?>"><?php echo e($m['email']); ?></a></span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a id="email-cta" class="btn" href="mailto:<?php echo e($m['email']); ?>">Enviar e-mail</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="skills-block" aria-labelledby="skillsTitle">
+        <h2 id="skillsTitle">Principais habilidades</h2>
+        <ul class="skills-list">
+          <?php
+          // renderiza skills; aceita string ou array ['name'=>..., 'level'=>NN]
+          foreach ($m['skills'] as $skill) {
+              if (is_array($skill)) {
+                  $name = $skill['name'];
+                  $level = isset($skill['level']) ? (int)$skill['level'] : ($default_levels[strtolower($skill['name'])] ?? 75);
+              } else {
+                  $name = $skill;
+                  $key = strtolower($name);
+                  $level = isset($default_levels[$key]) ? $default_levels[$key] : 75;
+              }
+              $level = max(0, min(100, (int)$level));
+          ?>
+            <li data-level="<?php echo e($level); ?>">
+              <span class="skill"><?php echo e($name); ?></span>
+              <span class="pct"><?php echo e($level); ?>%</span>
+              <div class="bar"><div class="bar-fill" style="width:0%;"></div></div>
+            </li>
+          <?php } ?>
+        </ul>
+      </aside>
+
+      <section class="contact">
+        <h3>Quer falar comigo?</h3>
+        <form id="contactForm" class="contact-form">
+          <div class="row">
+            <input id="name" name="name" required placeholder="Seu nome">
+            <input id="email" name="email" type="email" required placeholder="Seu e-mail">
+          </div>
+          <input id="subject" name="subject" value="Contato profissional: <?php echo e($m['title']); ?>" required>
+          <textarea id="message" name="message" rows="5" required placeholder="Mensagem"></textarea>
+          <div class="row actions-row">
+            <button class="btn primary" type="submit">Enviar mensagem</button>
+            <small class="hint">Este formulário abrirá seu cliente de e-mail (mailto).</small>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>&copy; <span id="year"></span> — <a href="portfolio.php">Voltar</a></span>
+    </footer>
+  </div>
+
+  <script src="membro.js" defer></script>
+</body>
+</html>
