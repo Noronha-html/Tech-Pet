@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -244,7 +244,7 @@
 
           <div class="team-row" aria-label="Equipe Dev16">
 
-            <a href="./membro.php" class="a_dev">
+            <a href="./membro.php?member=Frontend" class="a_dev">
               <div class="member">
                 <div class="avatar" aria-hidden="true">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -261,7 +261,7 @@
               </div>
             </a>
 
-            <a href="./membro.php" class="a_dev">
+            <a href="./membro.php?member=backend" class="a_dev">
               <div class="member">
                 <div class="avatar" aria-hidden="true">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -278,7 +278,7 @@
               </div>
             </a>
 
-            <a href="./membro.php" class="a_dev" >
+            <a href="./membro.php?member=designer" class="a_dev" >
               <div class="member">
                 <div class="avatar" aria-hidden="true">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

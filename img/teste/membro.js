@@ -47,13 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // atualiza links de e-mail a partir do atributo data-email
-  const profile = document.querySelector('.profile');
-  const emailLink = profile ? profile.getAttribute('data-email') : '';
-  if (emailLink) {
-    const cta = document.getElementById('email-cta');
-    const anchor = document.querySelector('.mailto');
-    if (cta) cta.href = `mailto:${emailLink}`;
-    if (anchor) anchor.href = `mailto:${emailLink}`;
-  }
-});
+const profile = document.querySelector('.profile');
+const emailLink = profile ? profile.getAttribute('data-email') : '';
+if (emailLink) {
+  const anchor = document.querySelector('.mailto');
+  if (anchor) anchor.href = `mailto:${emailLink}`;
+}
+})

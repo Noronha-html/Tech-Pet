@@ -7,26 +7,26 @@ function e($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 
 $members = [
     'frontend' => [
-        'name' => 'Lucas Silva',
+        'name' => 'Arthur Fernandes',
         'title' => 'Desenvolvedor Front-end',
         'bio' => 'Especialista em interfaces interativas, componentes reutilizáveis e otimização de performance. Gosta de transformar designs em experiências fluidas.',
         // skills podem ser strings ou arrays ['name'=>..., 'level'=>NN]
         'skills' => ['HTML', 'CSS', 'JavaScript', 'React', 'Acessibilidade'],
-        'email' => 'lucas@exemplo.com'
+        'email' => 'arthur.p.fernandes.31@gmail.com'
     ],
     'backend' => [
-        'name' => 'Mariana Costa',
+        'name' => 'Felipe Noronha',
         'title' => 'Desenvolvedora Back-end',
         'bio' => 'Foca em arquiteturas escaláveis, APIs robustas e integrações seguras. Ama bancos de dados e solucionar problemas complexos no servidor.',
         'skills' => ['PHP', 'Node.js', 'SQL', 'APIs REST', 'Docker'],
-        'email' => 'mariana@exemplo.com'
+        'email' => 'felipe.dariva07@gmail.com'
     ],
     'designer' => [
-        'name' => 'Rafael Oliveira',
+        'name' => 'Lucas Martini',
         'title' => 'Designer',
         'bio' => 'Cria identidades visuais e interfaces pensadas no usuário. Trabalha com prototipação rápida e design system.',
         'skills' => ['Figma', 'UX', 'UI', 'Prototipagem', 'Design System'],
-        'email' => 'rafael@exemplo.com'
+        'email' => 'martinilucas2021@gmail.com'
     ]
 ];
 
@@ -48,18 +48,21 @@ $photoCandidate = $requested . '.jpg';
 $photoPath = file_exists(__DIR__ . '/' . $photoCandidate) ? $photoCandidate : 'photo.jpg';
 ?>
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title><?php echo e($m['name'] . ' — ' . $m['title']); ?></title>
+  <title>
+    <?php echo e($m['name'] . ' — ' . $m['title']); ?>
+  </title>
   <link rel="stylesheet" href="membro.css">
 </head>
+
 <body>
   <div class="wrap">
     <header class="header">
-      <div class="brand">Nossa Equipe</div>
-      <nav><a href="portfolio.php">Página principal</a></nav>
+      <nav><a class="page-title" href="portfolio.php">Página principal</a></nav>
     </header>
 
     <main class="main">
@@ -67,41 +70,50 @@ $photoPath = file_exists(__DIR__ . '/' . $photoCandidate) ? $photoCandidate : 'p
         <div class="profile-card">
           <div class="photo-block">
             <img src="<?php echo e($photoPath); ?>" alt="Foto de <?php echo e($m['name']); ?>" class="photo"
-                 onerror="this.style.display='none'; document.querySelector('.photo-fallback').style.display='flex'">
+              onerror="this.style.display='none'; document.querySelector('.photo-fallback').style.display='flex'">
             <div class="photo-fallback" aria-hidden="true" style="display:none">
               <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
                 <defs>
                   <linearGradient id="g" x1="0" x2="1">
-                    <stop offset="0" stop-color="#6f3dff"/>
-                    <stop offset="1" stop-color="#00d1ff"/>
+                    <stop offset="0" stop-color="#6f3dff" />
+                    <stop offset="1" stop-color="#00d1ff" />
                   </linearGradient>
                 </defs>
-                <rect width="120" height="120" rx="18" fill="url(#g)"/>
-                <circle cx="60" cy="44" r="26" fill="#fff" opacity="0.95"/>
-                <rect x="20" y="78" width="80" height="18" rx="9" fill="#fff"/>
+                <rect width="120" height="120" rx="18" fill="url(#g)" />
+                <circle cx="60" cy="44" r="26" fill="#fff" opacity="0.95" />
+                <rect x="20" y="78" width="80" height="18" rx="9" fill="#fff" />
               </svg>
             </div>
-            <button class="photo-edit" title="Coloque uma foto chamada <?php echo e($requested); ?>.jpg ou photo.jpg na mesma pasta">Editar</button>
           </div>
 
           <div class="profile-info">
-            <h1 class="name"><?php echo e($m['name']); ?></h1>
-            <p class="role"><?php echo e($m['title']); ?></p>
-            <p class="bio"><?php echo e($m['bio']); ?></p>
+            <h1 class="name">
+              <?php echo e($m['name']); ?>
+            </h1>
+            <p class="role">
+              <?php echo e($m['title']); ?>
+            </p>
+            <p class="bio">
+              <?php echo e($m['bio']); ?>
+            </p>
 
             <div class="meta">
               <div class="meta-item">
-                <strong id="skill-count"><?php echo count($m['skills']); ?></strong>
+                <strong id="skill-count">
+                  <?php echo count($m['skills']); ?>
+                </strong>
                 <span>Habilidades</span>
               </div>
               <div class="meta-item">
                 <strong>Contato</strong>
-                <span><a class="mailto" href="mailto:<?php echo e($m['email']); ?>"><?php echo e($m['email']); ?></a></span>
+                <span><a class="mailto" href="mailto:<?php echo e($m['email']); ?>">
+                    <?php echo e($m['email']); ?>
+                  </a></span>
               </div>
             </div>
 
             <div class="actions">
-              <a id="email-cta" class="btn" href="mailto:<?php echo e($m['email']); ?>">Enviar e-mail</a>
+              <a id="email-cta" class="btn" href="portfolio.php#contact">Enviar e-mail</a>
             </div>
           </div>
         </div>
@@ -123,37 +135,28 @@ $photoPath = file_exists(__DIR__ . '/' . $photoCandidate) ? $photoCandidate : 'p
               }
               $level = max(0, min(100, (int)$level));
           ?>
-            <li data-level="<?php echo e($level); ?>">
-              <span class="skill"><?php echo e($name); ?></span>
-              <span class="pct"><?php echo e($level); ?>%</span>
-              <div class="bar"><div class="bar-fill" style="width:0%;"></div></div>
-            </li>
+          <li data-level="<?php echo e($level); ?>">
+            <span class="skill">
+              <?php echo e($name); ?>
+            </span>
+            <span class="pct">
+              <?php echo e($level); ?>%
+            </span>
+            <div class="bar">
+              <div class="bar-fill" style="width:0%;"></div>
+            </div>
+          </li>
           <?php } ?>
         </ul>
       </aside>
-
-      <section class="contact">
-        <h3>Quer falar comigo?</h3>
-        <form id="contactForm" class="contact-form">
-          <div class="row">
-            <input id="name" name="name" required placeholder="Seu nome">
-            <input id="email" name="email" type="email" required placeholder="Seu e-mail">
-          </div>
-          <input id="subject" name="subject" value="Contato profissional: <?php echo e($m['title']); ?>" required>
-          <textarea id="message" name="message" rows="5" required placeholder="Mensagem"></textarea>
-          <div class="row actions-row">
-            <button class="btn primary" type="submit">Enviar mensagem</button>
-            <small class="hint">Este formulário abrirá seu cliente de e-mail (mailto).</small>
-          </div>
-        </form>
-      </section>
     </main>
 
     <footer class="footer">
-      <span>&copy; <span id="year"></span> — <a href="portfolio.php">Voltar</a></span>
+      <span>&copy; <span id="year"></span>
     </footer>
   </div>
 
   <script src="membro.js" defer></script>
 </body>
+
 </html>
