@@ -222,8 +222,8 @@
               </div>
               <div class="project-body">
                 <h3>Organo</h3>
-                <p class="muted">Realize compras de forma prática e agende serviços de maneira rápida e intuitiva.</p>
-                <small>Agendamento • Experiência • Design</small>
+                <p class="muted">Cadastre pessoas, enquanto organizar equipes isso facilita a distribuição de funções e melhora a colaboração.</p>
+                <small>React • Cadastro • Design</small>
               </div>
             </article>
           </div>
@@ -243,50 +243,57 @@
           </p>
 
           <div class="team-row" aria-label="Equipe Dev16">
-            <div class="member">
-              <div class="avatar" aria-hidden="true">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"
-                  />
-                </svg>
-              </div>
-              <h4>Dev Frontend</h4>
-              <p>
-                Estudante de programação, apaixonado por interfaces e por
-                transformar design em experiência funcional.
-              </p>
-            </div>
 
-            <div class="member">
-              <div class="avatar" aria-hidden="true">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"
-                  />
-                </svg>
+            <a href="" class="a_dev">
+              <div class="member">
+                <div class="avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"
+                    />
+                  </svg>
+                </div>
+                <h4>Dev Frontend</h4>
+                <p>
+                  Estudante de programação, apaixonado por interfaces e por
+                  transformar design em experiência funcional.
+                </p>
               </div>
-              <h4>Dev Backend</h4>
-              <p>
-                Focado em lógica, bancos de dados e integrações; garante que os
-                projetos funcionem de forma estável e segura.
-              </p>
-            </div>
+            </a>
 
-            <div class="member">
-              <div class="avatar" aria-hidden="true">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"
-                  />
-                </svg>
+            <a href="" class="a_dev">
+              <div class="member">
+                <div class="avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"
+                    />
+                  </svg>
+                </div>
+                <h4>Dev Backend</h4>
+                <p>
+                  Focado em lógica, bancos de dados e integrações; garante que os
+                  projetos funcionem de forma estável e segura.
+                </p>
               </div>
-              <h4>Designer UI/UX</h4>
-              <p>
-                Responsável pelo visual, protótipos e usabilidade — garante que
-                a solução seja bonita e intuitiva.
-              </p>
-            </div>
+            </a>
+
+            <a href="" class="a_dev" >
+              <div class="member">
+                <div class="avatar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"
+                    />
+                  </svg>
+                </div>
+                <h4>Designer UI/UX</h4>
+                <p>
+                  Responsável pelo visual, protótipos e usabilidade — garante que
+                  a solução seja bonita, intuitiva e acessível.
+                </p>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -400,7 +407,7 @@
     </div>
     <a
       class="whatsapp"
-      href="https://wa.me/5511999999999"
+      href="https://wa.me/555195707416"
       target="_blank"
       aria-label="WhatsApp"
     >
@@ -478,8 +485,6 @@
   form.addEventListener("submit", sendAjax, {capture:true});
 })();
 </script>
-
-
 
   </body>
 </html>
