@@ -29,7 +29,7 @@ $SMTP_ENABLED = true;                 // habilita envio via SMTP (PHPMailer)
 $SMTP_HOST    = 'smtp.gmail.com';
 $SMTP_PORT    = 587;
 $SMTP_USER    = SENDER_FIXED;
-$SMTP_PASS    = 'jmvn ktco plqi sbyh'; // sua App Password (16 chars). NO REPO PUBLICO.
+$SMTP_PASS    = 'ncox tafn tttn iyiq'; // sua App Password (16 chars). NO REPO PUBLICO.
 $SMTP_SECURE  = 'tls';                // 'tls' (587) ou 'ssl' (465)
 
 /* -------------------------
@@ -83,7 +83,6 @@ $subject_email = "[" . $site . "] " . $assunto;
 
 $body  = "Você recebeu uma nova mensagem de contato.\n\n";
 $body .= "Nome: {$nome}\n";
-$body .= "E-mail (visitante): " . ($email_usuario !== '' ? $email_usuario : 'Não informado') . "\n";
 $body .= "Assunto: {$assunto}\n\n";
 $body .= "Mensagem:\n{$mensagem}\n\n";
 $body .= "----\n";
