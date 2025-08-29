@@ -218,10 +218,10 @@
 
             <article class="project-card">
               <div class="project-thumb" aria-hidden="true">
-                <img src="../teste/img-t/c12.png" alt="">
+                <img src="./img-t/organo-print.png" alt="">
               </div>
               <div class="project-body">
-                <h3>E-commerce</h3>
+                <h3>Organo</h3>
                 <p class="muted">Realize compras de forma prática e agende serviços de maneira rápida e intuitiva.</p>
                 <small>Agendamento • Experiência • Design</small>
               </div>
