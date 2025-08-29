@@ -297,8 +297,8 @@
           </div>
         </section>
 
-        <section id="contact" class="contact">
-  <!--div class="wrap form-wrap">
+        <!--section id="contact" class="contact">
+  <div class="wrap form-wrap">
     <h2 class="section-title">Enviar</h2-->
 
     <!-- exemplo: substitua action/method pelos seus -->
@@ -392,11 +392,11 @@
     // NÃO chama originalSubmit para evitar navegação
   };
 })();
-</script-->
+</script>
 
 
   </div>
-</section>
+</section-->
 
       </main>
 
