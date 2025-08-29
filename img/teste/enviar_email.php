@@ -1,14 +1,13 @@
 <?php
-// enviar_email.php
-// Handler pronto — usa remetente fixo e destinatário fixo.
-// Coloque este arquivo na mesma pasta do portfolio.php.
-// NÃO coloque senhas em repositórios públicos.
+// C:\xampp\htdocs\Tech-Pet\img\teste\enviar_email.php
+// Handler pronto — PHPMailer via SMTP (Gmail) — já ajustado para ficar em img/teste/
+// OBS: este arquivo contém a App Password que você forneceu; em produção use variáveis de ambiente.
 
 declare(strict_types=1);
 
-/**
- * Limpeza básica
- */
+/* -------------------------
+   Funções utilitárias
+   ------------------------- */
 function clean_input(string $s, int $max = 2000): string {
     $s = trim($s);
     $s = substr($s, 0, $max);
@@ -20,25 +19,22 @@ function has_header_injection(string $s): bool {
     return preg_match("/[\r\n]/", $s) === 1;
 }
 
-/**
- * E-mails pré-setados (conforme solicitado)
- */
+/* -------------------------
+   Configurações
+   ------------------------- */
 const SENDER_FIXED   = 'peyer.f31@gmail.com';                 // remetente fixo
 const RECEIVER_FIXED = 'arthur.p.fernandes.31@gmail.com';     // destinatário fixo
 
-/**
- * SMTP (opcional). Para usar SMTP: habilite abaixo e preencha a senha.
- * Para Gmail, use App Password (conta com 2FA).
- */
-$SMTP_ENABLED = true;                // habilita envio via SMTP
+$SMTP_ENABLED = true;                 // habilita envio via SMTP (PHPMailer)
 $SMTP_HOST    = 'smtp.gmail.com';
 $SMTP_PORT    = 587;
-$SMTP_USER    = SENDER_FIXED;        // remetente fixo (peyer.f31@gmail.com)
-$SMTP_PASS    = 'jmvn ktco plqi sbyh'; // sua App Password
-$SMTP_SECURE  = 'tls';               // 'tls' ou 'ssl'
+$SMTP_USER    = SENDER_FIXED;
+$SMTP_PASS    = 'jmvn ktco plqi sbyh'; // sua App Password (16 chars). NO REPO PUBLICO.
+$SMTP_SECURE  = 'tls';                // 'tls' (587) ou 'ssl' (465)
 
-/* ---------- início do processamento ---------- */
-
+/* -------------------------
+   Início do processamento
+   ------------------------- */
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo "Método não permitido.";
@@ -52,14 +48,13 @@ $mensagem      = isset($_POST['mensagem']) ? clean_input((string)$_POST['mensage
 
 $errors = [];
 
-// validações essenciais (não exige email)
+// Validações
 if ($nome === '') { $errors[] = 'O campo Nome é obrigatório.'; }
 if ($mensagem === '') { $errors[] = 'A mensagem não pode ficar vazia.'; }
 if (has_header_injection($nome) || has_header_injection($assunto)) {
     $errors[] = 'Dados inválidos detectados.';
 }
 
-// Se visitante forneceu email, valide-o
 $email_valido = false;
 if ($email_usuario !== '') {
     if (!filter_var($email_usuario, FILTER_VALIDATE_EMAIL) || has_header_injection($email_usuario)) {
@@ -82,7 +77,7 @@ if (!empty($errors)) {
     exit;
 }
 
-// Monta corpo do e-mail
+/* Monta corpo do e-mail */
 $site = $_SERVER['HTTP_HOST'] ?? 'site';
 $subject_email = "[" . $site . "] " . $assunto;
 
@@ -98,10 +93,14 @@ $body .= "User-Agent: " . ($_SERVER['HTTP_USER_AGENT'] ?? 'N/A') . "\n";
 $sent = false;
 $smtp_error = '';
 
-/* Tenta SMTP com PHPMailer se habilitado */
+/* -------------------------
+   Tenta enviar via PHPMailer/SMTP
+   ------------------------- */
 if ($SMTP_ENABLED) {
-    if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-        require_once __DIR__ . '/../../vendor/autoload.php';
+    // ajuste de caminho: este arquivo está em img/teste/ -> subir 2 níveis até a raiz do projeto
+    $autoload = __DIR__ . '/../../vendor/autoload.php';
+    if (file_exists($autoload)) {
+        require_once $autoload;
         try {
             $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
             $mail->isSMTP();
@@ -113,9 +112,11 @@ if ($SMTP_ENABLED) {
             $mail->Port       = (int)$SMTP_PORT;
             $mail->CharSet    = 'UTF-8';
 
+            // remetente fixo e destinatário fixo
             $mail->setFrom(SENDER_FIXED, $site . ' - Formulário');
             $mail->addAddress(RECEIVER_FIXED);
 
+            // reply-to só se visitante informou e-mail válido
             if ($email_valido) {
                 $mail->addReplyTo($email_usuario, $nome);
             }
@@ -131,13 +132,15 @@ if ($SMTP_ENABLED) {
             $sent = false;
         }
     } else {
-        $smtp_error = 'PHPMailer não encontrado. Rode `composer require phpmailer/phpmailer` ou desative SMTP no handler.';
+        $smtp_error = 'PHPMailer não encontrado. Verifique se executou composer require phpmailer/phpmailer e se vendor/autoload.php está em Tech-Pet/vendor/autoload.php';
     }
 }
 
-/* Se não enviou por SMTP, tenta mail() do PHP */
+/* -------------------------
+   Fallback: mail() do PHP
+   ------------------------- */
 if (!$sent) {
-    $headers  = 'From: ' . SENDER_FIXED . "\r\n";
+    $headers  = 'From: ' . $site . ' <' . SENDER_FIXED . ">\r\n";
     if ($email_valido) {
         $headers .= 'Reply-To: ' . $email_usuario . "\r\n";
     } else {
@@ -150,14 +153,16 @@ if (!$sent) {
     if ($ok) {
         $sent = true;
     } else {
-        $sent = false;
         if ($smtp_error === '') {
             $smtp_error = 'Função mail() retornou false. Verifique configuração do servidor SMTP ou use SMTP com PHPMailer.';
         }
+        $sent = false;
     }
 }
 
-/* Resultado ao usuário */
+/* -------------------------
+   Resposta ao usuário
+   ------------------------- */
 if ($sent) {
     echo "<!doctype html><html><head><meta charset='utf-8'><title>Mensagem enviada</title></head><body>";
     echo "<h2>Mensagem enviada com sucesso ✅</h2>";
@@ -172,8 +177,9 @@ if ($sent) {
     echo "<p>Detalhes: " . htmlspecialchars($smtp_error, ENT_QUOTES, 'UTF-8') . "</p>";
     echo "<p>Se estiver em ambiente local (XAMPP/WAMP) a função <code>mail()</code> normalmente não funciona. Recomendações:</p>";
     echo "<ul>";
-    echo "<li>Habilitar SMTP e configurar PHPMailer (preencha as credenciais no topo do arquivo e rode <code>composer require phpmailer/phpmailer</code>).</li>";
-    echo "<li>Ou usar um serviço de envio (SendGrid/Mailgun) via API/SMTP.</li>";
+    echo "<li>Verifique se o Composer instalou PHPMailer e se <code>vendor/autoload.php</code> existe em <code>Tech-Pet/vendor/autoload.php</code>.</li>";
+    echo "<li>Confirme a App Password do Gmail e que a conta tem 2FA ativado.</li>";
+    echo "<li>Ou use um serviço de envio (SendGrid/Mailgun) via API/SMTP.</li>";
     echo "</ul>";
     echo "<p><a href='javascript:history.back()'>Voltar</a></p>";
     echo "</body></html>";
