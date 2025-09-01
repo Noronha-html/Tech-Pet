@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./portfolio.css" />
+    <link rel="stylesheet" href="./responsive_update.css"/>
   </head>
   <body>
     <div class="wrap">
@@ -25,7 +26,7 @@
           <a href="#tech">Tecnologias</a>
           <a href="#projects">Projetos</a>
           <a href="#about">Sobre Nós</a>
-          <a class="btn-cta" href="#contact">Solicitar Orçamento</a>
+          <a class="btn-cta" href="https://wa.me/555195707416">Solicitar Orçamento</a>
         </nav>
       </header>
 
@@ -34,7 +35,7 @@
         <a href="#tech" onclick="toggleNav()">Tecnologias</a>
         <a href="#projects" onclick="toggleNav()">Projetos</a>
         <a href="#about" onclick="toggleNav()">Sobre Nós</a>
-        <a class="btn-cta" href="#contact" onclick="toggleNav()"
+        <a class="btn-cta" href="https://wa.me/555195707416" onclick="toggleNav()"
           >Solicitar Orçamento</a
         >
       </div>
@@ -118,7 +119,7 @@
           </div>
 
           <div style="margin-top:18px;">
-            <a class="btn-cta" href="#contact" title="Solicitar orçamento">Solicitar Orçamento</a>
+            <a class="btn-cta" href="https://wa.me/555195707416" title="Solicitar orçamento">Solicitar Orçamento</a>
           </div>
         </section>
 
@@ -229,10 +230,10 @@
           </div>
 
           <div style="margin-top:18px;">
-            <a class="btn-cta" href="#contact" title="Ver portfólio completo">Ver Portfólio / Contato</a>
+            <a class="btn-cta" href="https://wa.me/555195707416">Contato</a>
           </div>
         </section>
-
+  
         <section id="about">
           <h2 class="section-title">Sobre Nós</h2>
           <p style="color: var(--muted); max-width: 900px">
@@ -255,8 +256,7 @@
                 </div>
                 <h4>Dev Frontend</h4>
                 <p>
-                  Estudante de programação, apaixonado por interfaces e por
-                  transformar design em experiência funcional.
+                  Estudante de programação, focado em interfaces e em transformar design em experiência funcional e acessíveis.
                 </p>
               </div>
             </a>
@@ -299,10 +299,10 @@
 
         <section id="contact" class="contact">
   <div class="wrap form-wrap">
-    <h2 class="section-title">Enviar</h2>
+    <!--h2 class="section-title">Enviar</h2-->
 
     <!-- exemplo: substitua action/method pelos seus -->
-    <form class="send-email" action="./enviar_email.php" method="post" novalidate>
+    <!--form class="send-email" action="./enviar_email.php" method="post" novalidate>
       <div class="form-row">
         <input type="email" name="email" placeholder="E-mail" />
 
@@ -316,10 +316,10 @@
       <div class="form-actions">
         <button class="send" type="submit">Enviar Mensagem</button>
       </div>
-    </form>
+    </form-->
 
 
-<script>
+<!--script>
 (function(){
   // pega o form que envia para enviar_email.php (ou o primeiro form se não achar)
   const form = document.querySelector('form[action*="enviar_email.php"]') || document.querySelector('form');
@@ -394,7 +394,7 @@
     // NÃO chama originalSubmit para evitar navegação
   };
 })();
-</script>
+</script-->
 
 
   </div>

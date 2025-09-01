@@ -1,0 +1,252 @@
+/* responsive_update.css — versão limpa e final
+   Substitua o arquivo atual por este conteúdo.
+   Corrige corte de badges / imagens circulares no mobile.
+*/
+
+:root{
+  --mobile-max: 520px;
+  --card-gap: 12px;
+  --badge-max-w: 160px; /* ajuste se quiser maior/menor */
+  --avatar-size: 72px;
+  --avatar-size-large: 84px;
+}
+
+/* Segurança: evitar overflow lateral */
+html, body, .wrap, .container, .main, .hero {
+  box-sizing: border-box;
+}
+
+/* Regras para mobile */
+@media (max-width: 520px) {
+
+  /* containers principais */
+  html, body, .wrap, .container, .main, .hero {
+    overflow-x: hidden !important;
+    -webkit-text-size-adjust: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 420px !important;
+    width: 100% !important;
+  }
+
+  /* Cards / membros / services */
+  .card, .member, .member-card, .service-card, .team-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--card-gap) !important;
+    padding: 14px !important;
+    margin: 10px 6px !important;
+    border-radius: 12px !important;
+    width: calc(100% - 12px) !important;
+    min-height: auto !important;
+    max-width: 420px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    background: inherit !important;
+    overflow: visible !important;
+  }
+
+  /* Avatar padrão */
+  .photo, .avatar, .profile-avatar, .user-photo, .hero-avatar {
+    display: block !important;
+    width: var(--avatar-size) !important;
+    height: var(--avatar-size) !important;
+    min-width: var(--avatar-size) !important;
+    min-height: var(--avatar-size) !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    margin: 6px auto 8px auto !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 50 !important;
+  }
+  .photo img, .avatar img, .profile-avatar img, .user-photo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    display: block !important;
+  }
+
+  /* Títulos e descrições */
+  .card .title, .member .title, .card h3, .member h3 {
+    font-size: 1.02rem !important;
+    font-weight: 700 !important;
+    margin: 6px 0 4px !important;
+  }
+  .card .desc, .member .desc, .card p, .member p {
+    font-size: .92rem !important;
+    color: rgba(255,255,255,0.9) !important;
+    margin: 0 !important;
+    line-height: 1.32 !important;
+    text-align: center !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    max-width: 94% !important;
+    word-break: break-word !important;
+  }
+
+  /* Projetos / thumbs: crucial para não cortar o círculo */
+  .projects-grid, .projects, .portfolio-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .project-card {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+    padding: 12px !important;
+    overflow: visible !important;
+  }
+
+  /* === AQUI é onde resolvemos o corte: height auto, overflow visible e padding para "respirar" === */
+  .project-thumb, .team-badge-wrap, .team-badge {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: auto !important;            /* não fixar altura */
+    padding: 16px 12px !important;      /* espaço vertical para o círculo aparecer inteiro */
+    margin: 0 !important;
+    overflow: visible !important;       /* não cortar */
+    box-sizing: border-box !important;
+    background: transparent !important;
+  }
+
+  /* Imagem/SVG do badge: reduzir e manter proporção */
+  .project-thumb img,
+  .project-thumb svg,
+  .team-badge img,
+  .team-badge svg {
+    display: block !important;
+    max-width: var(--badge-max-w) !important;  /* controla o tamanho do círculo */
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+    margin-top: 0 !important;
+    transform: none !important;
+    vertical-align: middle !important;
+  }
+
+  /* Caso existam regras anteriores com margin-top negativas, neutralizar */
+  .project-thumb img,
+  .project-thumb svg,
+  .team-badge img,
+  .team-badge svg {
+    margin-top: 0 !important;
+    top: auto !important;
+    left: auto !important;
+  }
+
+  /* Pequeno espaçamento extra para "pedestal" ou sombra */
+  .project-thumb::after {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 100%;
+  }
+
+  /* Neutraliza transforms em qualquer filho do thumb */
+  .project-thumb * {
+    transform: none !important;
+  }
+
+  /* Ajuste responsivo: se quiser círculo menor em telas muito pequenas */
+  @media (max-width: 360px) {
+    .project-thumb img,
+    .team-badge img {
+      max-width: 120px !important;
+    }
+  }
+
+} /* fim @media (max-width:520px) */
+/* ---- FIX: evitar corte de badges / thumbs em mobile ---- */
+@media (max-width: 520px) {
+
+  /* 1) Mostrar o badge completo (substitui display:none do arquivo original) */
+  .team-badge-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 220px !important;
+    max-height: 220px !important;
+    padding: 8px !important;
+    margin: 0 auto 8px !important;
+    border-radius: 50% !important;
+    overflow: visible !important; /* importante: não cortar */
+    background: transparent !important;
+  }
+
+  .team-badge {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 200px !important;
+    max-height: 200px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    overflow: visible !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .team-badge img,
+  .team-badge svg {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  /* 2) Project thumb: não fixe largura/altura, elimine margin-top negativo */
+  .project-thumb {
+    width: 100% !important;
+    height: auto !important;
+    padding: 12px 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+  }
+
+  .project-thumb img,
+  .project-thumb svg {
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 240px !important; /* limita pra não estourar verticalmente */
+    object-fit: contain !important;
+    margin-top: 0 !important; /* remove o -20px que causa corte */
+    display: block !important;
+    transform: none !important;
+  }
+
+  /* opcional: dar nitidez para pixel art (só use se for pixel art) */
+  .project-thumb img.pixel-art {
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+  }
+
+  /* garantir que card permita overflow visual da imagem */
+  .project-card {
+    overflow: visible !important;
+  }
+
+}

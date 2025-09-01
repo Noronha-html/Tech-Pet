@@ -17,14 +17,14 @@ $members = [
     'backend' => [
         'name' => 'Felipe Noronha',
         'title' => 'Desenvolvedora Back-end',
-        'bio' => 'Foca em arquiteturas escaláveis, APIs robustas e integrações seguras. Ama bancos de dados e solucionar problemas complexos no servidor.',
+        'bio' => 'Foca em arquiteturas escaláveis, APIs robustas e integrações seguras. gosta de trabalhar com bancos de dados e solucionar problemas complexos no servidor.',
         'skills' => ['PHP', 'Node.js', 'SQL', 'APIs REST', 'Docker'],
         'email' => 'felipe.dariva07@gmail.com'
     ],
     'designer' => [
         'name' => 'Lucas Martini',
         'title' => 'Designer',
-        'bio' => 'Cria identidades visuais e interfaces pensadas no usuário. Trabalha com prototipação rápida e design system.',
+        'bio' => 'Cria identidades visuais e interfaces centradas no usuário, unindo estética e usabilidade. Trabalha com prototipação rápida e design systems para entregar soluções consistentes e escaláveis..',
         'skills' => ['Figma', 'UX', 'UI', 'Prototipagem', 'Design System'],
         'email' => 'martinilucas2021@gmail.com'
     ]
@@ -57,6 +57,8 @@ $photoPath = file_exists(__DIR__ . '/' . $photoCandidate) ? $photoCandidate : 'p
     <?php echo e($m['name'] . ' — ' . $m['title']); ?>
   </title>
   <link rel="stylesheet" href="membro.css">
+  <link rel="stylesheet" href="responsive_update.css">
+  <link rel="stylesheet" href="member_responsive.css">
 </head>
 
 <body>

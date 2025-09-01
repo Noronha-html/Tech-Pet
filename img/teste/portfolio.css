@@ -303,7 +303,13 @@ h2.section-title {
   align-items: center;
   position: relative;
   z-index: 3;
+  transition: transform .18s ease;
 }
+
+.member:hover {
+  transform: translateY(-6px)
+}
+
 
 .avatar {
   width: 84px;
@@ -343,13 +349,14 @@ h2.section-title {
 
 .contact {
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.016),
-    rgba(255,255,255,0.008));
-  padding: 20px;                  /* compact */
+      rgba(255, 255, 255, 0.016),
+      rgba(255, 255, 255, 0.008));
+  padding: 20px;
+  /* compact */
   border-radius: 10px;
   position: relative;
   z-index: 3;
-  box-shadow: 0 6px 22px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.008);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.008);
   overflow: hidden;
 }
 
@@ -370,8 +377,8 @@ h2.section-title {
 /* inputs and textarea compact visual */
 input,
 textarea {
-  background: linear-gradient(180deg, rgba(255,255,255,0.008), rgba(255,255,255,0.004));
-  border: 1px solid rgba(255,255,255,0.025);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.008), rgba(255, 255, 255, 0.004));
+  border: 1px solid rgba(255, 255, 255, 0.025);
   padding: 10px 12px;
   border-radius: 10px;
   color: var(--primary);
@@ -380,7 +387,7 @@ textarea {
   transition: box-shadow .14s ease, transform .10s ease, border-color .10s ease;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
-  box-shadow: 0 1px 6px rgba(0,0,0,0.45);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
 /* placeholders */
@@ -401,9 +408,9 @@ textarea {
 /* focus state (subtle) */
 input:focus,
 textarea:focus {
-  border-color: rgba(0,209,255,0.75);
+  border-color: rgba(0, 209, 255, 0.75);
   transform: translateY(-1px);
-  box-shadow: 0 8px 22px rgba(0,209,255,0.045), 0 4px 12px rgba(0,0,0,0.36);
+  box-shadow: 0 8px 22px rgba(0, 209, 255, 0.045), 0 4px 12px rgba(0, 0, 0, 0.36);
 }
 
 /* button area: alignment and reduced spacing */
@@ -424,14 +431,14 @@ textarea:focus {
   border: none;
   cursor: pointer;
   transition: transform .12s ease, box-shadow .14s ease, opacity .10s;
-  box-shadow: 0 8px 26px rgba(111,61,255,0.12);
+  box-shadow: 0 8px 26px rgba(111, 61, 255, 0.12);
   font-size: 14px;
 }
 
 /* hover subtle */
 .send:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 34px rgba(111,61,255,0.14);
+  box-shadow: 0 12px 34px rgba(111, 61, 255, 0.14);
 }
 
 /* disabled look */
@@ -597,7 +604,7 @@ textarea:focus {
   }
 }
 
-.project-thumb img{
+.project-thumb img {
   width: 180px;
   height: 160px;
   margin-top: -20px;
@@ -734,10 +741,12 @@ textarea:focus {
 a {
   cursor: pointer;
 }
-footer{
-  font-size: 0.8rem; 
+
+footer {
+  font-size: 0.8rem;
 }
-.a_dev{
+
+.a_dev {
   height: 200px;
   text-decoration: none;
   color: inherit;
