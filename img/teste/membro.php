@@ -57,8 +57,6 @@ $photoPath = file_exists(__DIR__ . '/' . $photoCandidate) ? $photoCandidate : 'p
     <?php echo e($m['name'] . ' — ' . $m['title']); ?>
   </title>
   <link rel="stylesheet" href="membro.css">
-  <link rel="stylesheet" href="responsive_update.css">
-  <link rel="stylesheet" href="member_responsive.css">
 </head>
 
 <body>

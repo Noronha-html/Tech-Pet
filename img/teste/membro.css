@@ -320,3 +320,205 @@ body {
   text-align: left;/* alinhamento opcional à esquerda (igual ao título) */
   display: block;
 }
+/* =========================
+   Responsividade (adicionar ao final de membro.css)
+   ========================= */
+
+/* Geral: reduzir paddings / ajustar fonte em telas pequenas */
+@media (max-width: 980px) {
+  body {
+    padding: 20px;
+    font-size: 15.5px;
+  }
+  .wrap {
+    padding: 18px;
+  }
+}
+
+/* Tablet / small laptop -> empilha a coluna lateral (já existe 980px, reforço) */
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* torne as ações mais compactas */
+  .actions-row {
+    gap: 10px;
+  }
+}
+
+/* Layout mobile: empilha perfil, reduz fotos, centraliza textos e adapta meta-items */
+@media (max-width: 700px) {
+  body {
+    padding: 16px;
+    font-size: 15px;
+  }
+
+  .wrap {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  /* Profile card: de row -> column */
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .photo-block {
+    width: 120px;
+    flex: 0 0 120px;
+  }
+
+  .photo,
+  .photo-fallback svg {
+    width: 110px;
+    height: 110px;
+    border-radius: 14px;
+  }
+
+  .photo-edit {
+    right: 8px;
+    bottom: 8px;
+    transform: translate(8%, 8%);
+    padding: 5px 6px;
+    font-size: 11px;
+  }
+
+  .profile-info {
+    width: 100%;
+  }
+
+  .name {
+    font-size: 1.35rem; /* reduz ligeiramente */
+    margin-bottom: 6px;
+  }
+
+  .role, .bio {
+    text-align: center;
+  }
+
+  /* Meta: permitir quebra e ocupar mais espaço */
+  .meta {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .meta-item {
+    min-width: 46%;
+    max-width: 46%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  /* Actions (botões) empilham em mobile */
+  .actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 9px 12px;
+  }
+
+  .btn.primary {
+    padding: 9px 12px;
+  }
+
+  /* Skills: 1 coluna em mobile */
+  .skills-block {
+    padding: 14px;
+  }
+
+  .skills-list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .skills-list li {
+    padding: 10px;
+  }
+
+  /* Contact: virar colunas na form row */
+  .contact-form .row {
+    flex-direction: column;
+  }
+
+  .actions-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hint {
+    text-align: center;
+  }
+
+  .page-title {
+    text-align: center;
+  }
+}
+
+/* Pequenos telefones: ajustes adicionais */
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+    font-size: 14.5px;
+  }
+
+  .wrap {
+    padding: 12px;
+  }
+
+  .photo-block {
+    width: 100px;
+    flex: 0 0 100px;
+  }
+
+  .photo,
+  .photo-fallback svg {
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+  }
+
+  .name {
+    font-size: 1.15rem;
+  }
+
+  .meta-item {
+    min-width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .meta {
+    gap: 8px;
+  }
+
+  .contact-form {
+    padding: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .actions {
+    gap: 6px;
+  }
+}
+
+/* Extra small (por segurança) */
+@media (max-width: 360px) {
+  .name { font-size: 1.05rem; }
+  .bio { font-size: 0.95rem; line-height: 1.4; }
+  .photo-edit { font-size: 10px; padding: 4px 6px; }
+}
