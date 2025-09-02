@@ -16,7 +16,7 @@ $members = [
     ],
     'backend' => [
         'name' => 'Felipe Noronha',
-        'title' => 'Desenvolvedora Back-end',
+        'title' => 'Desenvolvedor Back-end',
         'bio' => 'Foca em arquiteturas escaláveis, APIs robustas e integrações seguras. gosta de trabalhar com bancos de dados e solucionar problemas complexos no servidor.',
         'skills' => ['PHP', 'Node.js', 'SQL', 'APIs REST', 'Docker'],
         'email' => 'felipe.dariva07@gmail.com'
