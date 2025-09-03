@@ -4,8 +4,17 @@
 */
 
 /* Reset básico */
-* { box-sizing: border-box; }
-img, picture, svg { max-width: 100%; height: auto; display: block; }
+* {
+  box-sizing: border-box;
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
 /* Container geral */
 body {
@@ -31,7 +40,8 @@ body {
 /* Perfil: organização e espaçamento consistente */
 .profile-card {
   display: flex !important;
-  flex-direction: column !important; /* mobile first: empilhado */
+  flex-direction: column !important;
+  /* mobile first: empilhado */
   gap: 14px !important;
   align-items: center !important;
   padding: 14px !important;
@@ -48,7 +58,10 @@ body {
   margin: 0 !important;
 }
 
-.photo, .photo img, .photo-fallback svg, .team-badge img {
+.photo,
+.photo img,
+.photo-fallback svg,
+.team-badge img {
   width: 96px !important;
   height: 96px !important;
   max-width: 96px !important;
@@ -56,7 +69,7 @@ body {
   border-radius: 14px !important;
   object-fit: cover !important;
   display: block !important;
-  box-shadow: 0 8px 22px rgba(2,6,23,0.55) !important;
+  box-shadow: 0 8px 22px rgba(2, 6, 23, 0.55) !important;
 }
 
 /* Se houver um badge pequeno (círculo) ao lado do avatar, mantê-lo pequeno e com margem */
@@ -68,14 +81,16 @@ body {
   height: 56px !important;
   max-width: 56px !important;
   max-height: 56px !important;
-  margin: 0 8px 0 0 !important; /* espaço à direita para não colar no conteúdo */
+  margin: 0 8px 0 0 !important;
+  /* espaço à direita para não colar no conteúdo */
   border-radius: 50% !important;
   overflow: hidden !important;
   background: transparent !important;
 }
 
 /* Forçar que a imagem dentro do badge respeite contain e não estoure */
-.team-badge img, .team-badge svg {
+.team-badge img,
+.team-badge svg {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
@@ -90,20 +105,39 @@ body {
 }
 
 /* Evitar que a imagem empurre o texto por cima: garantir fluxo natural */
-.profile-card > * {
+.profile-card>* {
   min-width: 0 !important;
 }
 
 /* Ajustes de tipografia */
-.name { font-size: 1.35rem !important; margin: 0 !important; }
-.role { margin: 0 !important; color: #bfc8d3; }
+.name {
+  font-size: 1.35rem !important;
+  margin: 0 !important;
+}
+
+.role {
+  margin: 0 !important;
+  color: #bfc8d3;
+}
 
 /* Ações e botões: ocupam largura no mobile */
-.actions { width: 100% !important; display: flex !important; gap: 8px !important; justify-content: center !important; flex-wrap: wrap !important; }
-.btn.primary { width: 100% !important; max-width: 320px !important; }
+.actions {
+  width: 100% !important;
+  display: flex !important;
+  gap: 8px !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+}
+
+.btn.primary {
+  width: 100% !important;
+  max-width: 320px !important;
+}
 
 /* Skills e cards: evitar overflow escondido */
-.skills-block, .project-card, .wrap {
+.skills-block,
+.project-card,
+.wrap {
   overflow: visible !important;
 }
 
@@ -120,7 +154,10 @@ body {
     width: 120px !important;
     flex: 0 0 120px !important;
   }
-  .photo, .photo img, .team-badge img {
+
+  .photo,
+  .photo img,
+  .team-badge img {
     width: 120px !important;
     height: 120px !important;
     max-width: 120px !important;
@@ -134,31 +171,72 @@ body {
     margin: 0 !important;
   }
 
-  .profile-info { text-align: left !important; padding: 0 !important; }
+  .profile-info {
+    text-align: left !important;
+    padding: 0 !important;
+  }
 }
 
 /* Breakpoint maior: polimento visual */
 @media (min-width: 820px) {
-  body { font-size: 16px; }
-  .profile-card { gap: 22px !important; }
-  .photo-block { width: 140px !important; flex: 0 0 140px !important; }
-  .photo, .photo img { width: 140px !important; height: 140px !important; border-radius: 18px !important; }
-  .team-badge-wrap { width: 64px !important; height: 64px !important; }
-  .name { font-size: 1.6rem !important; }
-  .profile-info { text-align: left !important; }
+  body {
+    font-size: 16px;
+  }
+
+  .profile-card {
+    gap: 22px !important;
+  }
+
+  .photo-block {
+    width: 140px !important;
+    flex: 0 0 140px !important;
+  }
+
+  .photo,
+  .photo img {
+    width: 140px !important;
+    height: 140px !important;
+    border-radius: 18px !important;
+  }
+
+  .team-badge-wrap {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .name {
+    font-size: 1.6rem !important;
+  }
+
+  .profile-info {
+    text-align: left !important;
+  }
 }
 
 /* Proteções adicionais: neutralizar regras conflitantes comuns */
 [style*="position:absolute"] .photo,
 [style*="position:absolute"] .team-badge,
-.photo[style*="transform"], .team-badge[style*="transform"] {
+.photo[style*="transform"],
+.team-badge[style*="transform"] {
   position: static !important;
   transform: none !important;
 }
 
 /* Small screens extra tweak */
 @media (max-width: 380px) {
-  .photo, .team-badge img { width: 84px !important; height: 84px !important; }
-  .photo-block { width: 84px !important; flex: 0 0 84px !important; }
-  .name { font-size: 1.15rem !important; }
+
+  .photo,
+  .team-badge img {
+    width: 84px !important;
+    height: 84px !important;
+  }
+
+  .photo-block {
+    width: 84px !important;
+    flex: 0 0 84px !important;
+  }
+
+  .name {
+    font-size: 1.15rem !important;
+  }
 }
