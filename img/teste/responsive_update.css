@@ -294,3 +294,69 @@ body,
   }
 
 }
+
+/* ====== FORÇAR CENTRAGEM DAS IMAGENS DE PROJETOS (<= 520px) ====== */
+@media (max-width: 520px) {
+  /* Garantir que o grid/contêiner permita centralizar itens */
+  .projects-grid,
+  .projects,
+  .portfolio-grid {
+    justify-items: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Fazer o card alinhar e centralizar seu conteúdo */
+  .project-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Thumb: centraliza e dá espaço para o círculo inteiro */
+  .project-thumb {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 10px 12px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Forçar a imagem/SVG a não flutuar, não posicionar, e centralizar */
+  .project-thumb img,
+  .project-thumb svg,
+  .project-thumb picture,
+  .project-thumb > * {
+    float: none !important;
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    margin-left: 5% !important;
+    transform: none !important;
+    display: block !important;
+    max-width: 92% !important;   /* limita para caber na tela sem estourar */
+    width: auto !important;
+    height: auto !important;
+    max-height: 280px !important;/* segura tamanho vertical */
+    object-fit: contain !important;
+    vertical-align: middle !important;
+  }
+
+  /* Caso algum elemento use margin-top negativo, neutralizar */
+  .project-thumb img,
+  .project-thumb svg {
+    margin-top: 0 !important;
+  }
+}
