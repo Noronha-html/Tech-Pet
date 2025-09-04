@@ -66,15 +66,7 @@
           <div class="hero-right">
             <div class="team-badge-wrap" aria-hidden="true">
               <div class="team-badge" aria-hidden="true">
-                <svg
-                  viewBox="0 0 64 64"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M32 6c14.36 0 26 11.64 26 26S46.36 58 32 58 6 46.36 6 32 17.64 6 32 6zm0 6a9 9 0 100 18 9 9 0 000-18zm0 34c8.84 0 16-3.58 16-8v-2c0-3.31-7.16-6-16-6s-16 2.69-16 6v2c0 4.42 7.16 8 16 8z"
-                  />
-                </svg>
+                <img src="./img-t/1000079108.jpg" alt="" srcset="">
               </div>
             </div>
           </div>
@@ -248,11 +240,7 @@
             <a href="./membro.php?member=Frontend" class="a_dev">
               <div class="member">
                 <div class="avatar" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"
-                    />
-                  </svg>
+                  <img src="./img-t/1000079117.jpg" alt="" srcset="">
                 </div>
                 <h4>Dev Frontend</h4>
                 <p>
@@ -264,11 +252,7 @@
             <a href="./membro.php?member=backend" class="a_dev">
               <div class="member">
                 <div class="avatar" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"
-                    />
-                  </svg>
+                  <img src="./img-t/1000079112.jpg" alt="" srcset="">
                 </div>
                 <h4>Dev Backend</h4>
                 <p>
@@ -281,11 +265,7 @@
             <a href="./membro.php?member=designer" class="a_dev" >
               <div class="member">
                 <div class="avatar" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"
-                    />
-                  </svg>
+                  <img src="./img-t/1000079116.jpg" alt="" srcset="">
                 </div>
                 <h4>Designer UI/UX</h4>
                 <p>

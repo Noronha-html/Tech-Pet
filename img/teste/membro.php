@@ -12,14 +12,14 @@ $members = [
         'bio' => 'Especialista em interfaces interativas, componentes reutilizáveis e otimização de performance. Gosta de transformar designs em experiências fluidas.',
         // skills podem ser strings ou arrays ['name'=>..., 'level'=>NN]
         'skills' => ['HTML', 'CSS', 'JavaScript', 'React', 'Acessibilidade'],
-        'email' => 'arthur.p.fernandes.31@gmail.com'
+        'email' => 'arthur.p.fernandes.31@gmail.com',
     ],
     'backend' => [
         'name' => 'Felipe Noronha',
         'title' => 'Desenvolvedor Back-end',
         'bio' => 'Foca em arquiteturas escaláveis, APIs robustas e integrações seguras. gosta de trabalhar com bancos de dados e solucionar problemas complexos no servidor.',
         'skills' => ['PHP', 'Node.js', 'SQL', 'APIs REST', 'Docker'],
-        'email' => 'felipe.dariva07@gmail.com'
+        'email' => 'felipe.dariva07@gmail.com',
     ],
     'designer' => [
         'name' => 'Lucas Martini',
