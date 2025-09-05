@@ -66,7 +66,7 @@
           <div class="hero-right">
             <div class="team-badge-wrap" aria-hidden="true">
               <div class="team-badge" aria-hidden="true">
-                <img src="./img-t/1000079108.jpg" alt="" srcset="">
+                <img class="img_1" src="./img-t/imagem (2).png" alt="" srcset="">
               </div>
             </div>
           </div>
