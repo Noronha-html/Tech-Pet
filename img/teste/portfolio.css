@@ -195,8 +195,8 @@ p.lead {
 .team-badge {
   width: 400px;
   height: 250px;
-  border-radius: 50%;
-  background-color: #17adcf;
+  border-radius: 150px 150px 100px 100px;
+  background-color: #21a3c0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -386,12 +386,10 @@ h2.section-title {
 .img_1 {
   width: 100%;        /* ocupa toda a largura do container */
   height: auto;       /* mantém a proporção original */
-  display: block;
-  object-fit: contain; /* ou cover, veja abaixo */
-  margin-bottom: -60px;
-  overflow: hidden;
+  display: block;     /* ou cover, veja abaixo */
+  object-fit: contain;
+  margin-bottom: -55px;
 }
-
 
 .avatar img {
   width: 100%;
