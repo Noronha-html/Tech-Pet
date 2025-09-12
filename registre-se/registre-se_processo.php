@@ -104,7 +104,7 @@ if (!empty($errors)) {
 
 $hashSenha = password_hash($senha, PASSWORD_DEFAULT);
 
-$sqlIns = " INSERT INTO pessoas 
+$sqlIns = " INSERT INTO pessoas
         (Nome, Email, Senha, Estado, Cidade, DataNascimento, Whatsapp, Excluido) 
     VALUES (?, ?, ?, ?, ?, ?, ?, 0)
 ";

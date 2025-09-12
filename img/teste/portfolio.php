@@ -240,7 +240,7 @@
             <a href="./membro.php?member=Frontend" class="a_dev">
               <div class="member">
                 <div class="avatar" aria-hidden="true">
-                  <img src="./img-t/1000079117.jpg" alt="" srcset="">
+                  <img src="./img-t/1000079117.png" alt="" srcset="">
                 </div>
                 <h4>Dev Frontend</h4>
                 <p>
@@ -252,7 +252,7 @@
             <a href="./membro.php?member=backend" class="a_dev">
               <div class="member">
                 <div class="avatar" aria-hidden="true">
-                  <img src="./img-t/1000079112.jpg" alt="" srcset="">
+                  <img src="./img-t/1000079112.png" alt="" srcset="">
                 </div>
                 <h4>Dev Backend</h4>
                 <p>
@@ -265,7 +265,7 @@
             <a href="./membro.php?member=designer" class="a_dev" >
               <div class="member">
                 <div class="avatar" aria-hidden="true">
-                  <img src="./img-t/1000079116.jpg" alt="" srcset="">
+                  <img src="./img-t/1000079116.png" alt="" srcset="">
                 </div>
                 <h4>Designer UI/UX</h4>
                 <p>
