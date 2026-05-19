@@ -140,7 +140,7 @@
               <small>Interatividade e lógica</small>
             </div>
             <div class="tech-card">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png" alt="" srcset="">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="" srcset="">
                 <path d="M12 2l3 7h7l-6 5 2 7-6-4-6 4 2-7-6-5h7z" />
               </svg>
               <p>React</p>

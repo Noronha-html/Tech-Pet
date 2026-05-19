@@ -43,9 +43,27 @@ $default_levels = [
     'figma' => 90, 'ux' => 88, 'ui' => 86, 'prototipagem' => 80, 'design system' => 78
 ];
 
+switch ($requested) {
+  case 'frontend':
+    $photoCandidate = '1000079117.png';
+    break;
+  case 'backend':
+    $photoCandidate = '1000079112.png';
+    break;
+  case 'designer':
+    $photoCandidate = '1000079116.png';
+    break;
+  default:
+    $photoCandidate = 'photo.jpg';
+    break;
+}
+
 // determina caminho da foto: procura por [frontend|backend|designer].jpg ou usa photo.jpg
-$photoCandidate = $requested . '.jpg';
-$photoPath = file_exists(__DIR__ . '/' . $photoCandidate) ? $photoCandidate : 'photo.jpg';
+//$photoCandidate = $requested . '.jpg';
+//$photoPath = file_exists(/*__DIR__ .*/ './img-t/' . $photoCandidate) ? $photoCandidate : 'photo.jpg';
+$imgDir = 'img-t/';
+$serverPath = __DIR__ . DIRECTORY_SEPARATOR . $imgDir . $photoCandidate;
+$photoPath = file_exists($serverPath) ? $imgDir . $photoCandidate : 'photo.jpg';
 ?>
 <!doctype html>
 <html lang="en">
