@@ -263,10 +263,26 @@ h2.section-title {
 
 @media screen and (max-width: 768px) {
   .tech-grid {
-    /*grid-template-columns: repeat(2, minmax(180px, 1fr));*/
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 20px;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    padding: 10px 20px 20px;
+  }
+
+  .tech-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tech-card {
+    min-width: 260px;
+    flex: 0 0 auto;
+
+    scroll-snap-align: center;
   }
 }
 

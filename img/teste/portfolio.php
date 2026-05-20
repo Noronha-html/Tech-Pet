@@ -16,9 +16,6 @@
     <div class="wrap">
       <header>
         <div style="display: flex; align-items: center; gap: 12px">
-          <button class="nav-toggle" aria-label="Abrir menu" id="navToggle">
-            ☰
-          </button>
           <div class="brand">Dev16</div>
         </div>
         <nav aria-label="menu" id="mainNav">
