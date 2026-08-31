@@ -1,7 +1,7 @@
 <?php
 //Conexão com o banco
 session_start();
-include_once "../conexao.php";
+include_once "../conn.php";
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 

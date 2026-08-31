@@ -1,7 +1,7 @@
 <?php
 //Verificar usuário e conexãpo com o banco
 session_start();
-include_once "../conexao.php";
+include_once "../conno.php";
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

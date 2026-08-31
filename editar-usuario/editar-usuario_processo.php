@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../conexao.php";
+include_once "../conn.php";
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['usuario_id'])) {
     header("Location: editar-usuario.php");

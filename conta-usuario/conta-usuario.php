@@ -1,7 +1,7 @@
 <?php
 //Conexão com o banco
 session_start();
-include_once "../conexao.php";
+include_once "../conn.php";
 
 //Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id']) || !filter_var($_SESSION['usuario_id'], FILTER_VALIDATE_INT)) {

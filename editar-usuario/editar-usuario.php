@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../conexao.php";
+include_once "../conn.php";
 
 // 1) Verifica login
 if (!isset($_SESSION['usuario_id'])) {

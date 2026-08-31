@@ -1,7 +1,7 @@
 <?php
 //Conexão com o banco
 session_start();
-include_once "../conexao.php";
+include_once "../conn.php";
 
 //Captura o serial pela query string
 $serial = trim($_GET['serial'] ?? '');
